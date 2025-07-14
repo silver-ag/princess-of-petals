@@ -180,10 +180,10 @@ void redraw_needed(short tilepos) {
 		--wipe_frames[tilepos];
 		draw_tile_wipe(wipe_heights[tilepos]);
 	}
-	if (redraw_frames_full[tilepos]) {
-		--redraw_frames_full[tilepos];
+	//if (redraw_frames_full[tilepos]) {
+	//	--redraw_frames_full[tilepos];
 		draw_tile();
-	} else {
+	//} else {
 		if (redraw_frames_anim[tilepos]) {
 			--redraw_frames_anim[tilepos];
 			draw_tile_anim_topright();
@@ -194,7 +194,7 @@ void redraw_needed(short tilepos) {
 			draw_tile_bottom(0);
 #endif
 		}
-	}
+	//}
 	if (redraw_frames2[tilepos]) {
 		--redraw_frames2[tilepos];
 		draw_other_overlay();
@@ -1366,7 +1366,7 @@ void draw_tables() {
 	drects_count = 0;
 	current_target_surface = offscreen_surface;
 	if (is_blind_mode) {
-		draw_rect(&rect_top, color_0_black);
+		draw_rect_rgb(&rect_top, (rgb_type){100,100,255}); //draw_rect(&rect_top, color_0_black);
 	}
 	restore_peels();
 	draw_wipes(0);
