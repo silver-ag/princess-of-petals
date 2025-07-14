@@ -1084,7 +1084,7 @@ void draw_wipe(int index) {
 	rect.right += ptr->width;
 	rect.bottom = rect.top = ptr->bottom;
 	rect.top -= ptr->height;
-	draw_rect(&rect, ptr->color);
+	draw_rect_rgb(&rect, (rgb_type){100,100,255}); //ptr->color);
 	if (need_drects) {
 		add_drect(&rect);
 	}

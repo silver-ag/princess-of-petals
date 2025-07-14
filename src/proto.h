@@ -581,6 +581,7 @@ void draw_image_transp_vga(image_type* image,int xpos,int ypos);
 int get_line_width(const char *text,int length);
 int draw_text_character(byte character);
 void draw_rect(const rect_type *rect,int color);
+void draw_rect_rgb(const rect_type *rect, rgb_type colour);
 void draw_rect_with_alpha(const rect_type* rect, byte color, byte alpha);
 void draw_rect_contours(const rect_type* rect, byte color);
 surface_type *rect_sthg(surface_type* surface,const rect_type* rect);
