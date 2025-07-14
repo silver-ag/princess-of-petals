@@ -1208,7 +1208,7 @@ void load_alter_mod(int tilepos) {
 		case tiles_20_wall:
 		{
 			byte stored_modif = *curr_tile_modif;
-			//*curr_tile_modif <<= 7; // original: "no blue" mod becomes most significant bit
+			//*curr_tile_modif <<= 7; // original: "no blue" mod becomes most significant bit //*/
 			if (stored_modif == 1) *curr_tile_modif = 0x80;
 			else *curr_tile_modif = (stored_modif << 4);
 			// retain three bits more information:

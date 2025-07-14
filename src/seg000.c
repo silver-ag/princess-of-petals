@@ -2361,7 +2361,7 @@ void show_loading() {
 word which_quote;
 
 char const * const tbl_quotes[2] = {
-"\"(****/****) Incredibly realistic. . . The "
+"\"(****/****) Incredibly realistic. . . The " //*/
 "adventurer character actually looks human as he "
 "runs, jumps, climbs, and hangs from ledges.\"\n"
 "\n"
@@ -2446,7 +2446,7 @@ void show_splash() {
 			}
 			key_states[SDL_SCANCODE_LSHIFT] |= KEYSTATE_HELD; // close the splash screen using the gamepad
 		}
-		
+
 		delay_ticks(1);
 
 	} while(key == 0 && !(key_states[SDL_SCANCODE_LSHIFT] & KEYSTATE_HELD || key_states[SDL_SCANCODE_RSHIFT] & KEYSTATE_HELD));
