@@ -1110,12 +1110,12 @@ const byte door_fram_slice[] = {67, 59, 58, 57, 56, 55, 54, 53, 52};
 void draw_gate_back() {
 	calc_gate_pos();
 	if (gate_bottom_y + 12 < draw_main_y) {
-		add_backtable(id_chtab_6_environment, 50 /*gate bottom with B*/, draw_xh, 0, gate_bottom_y, blitters_0_no_transp, 0);
+		add_backtable(id_chtab_6_environment, 50 /*gate bottom with B*/, draw_xh, 0, gate_bottom_y, blitters_10h_transp, 0);
 	} else {
 		// The following line (erroneously) erases the top-right of the tile below-left (because it is drawn non-transparently).
 		// -- But it draws something that was already drawn! (in draw_tile_right()).
 		add_backtable(id_chtab_6_environment, tile_table[tiles_4_gate].right_id, draw_xh, 0,
-		              tile_table[tiles_4_gate].right_y + draw_main_y, blitters_0_no_transp, 0);
+		              tile_table[tiles_4_gate].right_y + draw_main_y, blitters_10h_transp, 0);
 		// And this line tries to fix it. But it fails if it was a gate or a pillar.
 		if (can_see_bottomleft()) draw_tile_topright();
 #ifdef FIX_GATE_DRAWING_BUG
@@ -1132,12 +1132,12 @@ void draw_gate_back() {
 	short ybottom = gate_bottom_y - 12;
 	if (ybottom < 192) {
 		for (; ybottom >= 0 && ybottom > 7 && ybottom - 7 > gate_top_y; ybottom -= 8) {
-			add_backtable(id_chtab_6_environment, 52 /*gate slice 8px*/, draw_xh, 0, ybottom, blitters_0_no_transp, 0);
+			add_backtable(id_chtab_6_environment, 52 /*gate slice 8px*/, draw_xh, 0, ybottom, blitters_10h_transp, 0);
 		}
 	}
 	word gate_frame = ybottom - gate_top_y + 1;
 	if (gate_frame > 0 && gate_frame < 9) {
-		add_backtable(id_chtab_6_environment, door_fram_slice[gate_frame], draw_xh, 0, ybottom, blitters_0_no_transp, 0);
+		add_backtable(id_chtab_6_environment, door_fram_slice[gate_frame], draw_xh, 0, ybottom, blitters_10h_transp, 0);
 	}
 }
 
