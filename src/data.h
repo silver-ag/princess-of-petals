@@ -31,6 +31,11 @@ The authors of this program may be contacted at https://forum.princed.org
 #undef extern
 #endif
 
+// princess of petals
+
+extern rgb_type bg_colour;
+
+
 // data:5F8A
 extern word text_time_remaining;
 // data:4C56
@@ -956,7 +961,9 @@ extern int key_action     INIT(= SDL_SCANCODE_RSHIFT);
 extern int key_enter      INIT(= SDL_SCANCODE_RETURN);
 extern int key_esc        INIT(= SDL_SCANCODE_ESCAPE);
 
+
 #undef INIT
 #undef extern
 
 #endif
+

@@ -1084,7 +1084,7 @@ void draw_wipe(int index) {
 	rect.right += ptr->width;
 	rect.bottom = rect.top = ptr->bottom;
 	rect.top -= ptr->height;
-	draw_rect_rgb(&rect, (rgb_type){100,100,255}); //ptr->color);
+	draw_rect_rgb(&rect, bg_colour);
 	if (need_drects) {
 		add_drect(&rect);
 	}
@@ -1367,7 +1367,7 @@ void draw_tables() {
 	drects_count = 0;
 	current_target_surface = offscreen_surface;
 	if (is_blind_mode) {
-		draw_rect_rgb(&rect_top, (rgb_type){100,100,255}); //draw_rect(&rect_top, color_0_black);
+		draw_rect_rgb(&rect_top, bg_colour);
 	}
 	restore_peels();
 	draw_wipes(0);
