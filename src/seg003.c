@@ -778,7 +778,7 @@ int flash_if_hurt() {
 #endif
 			}
 		}
-		do_flash(color_12_brightred); // red
+		do_flash((rgb_type){255,0,0}); // red
 		return 1;
 	}
 	return 0; // not flashed

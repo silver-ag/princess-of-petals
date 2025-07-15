@@ -458,7 +458,7 @@ void pv_scene() {
 	if (proc_cutscene_frame(17)) return;
 	hourglass_state = 1;
 	flash_time = 5;
-	flash_color = 15; // white
+	flash_color = (rgb_type){255,255,255}; // white
 	do {
 		if (proc_cutscene_frame(1)) return;
 		//idle();
@@ -538,17 +538,15 @@ void reset_cutscene() {
 }
 
 // seg001:0908
-void do_flash(short color) {
+void do_flash(rgb_type colour) {
 	// stub
-	if (color) {
-		if (graphics_mode == gmMcgaVga) {
-			reset_timer(timer_2);
-			set_timer_length(timer_2, 2);
-			set_bg_attr(0, color);
-			if (color != 0) do_simple_wait(timer_2); // give some time to show the flash
-		} else {
-			// ...
-		}
+	if (graphics_mode == gmMcgaVga) {
+		reset_timer(timer_2);
+		set_timer_length(timer_2, 2);
+		set_bg_attr(colour);
+		do_simple_wait(timer_2); // give some time to show the flash
+	} else {
+		// ...
 	}
 }
 
@@ -563,7 +561,7 @@ void delay_ticks(Uint32 ticks) {
 void remove_flash() {
 	// stub
 	if (graphics_mode == gmMcgaVga) {
-		set_bg_attr(0, 0);
+		set_bg_attr((rgb_type){0,0,0});
 	} else {
 		// ...
 	}

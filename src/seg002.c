@@ -1210,7 +1210,7 @@ void autocontrol_shadow_level12() {
 	}
 	if (char_opp_dist() < 10) {
 		// unite with the shadow
-		flash_color = color_15_brightwhite; // white
+		flash_color = (rgb_type){255,255,255}; // white
 		flash_time = 18;
 		// get an extra HP for uniting the shadow
 		add_life();

@@ -283,7 +283,8 @@ extern word hitp_max;
 // data:5FF0
 extern short hitp_delta;
 // data:4D94
-extern word flash_color;
+//extern word flash_color;
+extern rgb_type flash_color;
 // data:4350
 extern word flash_time;
 // data:42DC

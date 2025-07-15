@@ -991,11 +991,11 @@ surface_type* make_offscreen_buffer(const rect_type* rect) {
 	// stub
 #ifndef USE_ALPHA
 	// Bit order matches onscreen buffer, good for fading.
-	return SDL_CreateRGBSurface(0, rect->right, rect->bottom, 24, Rmsk, Gmsk, Bmsk, 0);
+	surface_type* sfc = SDL_CreateRGBSurface(0, rect->right, rect->bottom, 24, Rmsk, Gmsk, Bmsk, 0);
 #else
-	return SDL_CreateRGBSurface(0, rect->right, rect->bottom, 32, Rmsk, Gmsk, Bmsk, Amsk);
+	surface_type* sfc = SDL_CreateRGBSurface(0, rect->right, rect->bottom, 32, Rmsk, Gmsk, Bmsk, Amsk);
 #endif
-	//return surface;
+	return sfc;
 }
 
 // seg009:17BD
@@ -3145,7 +3145,6 @@ void draw_rect_rgb(const rect_type* rect, rgb_type colour) {
 		sdlperror("draw_rect_rgb: SDL_FillRect");
 		quit(1);
 	}
-	return rect;
 }
 
 void draw_rect_with_alpha(const rect_type* rect, byte color, byte alpha) {
@@ -3871,65 +3870,40 @@ void reset_clip_rect() {
 }
 
 // seg009:1983
-void set_bg_attr(int vga_pal_index,int hc_pal_index) {
+void set_bg_attr(rgb_type colour) {
 	// stub
 #ifdef USE_FLASH
-	//palette[vga_pal_index] = vga_palette[hc_pal_index];
 	if (!enable_flash) return;
-	if (vga_pal_index == 0) {
-		/*
-		if (SDL_SetAlpha(offscreen_surface, SDL_SRCALPHA, 0) != 0) {
-			sdlperror("set_bg_attr: SDL_SetAlpha");
-			quit(1);
-		}
-		*/
-		// Make the black pixels transparent.
-		if (SDL_SetColorKey(offscreen_surface, SDL_TRUE, 0) != 0) {	// SDL_SRCCOLORKEY old
-			sdlperror("set_bg_attr: SDL_SetColorKey");
-			quit(1);
-		}
-		SDL_Rect rect = {0,0,0,0};
-		rect.w = offscreen_surface->w;
-		rect.h = offscreen_surface->h;
-		rgb_type palette_color = palette[hc_pal_index];
-		uint32_t rgb_color = SDL_MapRGB(onscreen_surface_->format, palette_color.r<<2, palette_color.g<<2, palette_color.b<<2) /*& 0xFFFFFF*/;
-		//SDL_UpdateRect(onscreen_surface_, 0, 0, 0, 0);
-		// First clear the screen with the color of the flash.
-		if (safe_SDL_FillRect(onscreen_surface_, &rect, rgb_color) != 0) {
-			sdlperror("set_bg_attr: SDL_FillRect");
-			quit(1);
-		}
-		//SDL_UpdateRect(onscreen_surface_, 0, 0, 0, 0);
-		if (upside_down) {
-			flip_screen(offscreen_surface);
-		}
-		// Then draw the offscreen image onto it.
-		if (SDL_BlitSurface(offscreen_surface, &rect, onscreen_surface_, &rect) != 0) {
-			sdlperror("set_bg_attr: SDL_BlitSurface");
-			quit(1);
-		}
-#ifdef USE_LIGHTING
-		if (hc_pal_index == 0) update_lighting(&rect_top);
-#endif
-		if (upside_down) {
-			flip_screen(offscreen_surface);
-		}
-		// And show it!
-//		update_screen();
-		// Give some time to show the flash.
-		//SDL_Flip(onscreen_surface_);
-//		if (hc_pal_index != 0) SDL_Delay(2*(1000/60));
-		//SDL_Flip(onscreen_surface_);
-		/*
-		if (SDL_SetAlpha(offscreen_surface, 0, 0) != 0) {
-			sdlperror("set_bg_attr: SDL_SetAlpha");
-			quit(1);
-		}
-		*/
-		if (SDL_SetColorKey(offscreen_surface, 0, 0) != 0) {
-			sdlperror("set_bg_attr: SDL_SetColorKey");
-			quit(1);
-		}
+	// Make the black pixels transparent.
+	if (SDL_SetColorKey(offscreen_surface, SDL_TRUE, 0) != 0) {	// SDL_SRCCOLORKEY old
+		sdlperror("set_bg_attr: SDL_SetColorKey");
+		quit(1);
+	}
+	SDL_Rect rect = {0,0,0,0};
+	rect.w = offscreen_surface->w;
+	rect.h = offscreen_surface->h;
+	uint32_t rgb_color = SDL_MapRGB(onscreen_surface_->format, colour.r<<2, colour.g<<2, colour.b<<2) /*& 0xFFFFFF*/;
+	//SDL_UpdateRect(onscreen_surface_, 0, 0, 0, 0);
+	// First clear the screen with the color of the flash.
+	if (safe_SDL_FillRect(onscreen_surface_, &rect, rgb_color) != 0) {
+		sdlperror("set_bg_attr: SDL_FillRect");
+		quit(1);
+	}
+	//SDL_UpdateRect(onscreen_surface_, 0, 0, 0, 0);
+	if (upside_down) {
+		flip_screen(offscreen_surface);
+	}
+	// Then draw the offscreen image onto it.
+	if (SDL_BlitSurface(offscreen_surface, &rect, onscreen_surface_, &rect) != 0) {
+		sdlperror("set_bg_attr: SDL_BlitSurface");
+		quit(1);
+	}
+	if (upside_down) {
+		flip_screen(offscreen_surface);
+	}
+	if (SDL_SetColorKey(offscreen_surface, 0, 0) != 0) {
+		sdlperror("set_bg_attr: SDL_SetColorKey");
+		quit(1);
 	}
 #endif // USE_FLASH
 }

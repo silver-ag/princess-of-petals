@@ -115,7 +115,7 @@ int hourglass_frame(void);
 void princess_room_torch(void);
 void draw_hourglass(void);
 void reset_cutscene(void);
-void do_flash(short color);
+void do_flash(rgb_type colour);
 void delay_ticks(Uint32 ticks);
 void remove_flash(void);
 void end_sequence(void);
@@ -626,7 +626,7 @@ int do_wait(int timer_index);
 void init_timer(int frequency);
 void set_clip_rect(const rect_type* rect);
 void reset_clip_rect(void);
-void set_bg_attr(int vga_pal_index,int hc_pal_index);
+void set_bg_attr(rgb_type colour);
 rect_type* offset4_rect_add(rect_type* dest, const rect_type* source,int d_left,int d_top,int d_right,int d_bottom);
 int input_str(const rect_type* rect,char *buffer,int max_length,const char *initial,int has_initial,int arg_4,int color,int bgcolor);
 rect_type* offset2_rect(rect_type* dest, const rect_type* source,int delta_x,int delta_y);
@@ -730,3 +730,7 @@ void stop_midi(void);
 void init_midi(void);
 void midi_callback(void *userdata, Uint8 *stream, int len);
 void play_midi_sound(sound_buffer_type* buffer);
+
+// custom_levels.c
+void initialise_custom_levels(void);
+void load_custom_level(int n, level_type* level_ref);

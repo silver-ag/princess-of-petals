@@ -1108,6 +1108,7 @@ void calc_gate_pos() {
 const byte door_fram_slice[] = {67, 59, 58, 57, 56, 55, 54, 53, 52};
 // seg008:17B7
 void draw_gate_back() {
+	draw_tile_wipe(60); // clear behind gate
 	calc_gate_pos();
 	if (gate_bottom_y + 12 < draw_main_y) {
 		add_backtable(id_chtab_6_environment, 50 /*gate bottom with B*/, draw_xh, 0, gate_bottom_y, blitters_10h_transp, 0);

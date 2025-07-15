@@ -1848,7 +1848,7 @@ void proc_get_object() {
 	if (pickup_obj_type == -1) {
 		have_sword = -1;
 		play_sound(sound_37_victory); // get sword
-		flash_color = color_14_brightyellow;
+		flash_color = (rgb_type){255,255,0};
 		flash_time = 8;
 	} else {
 		switch (pickup_obj_type) {
@@ -1857,14 +1857,14 @@ void proc_get_object() {
 					stop_sounds();
 					play_sound(sound_33_small_potion); // small potion
 					hitp_delta = 1;
-					flash_color = color_4_red;
+					flash_color = (rgb_type){255,0,0};
 					flash_time = 2;
 				}
 			break;
 			case 2: // life
 				stop_sounds();
 				play_sound(sound_30_big_potion); // big potion
-				flash_color = color_4_red;
+				flash_color = (rgb_type){255,0,0};
 				flash_time = 4;
 				add_life();
 			break;
@@ -1920,7 +1920,7 @@ void on_guard_killed() {
 		demo_index = demo_time = 0;
 	} else if (current_level == /*13*/ custom->jaffar_victory_level) {
 		// Jaffar's level: flash
-		flash_color = color_15_brightwhite; // white
+		flash_color = (rgb_type){255,255,255}; // white
 		flash_time = /*18*/ custom->jaffar_victory_flash_time;
 		is_show_time = 1;
 		leveldoor_open = 2;
@@ -2025,7 +2025,7 @@ void check_killed_shadow() {
 		if ((Char.charid | Opp.charid) == charid_1_shadow &&
 			Char.alive < 0 && Opp.alive >= 0
 		) {
-			flash_color = color_15_brightwhite; // white
+			flash_color = (rgb_type){255,255,255}; // white
 			flash_time = 5;
 			take_hp(100);
 		}

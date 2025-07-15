@@ -153,6 +153,9 @@ byte* level_var_palettes;
 
 // seg000:024F
 void init_game_main() {
+
+	initialise_custom_levels(); // princess of petals levels
+
 	doorlink1_ad = /*&*/level.doorlinks1;
 	doorlink2_ad = /*&*/level.doorlinks2;
 	prandom(1);
@@ -826,13 +829,13 @@ int process_key() {
 				if (hitp_curr != hitp_max) {
 					play_sound(sound_33_small_potion); // small potion (cheat)
 					hitp_delta = 1;
-					flash_color = 4; // red
+					flash_color = (rgb_type){255,0,0}; // red
 					flash_time = 2;
 				}
 			break;
 			case SDL_SCANCODE_T | WITH_SHIFT: // Shift+T
 				play_sound(sound_30_big_potion); // big potion (cheat)
-				flash_color = 4; // red
+				flash_color = (rgb_type){255,0,0}; // red
 				flash_time = 4;
 				add_life();
 			break;
@@ -1150,12 +1153,7 @@ void load_lev_spr(int level) {
 
 // seg000:0E6C
 void load_level() {
-	dat_type* dathandle = open_dat("LEVELS.DAT", 0);
-	load_from_opendats_to_area(current_level + 2000, &level, sizeof(level), "bin");
-	close_dat(dathandle);
-
-	alter_mods_allrm();
-	reset_level_unused_fields(true); // added
+	load_custom_level(current_level, &level);
 }
 
 void reset_level_unused_fields(bool loading_clean_level) {
@@ -1887,7 +1885,7 @@ void feather_fall() {
 	} else {
 		is_feather_fall = 1;
 	}
-	flash_color = 2; // green
+	flash_color = (rgb_type){0,255,0}; // green
 	flash_time = 3;
 	stop_sounds();
 	play_sound(sound_39_low_weight); // low weight
