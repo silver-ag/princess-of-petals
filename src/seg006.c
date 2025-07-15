@@ -1865,7 +1865,7 @@ void proc_get_object() {
 				stop_sounds();
 				play_sound(sound_30_big_potion); // big potion
 				flash_color = (rgb_type){255,0,0};
-				flash_time = 4;
+				death_flash_frames = 8;
 				add_life();
 			break;
 			case 3: // feather

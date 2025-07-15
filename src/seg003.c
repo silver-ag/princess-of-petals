@@ -163,12 +163,11 @@ void do_startpos() {
 			x = /*4*/ custom->demo_hitp;
 		}
 		hitp_max = hitp_curr = x;
-	}
-	if (/*current_level == 1*/ custom->tbl_entry_pose[current_level] == 1) {
+	} if (custom->tbl_entry_pose[current_level] == 1) {
 		// Special event: press button + falling entry
 		get_tile(5, 2, 0);
 		trigger_button(0, 0, -1);
-		seqtbl_offset_char(seq_7_fall); // fall
+		seqtbl_offset_char(seq_2_stand);//test(seq_7_fall); // fall
 	} else if (/*current_level == 13*/ custom->tbl_entry_pose[current_level] == 2) {
 		// Special event: running entry
 		seqtbl_offset_char(seq_84_run); // run
@@ -370,6 +369,9 @@ int play_level_2() {
 		hitp_delta = 0;
 		timers();
 		play_frame();
+
+		//test
+		death_flash();
 
 #ifdef USE_REPLAY
 		// At the exact "end of level" frame, preserve the seed to ensure reproducibility,
