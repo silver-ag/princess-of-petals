@@ -259,7 +259,7 @@ void redraw_screen(int drawing_different_room) {
 		need_drects = 0;
 		redraw_room();
 #ifdef USE_LIGHTING
-	redraw_lighting();
+		redraw_lighting();
 #endif
 		if (is_keyboard_mode) {
 			clear_kbd_buf();

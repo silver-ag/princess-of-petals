@@ -734,3 +734,6 @@ void play_midi_sound(sound_buffer_type* buffer);
 // custom_levels.c
 void initialise_custom_levels(void);
 void load_custom_level(int n, level_type* level_ref);
+
+// custom_graphics.c
+Uint32 get_bg_colourkey(SDL_PixelFormat* fmt);
