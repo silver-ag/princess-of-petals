@@ -918,7 +918,7 @@ void play_frame() {
 // seg000:09B6
 void draw_game_frame() {
 	if (need_full_redraw) {
-		redraw_screen(0);
+		redraw_screen(different_room);
 		need_full_redraw = 0;
 	} else {
 		if (different_room) {
@@ -1864,7 +1864,7 @@ void copy_screen_rect(const rect_type* source_rect_ptr) {
 	} else {
 		target_rect_ptr = source_rect_ptr;
 	}
-	method_1_blit_rect(onscreen_surface_, offscreen_surface, target_rect_ptr, target_rect_ptr, 0);
+	method_1_blit_rect(onscreen_surface_, offscreen_surface, target_rect_ptr, target_rect_ptr, blitters_0_no_transp);
 #ifdef USE_LIGHTING
 	update_lighting(target_rect_ptr);
 #endif

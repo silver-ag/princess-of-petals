@@ -81,6 +81,7 @@ void play_level(int level_number) {
 		if (level_number != current_level) {
 			load_lev_spr(level_number);
 		}
+		death_flash_frames = 0; // reset graphics
 		load_level();
 		pos_guards();
 		clear_coll_rooms();
@@ -167,7 +168,7 @@ void do_startpos() {
 		// Special event: press button + falling entry
 		get_tile(5, 2, 0);
 		trigger_button(0, 0, -1);
-		seqtbl_offset_char(seq_2_stand);//test(seq_7_fall); // fall
+		seqtbl_offset_char(seq_2_stand); // don't fall
 	} else if (/*current_level == 13*/ custom->tbl_entry_pose[current_level] == 2) {
 		// Special event: running entry
 		seqtbl_offset_char(seq_84_run); // run
@@ -370,7 +371,7 @@ int play_level_2() {
 		timers();
 		play_frame();
 
-		//test
+		// check if flash needed
 		death_flash();
 
 #ifdef USE_REPLAY

@@ -211,7 +211,7 @@ struct directory_listing_type {
 directory_listing_type* create_directory_listing_and_find_first_file(const char* directory, const char* extension) {
 	directory_listing_type* directory_listing = calloc(1, sizeof(directory_listing_type));
 	char search_pattern[POP_MAX_PATH];
-	snprintf_check(search_pattern, POP_MAX_PATH, "%s/*.%s", directory, extension);
+	snprintf_check(search_pattern, POP_MAX_PATH, "%s/*.%s", directory, extension); //*/
 	WCHAR* search_pattern_UTF16 = WIN_UTF8ToString(search_pattern);
 	directory_listing->search_handle = FindFirstFileW( search_pattern_UTF16, &directory_listing->find_data );
 	SDL_free(search_pattern_UTF16);
@@ -3018,7 +3018,7 @@ void method_1_blit_rect(surface_type* target_surface,surface_type* source_surfac
 	SDL_Rect dest_rect;
 	rect_to_sdlrect(target_rect, &dest_rect);
 
-	if (blit == blitters_0_no_transp) {
+	if (blit == blitters_0_no_transp || blit == blitters_0_no_transp_tile) {
 		// Disable transparency.
 		if (SDL_SetColorKey(source_surface, 0, /*get_bg_colourkey(source_surface->format) test*/0) != 0) {
 			sdlperror("method_1_blit_rect: SDL_SetColorKey");
@@ -3294,7 +3294,7 @@ image_type* method_6_blit_img_to_scr(image_type* image,int xpos,int ypos,int bli
 		return NULL;
 	}
 
-	if (blit == blitters_9_black) {
+	if (blit == blitters_9_black || ((blit == blitters_10h_transp || blit == blitters_2_or || blitters_0_no_transp_tile) && death_flash_frames % 2)) { // test
 		method_3_blit_mono(image, xpos, ypos, blitters_9_black, 0);
 		return image;
 	}
@@ -3321,7 +3321,7 @@ image_type* method_6_blit_img_to_scr(image_type* image,int xpos,int ypos,int bli
 	//printf("format = %s\n", SDL_GetPixelFormatName(image->format->format));
 	// Fix the background color of teleport images on SDL_image 2.6.2, where they are loaded as RGBA.
 	// For transparency, paletted images need colorkeying, RGB(A) images need blending.
-	if (blit == blitters_0_no_transp) {
+	if (blit == blitters_0_no_transp || blit == blitters_0_no_transp_tile) {
 		if (SDL_ISPIXELFORMAT_INDEXED(image->format->format)) {
 			SDL_SetColorKey(image, SDL_FALSE, /*get_bg_colourkey(image->format)*/0);
 			//printf("colorkey = SDL_FALSE\n");

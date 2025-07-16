@@ -684,6 +684,7 @@ void play_seq() {
 				break;
 			}
 			case SEQ_DIE: // nop
+				death_flash_frames = 10; // test
 				break;
 			default:
 				Char.frame = command;

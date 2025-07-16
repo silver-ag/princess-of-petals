@@ -486,7 +486,7 @@ void draw_tile_right() {
 				add_backtable(id_chtab_6_environment, tile_table[tile_left].stripe_id, draw_xh, 0, draw_main_y - 27, blitters_2_or, 0);
 			}
 			if (tile_left == tiles_19_torch || tile_left == tiles_30_torch_with_debris) {
-				add_backtable(id_chtab_6_environment, 146 /*torch base*/, draw_xh, 0, draw_bottom_y - 28, blitters_0_no_transp, 0);
+				add_backtable(id_chtab_6_environment, 146 /*torch base*/, draw_xh, 0, draw_bottom_y - 28, blitters_0_no_transp_tile, 0);
 			}
 			break;
 		case tiles_0_empty:
@@ -498,7 +498,7 @@ void draw_tile_right() {
 			num = modifier_left;
 			if (num > 3) num = 0;
 			if (num == !!custom->tbl_level_type[current_level]) return;
-			add_backtable(id_chtab_6_environment, blueline_fram3[num], draw_xh, 0, draw_main_y - 20, blitters_2_or/*0_no_transp test*/, 0);
+			add_backtable(id_chtab_6_environment, blueline_fram3[num], draw_xh, 0, draw_main_y - 20, blitters_2_or, 0);
 			break;
 		case tiles_7_doortop_with_floor:
 		case tiles_12_doortop:
@@ -507,7 +507,7 @@ void draw_tile_right() {
 			break;
 		case tiles_20_wall:
 			if (custom->tbl_level_type[current_level] && (modifier_left & 0x80) == 0) {
-				add_backtable(id_chtab_6_environment, 84 /*wall stripe*/, draw_xh + 3, 0, draw_main_y - 27, blitters_0_no_transp, 0);
+				add_backtable(id_chtab_6_environment, 84 /*wall stripe*/, draw_xh + 3, 0, draw_main_y - 27, blitters_0_no_transp_tile, 0);
 			}
 			add_backtable(id_chtab_7_environmentwall, 1, draw_xh, 0, tile_table[tile_left].right_y + draw_main_y, blitters_2_or, 0);
 			break;
@@ -544,7 +544,7 @@ void draw_tile_anim_right() {
 		case tiles_19_torch:
 		case tiles_30_torch_with_debris:
 			if (modifier_left < 9) {
-				int blit = blitters_0_no_transp;
+				int blit = blitters_0_no_transp_tile;
 #ifdef USE_COLORED_TORCHES
 				int color;
 				if (drawn_col == 0) {
@@ -569,7 +569,7 @@ const byte wall_fram_bottom[] = {7, 9, 5, 3};
 // seg008:0971
 void draw_tile_bottom(word arg_0) {
 	byte id = 0;
-	byte blit = blitters_0_no_transp;
+	byte blit = blitters_0_no_transp_tile;
 	word chtab_id = id_chtab_6_environment;
 	switch (curr_tile) {
 		case tiles_20_wall:
@@ -600,8 +600,8 @@ void draw_loose(int arg_0) {
 	word id;
 	if (curr_tile == tiles_11_loose) {
 		id = loose_fram_bottom[get_loose_frame(curr_modifier)];
-		add_backtable(id_chtab_6_environment, id, draw_xh, 0, draw_bottom_y, blitters_0_no_transp, 0);
-		add_foretable(id_chtab_6_environment, id, draw_xh, 0, draw_bottom_y, blitters_0_no_transp, 0);
+		add_backtable(id_chtab_6_environment, id, draw_xh, 0, draw_bottom_y, blitters_0_no_transp_tile, 0);
+		add_foretable(id_chtab_6_environment, id, draw_xh, 0, draw_bottom_y, blitters_0_no_transp_tile, 0);
 	}
 }
 
@@ -666,7 +666,7 @@ void draw_tile_anim() {
 					break;
 			}
 			//add_backtable(id_chtab_1_flameswordpotion, 23 /*bubble mask*/, draw_xh + 3, 1, draw_main_y - (pot_size << 2) - 14, blitters_40h_mono, 0);
-			add_foretable(id_chtab_1_flameswordpotion, potion_fram_bubb[curr_modifier & 0x7], draw_xh + 3, 1, draw_main_y - (pot_size << 2) - 14, blitters_10h_transp, 0); //test //color + blitters_40h_mono, 0);
+			add_foretable(id_chtab_1_flameswordpotion, potion_fram_bubb[curr_modifier & 0x7], draw_xh + 3, 1, draw_main_y - (pot_size << 2) - 14, blitters_10h_transp, 0);
 			break;
 		case tiles_22_sword:
 			add_midtable(id_chtab_1_flameswordpotion, (curr_modifier == 1) + 10, draw_xh, 0, draw_main_y - 3, blitters_10h_transp, curr_modifier == 1);
@@ -709,7 +709,7 @@ void draw_tile_fore() {
 			break;
 		case tiles_20_wall:
 			if (custom->tbl_level_type[current_level] == 0 || custom->enable_wda_in_palace || graphics_mode != gmMcgaVga) {
-				add_foretable(id_chtab_7_environmentwall, wall_fram_main[curr_modifier & 0x7F], draw_xh, 0, draw_main_y, blitters_0_no_transp, 0);
+				add_foretable(id_chtab_7_environmentwall, wall_fram_main[curr_modifier & 0x7F], draw_xh, 0, draw_main_y, blitters_0_no_transp_tile, 0);
 			}
 			if (graphics_mode != gmCga && graphics_mode != gmHgaHerc) {
 				wall_pattern(1, 1);
@@ -748,7 +748,7 @@ void draw_tile_fore() {
 				add_foretable(id_chtab_1_flameswordpotion, id, xh, 6, ybottom, blitters_10h_transp, 0);
 			} else {
 				if ((curr_tile == tiles_3_pillar && custom->tbl_level_type[current_level] == 0) || (curr_tile >= tiles_27_lattice_small && curr_tile < tiles_30_torch_with_debris)) {
-					add_foretable(id_chtab_6_environment, id, xh, 0, ybottom, blitters_0_no_transp, 0);
+					add_foretable(id_chtab_6_environment, id, xh, 0, ybottom, blitters_0_no_transp_tile, 0);
 				} else {
 					add_foretable(id_chtab_6_environment, id, xh, 0, ybottom, blitters_10h_transp, 0);
 				}
@@ -1055,6 +1055,7 @@ void draw_image(image_type* image,image_type* mask,int xpos,int ypos,int blit) {
 			method_6_blit_img_to_scr(mask, xpos, ypos, blitters_9_black);
 		break;
 		case blitters_0_no_transp:
+		case blitters_0_no_transp_tile:
 		case blitters_2_or:
 		case blitters_3_xor:
 			method_6_blit_img_to_scr(image, xpos, ypos, blit);
@@ -1069,9 +1070,9 @@ void draw_image(image_type* image,image_type* mask,int xpos,int ypos,int blit) {
 	}
 	if (need_drects) {
 		rect.left = rect.right = xpos;
-		rect.right += image->w/*width*/;
+		rect.right += image->w;
 		rect.top = rect.bottom = ypos;
-		rect.bottom += image->h/*height*/;
+		rect.bottom += image->h;
 		add_drect(&rect);
 	}
 }
@@ -1420,10 +1421,10 @@ void draw_leveldoor() {
 	short ybottom = draw_main_y - 13;
 	leveldoor_right = (draw_xh<<3)+48;
 	if (custom->tbl_level_type[current_level]) leveldoor_right += 8;
-	add_backtable(id_chtab_6_environment, 99 /*leveldoor stairs bottom*/, draw_xh + 1, 0, ybottom, blitters_0_no_transp, 0);
+	add_backtable(id_chtab_6_environment, 99 /*leveldoor stairs bottom*/, draw_xh + 1, 0, ybottom, blitters_0_no_transp_tile, 0);
 	if (modifier_left) {
 		if (level.start_room != drawn_room) {
-			add_backtable(id_chtab_6_environment, 144 /*level door stairs*/, draw_xh + 1, 0, ybottom - 4, blitters_0_no_transp, 0);
+			add_backtable(id_chtab_6_environment, 144 /*level door stairs*/, draw_xh + 1, 0, ybottom - 4, blitters_0_no_transp_tile, 0);
 		}
 		else {
 			short leveldoor_width = (custom->tbl_level_type[current_level] == 0) ? 39 : 48;
@@ -1434,11 +1435,11 @@ void draw_leveldoor() {
 	leveldoor_ybottom = ybottom - (modifier_left & 3) - 48;
 	short y = ybottom - modifier_left;
 	do { // runs at least once
-		add_backtable(id_chtab_6_environment, 33 /*level door bottom*/, draw_xh + 1, 0, leveldoor_ybottom, blitters_0_no_transp, 0);
+		add_backtable(id_chtab_6_environment, 33 /*level door bottom*/, draw_xh + 1, 0, leveldoor_ybottom, blitters_0_no_transp_tile, 0);
 		if (y > leveldoor_ybottom) leveldoor_ybottom += 4;
 		else break;
 	} while (true);
-	add_backtable(id_chtab_6_environment, 34 /*level door top*/, draw_xh + 1, 0, draw_main_y - 64, blitters_0_no_transp, 0);
+	add_backtable(id_chtab_6_environment, 34 /*level door top*/, draw_xh + 1, 0, draw_main_y - 64, blitters_0_no_transp_tile, 0);
 }
 
 // seg008:1E0C
