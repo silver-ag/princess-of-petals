@@ -1418,13 +1418,13 @@ void add_drect(rect_type *source) {
 
 // seg008:1D29
 void draw_leveldoor() {
-	short ybottom = draw_main_y - 13;
+	/*short ybottom = draw_main_y - 13;
 	leveldoor_right = (draw_xh<<3)+48;
 	if (custom->tbl_level_type[current_level]) leveldoor_right += 8;
-	add_backtable(id_chtab_6_environment, 99 /*leveldoor stairs bottom*/, draw_xh + 1, 0, ybottom, blitters_0_no_transp_tile, 0);
+	add_backtable(id_chtab_6_environment, 99, draw_xh + 1, 0, ybottom, blitters_0_no_transp_tile, 0); // 99: leveldoor stairs bottom
 	if (modifier_left) {
 		if (level.start_room != drawn_room) {
-			add_backtable(id_chtab_6_environment, 144 /*level door stairs*/, draw_xh + 1, 0, ybottom - 4, blitters_0_no_transp_tile, 0);
+			add_backtable(id_chtab_6_environment, 144, draw_xh + 1, 0, ybottom - 4, blitters_0_no_transp_tile, 0); // 144 level door stairs
 		}
 		else {
 			short leveldoor_width = (custom->tbl_level_type[current_level] == 0) ? 39 : 48;
@@ -1435,11 +1435,11 @@ void draw_leveldoor() {
 	leveldoor_ybottom = ybottom - (modifier_left & 3) - 48;
 	short y = ybottom - modifier_left;
 	do { // runs at least once
-		add_backtable(id_chtab_6_environment, 33 /*level door bottom*/, draw_xh + 1, 0, leveldoor_ybottom, blitters_0_no_transp_tile, 0);
+		add_backtable(id_chtab_6_environment, 33, draw_xh + 1, 0, leveldoor_ybottom, blitters_0_no_transp_tile, 0); // 33 level door bottom
 		if (y > leveldoor_ybottom) leveldoor_ybottom += 4;
 		else break;
 	} while (true);
-	add_backtable(id_chtab_6_environment, 34 /*level door top*/, draw_xh + 1, 0, draw_main_y - 64, blitters_0_no_transp_tile, 0);
+	add_backtable(id_chtab_6_environment, 34, draw_xh + 1, 0, draw_main_y - 64, blitters_0_no_transp_tile, 0); // 34 level door top*/
 }
 
 // seg008:1E0C
