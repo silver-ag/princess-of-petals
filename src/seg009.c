@@ -918,7 +918,7 @@ image_type* load_image(int resource_id, dat_pal_type* palette) {
 	if (image != NULL) {
 		// should immediately start using the onscreen pixel format, so conversion will not be needed
 
-		if (SDL_SetColorKey(image, SDL_TRUE, /*get_bg_colourkey(image->format) test*/0) != 0) { //sdl 1.2: SDL_SRCCOLORKEY
+		if (SDL_SetColorKey(image, SDL_TRUE, 0) != 0) { //sdl 1.2: SDL_SRCCOLORKEY
 			sdlperror("load_image: SDL_SetColorKey");
 			quit(1);
 		}
@@ -1209,7 +1209,7 @@ font_type load_font_from_data(/*const*/ rawfont_type* data) {
 		if (image_data->height == SDL_SwapLE16(0)) image_data->height = SDL_SwapLE16(1); // HACK: decode_image() returns NULL if height==0.
 		image_type* image;
 		chtab->images[index] = image = decode_image(image_data, &dat_pal);
-		if (SDL_SetColorKey(image, SDL_TRUE, /*get_bg_colourkey(image->format) test*/0) != 0) {
+		if (SDL_SetColorKey(image, SDL_TRUE, 0) != 0) {
 			sdlperror("load_font_from_data: SDL_SetColorKey");
 			quit(1);
 		}
@@ -3020,13 +3020,13 @@ void method_1_blit_rect(surface_type* target_surface,surface_type* source_surfac
 
 	if (blit == blitters_0_no_transp || blit == blitters_0_no_transp_tile) {
 		// Disable transparency.
-		if (SDL_SetColorKey(source_surface, 0, /*get_bg_colourkey(source_surface->format) test*/0) != 0) {
+		if (SDL_SetColorKey(source_surface, 0, 0) != 0) {
 			sdlperror("method_1_blit_rect: SDL_SetColorKey");
 			quit(1);
 		}
 	} else {
 		// Enable transparency.
-		if (SDL_SetColorKey(source_surface, SDL_TRUE, /*get_bg_colourkey(source_surface->format) test*/0) != 0) {
+		if (SDL_SetColorKey(source_surface, SDL_TRUE, 0) != 0) {
 			sdlperror("method_1_blit_rect: SDL_SetColorKey");
 			quit(1);
 		}
@@ -3249,7 +3249,7 @@ void blit_xor(SDL_Surface* target_surface, SDL_Rect* dest_rect, SDL_Surface* ima
 
 #ifdef USE_COLORED_TORCHES
 void draw_colored_torch(int color, SDL_Surface* image, int xpos, int ypos) {
-	if (SDL_SetColorKey(image, SDL_TRUE, /*get_bg_colourkey(image->format) test*/0) != 0) {
+	if (SDL_SetColorKey(image, SDL_TRUE, 0) != 0) {
 		sdlperror("draw_colored_torch: SDL_SetColorKey");
 		quit(1);
 	}
@@ -3294,7 +3294,7 @@ image_type* method_6_blit_img_to_scr(image_type* image,int xpos,int ypos,int bli
 		return NULL;
 	}
 
-	if (blit == blitters_9_black || ((blit == blitters_10h_transp || blit == blitters_2_or || blitters_0_no_transp_tile) && death_flash_frames % 2)) { // test
+	if (blit == blitters_9_black || ((blit == blitters_10h_transp || blit == blitters_2_or || blitters_0_no_transp_tile) && death_flash_frames % 2)) {
 		method_3_blit_mono(image, xpos, ypos, blitters_9_black, 0);
 		return image;
 	}

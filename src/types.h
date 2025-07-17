@@ -142,7 +142,8 @@ enum tiles {
 	tiles_16_level_door_left = 16, // a.k.a. exit door
 	tiles_17_level_door_right = 17,
 	tiles_18_chomper = 18,
-	tiles_19_torch = 19,
+	//tiles_19_torch = 19,
+	tiles_rose_seal_floor = 19,
 	tiles_20_wall = 20,
 	tiles_21_skeleton = 21,
 	tiles_22_sword = 22,
@@ -153,7 +154,10 @@ enum tiles {
 	tiles_27_lattice_small = 27,
 	tiles_28_lattice_left = 28,
 	tiles_29_lattice_right = 29,
-	tiles_30_torch_with_debris = 30
+	//tiles_30_torch_with_debris = 30,
+	// added
+	tiles_rose_gate_wing_right = 30,
+	tiles_rose_gate_opener = 31,
 };
 
 enum chtabs {

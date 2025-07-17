@@ -75,9 +75,9 @@ void redraw_lighting() {
 	}
 
 	// TODO: Also process nearby offscreen torches?
-	for (int tile_pos = 0; tile_pos < 30; tile_pos++) {
+	/*for (int tile_pos = 0; tile_pos < 30; tile_pos++) {
 		int tile_type = curr_room_tiles[tile_pos] & 0x1F;
-		if (tile_type == tiles_19_torch || tile_type == tiles_30_torch_with_debris) {
+		if (tile_type == tiles_19_torch) { // || tile_type == tiles_30_torch_with_debris) {
 			// Center of the flame.
 			int x = (tile_pos%10)*32+48;
 			int y = (tile_pos/10)*63+22;
@@ -94,7 +94,7 @@ void redraw_lighting() {
 				sdlperror("SDL_BlitSurface (lighting_mask)");
 			}
 		}
-	}
+	}*/
 	if (upside_down) {
 		flip_screen(screen_overlay);
 	}

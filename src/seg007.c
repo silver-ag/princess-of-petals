@@ -48,12 +48,13 @@ void process_trobs() {
 void animate_tile() {
 	get_room_address(trob.room);
 	switch (get_curr_tile(trob.tilepos)) {
-		case tiles_19_torch:
-		case tiles_30_torch_with_debris:
-			animate_torch();
-		break;
+		//case tiles_19_torch:
+		//case tiles_30_torch_with_debris:
+		//	animate_torch();
+		//break;
 		case tiles_6_closer:
 		case tiles_15_opener:
+		case tiles_rose_gate_opener:
 			animate_button();
 		break;
 		case tiles_2_spike:
@@ -445,6 +446,7 @@ Possible values of trob_type:
 			}
 		} else {
 			// opening
+			/*
 			++curr_modifier;
 			if (curr_modifier >= 43) {
 				trob.type = -1;
@@ -454,15 +456,22 @@ Possible values of trob_type:
 				stop_sounds();
 				if (leveldoor_open == 0 || leveldoor_open == 2) {
 					leveldoor_open = 1;
-					if (current_level == /*4*/ custom->mirror_level) {
+					if (current_level == custom->mirror_level) {
 						// Special event: place mirror
-						get_tile(/*4*/ custom->mirror_room, /*4*/ custom->mirror_column, /*0*/ custom->mirror_row);
-						curr_room_tiles[curr_tilepos] = /*tiles_13_mirror*/ custom->mirror_tile;
+						get_tile(custom->mirror_room, custom->mirror_column, custom->mirror_row);
+						curr_room_tiles[curr_tilepos] = custom->mirror_tile;
 					}
 				}
 			} else {
 				sound_interruptible[sound_15_leveldoor_sliding] = 0;
 				play_sound(sound_15_leveldoor_sliding); // level door sliding (opening)
+			}*/
+			++curr_modifier;
+			if (curr_modifier == 1) {
+				death_flash_frames = 60;
+			} else if (curr_modifier == 60) {
+				trob.type = -1;
+				leveldoor_open = 1;
 			}
 		}
 	}
@@ -611,7 +620,7 @@ void start_anim_spike(short room,short tilepos) {
 // seg007:092C
 short trigger_gate(short room,short tilepos,short button_type) {
 	byte modifier = curr_room_modif[tilepos];
-	if (button_type == tiles_15_opener) {
+	if (button_type == tiles_15_opener || button_type == tiles_rose_gate_opener) {
 		// If the gate is permanently open, don't to anything.
 		if (modifier == 0xFF) return -1;
 		if (modifier >= 188) { // if it's already open
@@ -776,7 +785,7 @@ void trigger_button(int playsound,int button_type,int modifier) {
 void died_on_button() {
 	word button_type = get_curr_tile(curr_tilepos);
 	word modifier = curr_modifier;
-	if (curr_tile == tiles_15_opener) {
+	if (curr_tile == tiles_15_opener || curr_tile == tiles_rose_gate_opener) {
 		curr_room_tiles[curr_tilepos] = tiles_1_floor;
 		curr_room_modif[curr_tilepos] = 0;
 		button_type = tiles_14_debris; // force permanent open
@@ -1050,6 +1059,7 @@ void loose_land() {
 	short tiletype = get_tile(curmob.room, curmob.xh >> 2, curmob.row);
 	switch (tiletype) {
 		case tiles_15_opener:
+		case tiles_rose_gate_opener:
 			curr_room_tiles[curr_tilepos] = tiles_14_debris;
 			button_type = tiles_14_debris;
 		// fallthrough!
@@ -1060,15 +1070,15 @@ void loose_land() {
 		case tiles_1_floor:
 		case tiles_2_spike:
 		case tiles_10_potion:
-		case tiles_19_torch:
-		case tiles_30_torch_with_debris:
-			if (tiletype == tiles_19_torch ||
+		//case tiles_19_torch:
+		//case tiles_30_torch_with_debris:
+			/*if (tiletype == tiles_19_torch ||
 				tiletype == tiles_30_torch_with_debris
 			) {
 				curr_room_tiles[curr_tilepos] = tiles_30_torch_with_debris;
-			} else {
+			} else {*/
 				curr_room_tiles[curr_tilepos] = tiles_14_debris;
-			}
+			//}
 			redraw_at_cur_mob();
 			if (tile_col != 0) {
 				set_redraw_full(curr_tilepos - 1, 1);

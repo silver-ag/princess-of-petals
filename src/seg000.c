@@ -1002,10 +1002,10 @@ void anim_tile_modif() {
 			case tiles_10_potion:
 				start_anim_potion(drawn_room, tilepos);
 			break;
-			case tiles_19_torch:
-			case tiles_30_torch_with_debris:
-				start_anim_torch(drawn_room, tilepos);
-			break;
+			//case tiles_19_torch:
+			//case tiles_30_torch_with_debris:
+			//	start_anim_torch(drawn_room, tilepos);
+			//break;
 			case tiles_22_sword:
 				start_anim_sword(drawn_room, tilepos);
 			break;
@@ -1013,14 +1013,14 @@ void anim_tile_modif() {
 	}
 
 	// Animate torches in the rightmost column of the left-side room as well, because they are visible in the current room.
-	for (int row = 0; row <= 2; row++) {
+	/*for (int row = 0; row <= 2; row++) {
 		switch (get_tile(room_L, 9, row)) {
-			case tiles_19_torch:
-			case tiles_30_torch_with_debris:
-				start_anim_torch(room_L, row * 10 + 9);
-			break;
+			//case tiles_19_torch:
+			//case tiles_30_torch_with_debris:
+			//	start_anim_torch(room_L, row * 10 + 9);
+			//break;
 		}
-	}
+	}*/
 }
 
 // seg000:0B72

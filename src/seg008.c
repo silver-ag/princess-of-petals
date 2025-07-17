@@ -24,10 +24,11 @@ The authors of this program may be contacted at https://forum.princed.org
 add_table_type ptr_add_table = add_backtable;
 
 // data:259C
-const piece tile_table[31] = {
+const piece tile_table[32] = {
+// base_id, floor_left, base_y, right_id, floor_right, right_y, stripe_id, topright_id, bottom_id, fore_id, fore_x, fore_y
 {   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0}, // 0x00 empty
 {  41,   1,   0,  42,   1,   2, 145,   0,  43,   0,   0,   0}, // 0x01 floor
-{ 127,   1,   0, 133,   1,   2, 145,   0,  43,   0,   0,   0}, // 0x02 spike
+{ 127,   1,   0, 133,   1,   2, 145,   0,  43,   0,   0,   0}, // 0x02 UNUSED spike
 {  92,   1,   0,  93,   1,   2,   0,  94,  43,  95,   1,   0}, // 0x03 pillar
 {  46,   1,   0,  47,   1,   2,   0,  48,  43,  49,   3,   0}, // 0x04 door
 {  41,   1,   1,  35,   1,   3, 145,   0,  36,   0,   0,   0}, // 0x05 stuck floor
@@ -41,12 +42,14 @@ const piece tile_table[31] = {
 {  75,   1,   0,  42,   1,   2,   0,   0,  43,  77,   0,   0}, // 0x0D mirror
 {  97,   1,   0,  98,   1,   2, 145,   0,  43, 100,   0,   0}, // 0x0E debris
 { 147,   1,   0,  42,   1,   1, 145,   0, 149,   0,   0,   0}, // 0x0F open button
-{  41,   1,   0,  37,   0,   0,   0,  38,  43,   0,   0,   0}, // 0x10 leveldoor left
-{   0,   0,   0,  39,   1,   2,   0,  40,  43,   0,   0,   0}, // 0x11 leveldoor right
+{  41,   1,   0,  37,   0,   0,   0,  38,  43,   0,   0,   0}, // 0x10 leveldoor left - topright_id to 152, 154 for gate opening
+{   0,   0,   0,  39,   1,   2,   0,  40,  43,   0,   0,   0}, // 0x11 leveldoor right - topright_id to 153, 155 for gate opening
 {   0,   0,   0,  42,   1,   2, 145,   0,  43,   0,   0,   0}, // 0x12 chomper
-{  41,   1,   0,  42,   1,   2,   0,   0,  43,   0,   0,   0}, // 0x13 torch
+// torches commented out because we can't have more than 32 tile types. it'd be a huge pain to add more because tiles are stored in curr_room_tiles as ints that are the fg and bg put together in one bitfield, so we can't take up more bits
+//{  41,   1,   0,  42,   1,   2,   0,   0,  43,   0,   0,   0}, // 0x13 torch
+{ 157,   1,   1, 158,   1,   2, 145,   0,  43,   0,   0,   0}, // ADDED rose seal floor
 {   0,   0,   0,   1,   1,   2,   0,   2,   0,   0,   0,   0}, // 0x14 wall
-{  30,   1,   0,  31,   1,   2,   0,   0,  43,   0,   0,   0}, // 0x15 skeleton
+{  30,   1,   0,  31,   1,   2,   0,   0,  43,   0,   0,   0}, // 0x15 skeleton CHANGED to rose gate wing left
 {  41,   1,   0,  42,   1,   2, 145,   0,  43,   0,   0,   0}, // 0x16 sword
 {  41,   1,   0,  10,   0,   0,   0,  11,  43,   0,   0,   0}, // 0x17 balcony left
 {   0,   0,   0,  12,   1,   2,   0,  13,  43,   0,   0,   0}, // 0x18 balcony right
@@ -55,7 +58,9 @@ const piece tile_table[31] = {
 {   3,   0, -10,   0,   0,   0,   0,   0,   0,   9,   0, -53}, // 0x1B lattice small
 {   4,   0, -10,   0,   0,   0,   0,   0,   0,   9,   0, -53}, // 0x1C lattice left
 {   5,   0, -10,   0,   0,   0,   0,   0,   0,   9,   0, -53}, // 0x1D lattice right
-{  97,   1,   0,  98,   1,   2,   0,   0,  43, 100,   0,   0}, // 0x1E debris with torch
+//{  97,   1,   0,  98,   1,   2,   0,   0,  43, 100,   0,   0}, // 0x1E debris with torch
+{ 127,   1,   0, 133,   1,   2, 145,   0,  43,   0,   0,   0}, // ADDED rose gate wing right
+{ 157,   1,   0, 158,   1,   1, 145,   0, 149,   0,   0,   0}, // ADDED rose gate open button
 };
 
 // data:4334
@@ -176,14 +181,14 @@ void draw_tile_aboveroom() {
 
 // seg008:0211
 void redraw_needed(short tilepos) {
-	if (wipe_frames[tilepos]) {
-		--wipe_frames[tilepos];
-		draw_tile_wipe(wipe_heights[tilepos]);
-	}
-	//if (redraw_frames_full[tilepos]) {
-	//	--redraw_frames_full[tilepos];
+	//if (wipe_frames[tilepos]) {
+	//	--wipe_frames[tilepos];
+	//	draw_tile_wipe(wipe_heights[tilepos]);
+	//} else
+	if (redraw_frames_full[tilepos]) {
+		--redraw_frames_full[tilepos];
 		draw_tile();
-	//} else {
+	} else {
 		if (redraw_frames_anim[tilepos]) {
 			--redraw_frames_anim[tilepos];
 			draw_tile_anim_topright();
@@ -194,7 +199,7 @@ void redraw_needed(short tilepos) {
 			draw_tile_bottom(0);
 #endif
 		}
-	//}
+	}
 	if (redraw_frames2[tilepos]) {
 		--redraw_frames2[tilepos];
 		draw_other_overlay();
@@ -261,7 +266,13 @@ int get_tile_to_draw(int room, int column, int row, byte* ptr_tiletype, byte* pt
 			*ptr_modifier = 0;
 			*ptr_tiletype = tiles_1_floor;
 		}
+	} else if (tiletype == tiles_rose_gate_opener) {
+		if (get_doorlink_timer(modifier) > 1) {
+			*ptr_modifier = 0;
+			*ptr_tiletype = tiles_rose_seal_floor;
+		}
 	}
+
 #ifdef USE_FAKE_TILES
 	else if (tiletype == tiles_0_empty) {
 		if (modifier == 4 || modifier == 12) {     // display a fake floor
@@ -427,6 +438,24 @@ void draw_tile_topright() {
 			id += 4;
 		}
 #endif
+		// test - door opening
+		if (tiletype == tiles_16_level_door_left) {
+			if (row_below_left_[drawn_col].modifier < 20) {
+				id = 38;
+			} else if (row_below_left_[drawn_col].modifier < 40) {
+				id = 152;
+			} else {
+				id = 154;
+			}
+		} else if (tiletype == tiles_17_level_door_right) {
+			if (row_below_left_[drawn_col-1].modifier < 20) {
+				id = 40;
+			} else if (row_below_left_[drawn_col-1].modifier < 40) {
+				id = 153;
+			} else {
+				id = 155;
+			}
+		}
 		add_backtable(id_chtab_6_environment, id, draw_xh, 0, draw_bottom_y, blitters_2_or, 0);
 	}
 }
@@ -485,9 +514,9 @@ void draw_tile_right() {
 			if (custom->tbl_level_type[current_level] != 0) {
 				add_backtable(id_chtab_6_environment, tile_table[tile_left].stripe_id, draw_xh, 0, draw_main_y - 27, blitters_2_or, 0);
 			}
-			if (tile_left == tiles_19_torch || tile_left == tiles_30_torch_with_debris) {
-				add_backtable(id_chtab_6_environment, 146 /*torch base*/, draw_xh, 0, draw_bottom_y - 28, blitters_0_no_transp_tile, 0);
-			}
+			//if (tile_left == tiles_19_torch) { // || tile_left == tiles_30_torch_with_debris) {
+			//	add_backtable(id_chtab_6_environment, 146 /*torch base*/, draw_xh, 0, draw_bottom_y - 28, blitters_0_no_transp_tile, 0);
+			//}
 			break;
 		case tiles_0_empty:
 			if (modifier_left > 3) return;
@@ -541,7 +570,7 @@ void draw_tile_anim_right() {
 		case tiles_16_level_door_left:
 			draw_leveldoor();
 		break;
-		case tiles_19_torch:
+		/*case tiles_19_torch:
 		case tiles_30_torch_with_debris:
 			if (modifier_left < 9) {
 				int blit = blitters_0_no_transp_tile;
@@ -560,7 +589,7 @@ void draw_tile_anim_right() {
 				// images 1..9 are the flames
 				add_backtable(id_chtab_1_flameswordpotion, modifier_left + 1, draw_xh + 1, 0, draw_main_y - 40, blit, 0);
 			}
-		break;
+		break;*/
 	}
 }
 
@@ -627,6 +656,8 @@ void draw_tile_base() {
 		id = loose_fram_left[get_loose_frame(curr_modifier)];
 	} else if (curr_tile == tiles_15_opener && tile_left == tiles_0_empty && custom->tbl_level_type[current_level] == 0) {
 		id = 148; // left half of open button with no floor to the left
+	} else if (curr_tile == tiles_rose_gate_opener && tile_left == tiles_0_empty && custom->tbl_level_type[current_level] == 0) {
+		id = 157; // left half of rose gate open button with no floor to the left
 	} else {
 		id = tile_table[curr_tile].base_id;
 	}
@@ -747,7 +778,7 @@ void draw_tile_fore() {
 				if (custom->tbl_level_type[current_level] != 0) id += 2;
 				add_foretable(id_chtab_1_flameswordpotion, id, xh, 6, ybottom, blitters_10h_transp, 0);
 			} else {
-				if ((curr_tile == tiles_3_pillar && custom->tbl_level_type[current_level] == 0) || (curr_tile >= tiles_27_lattice_small && curr_tile < tiles_30_torch_with_debris)) {
+				if ((curr_tile == tiles_3_pillar && custom->tbl_level_type[current_level] == 0) || (curr_tile >= tiles_27_lattice_small && curr_tile < 30)) { // ??
 					add_foretable(id_chtab_6_environment, id, xh, 0, ybottom, blitters_0_no_transp_tile, 0);
 				} else {
 					add_foretable(id_chtab_6_environment, id, xh, 0, ybottom, blitters_10h_transp, 0);
@@ -1312,11 +1343,11 @@ void load_alter_mod(int tilepos) {
 			break;
 
 #ifdef USE_COLORED_TORCHES
-		case tiles_19_torch:
+		/*case tiles_19_torch:
 		case tiles_30_torch_with_debris:
 			torch_colors[loaded_room][tilepos] = *curr_tile_modif;
 			*curr_tile_modif = 0;
-		break;
+		break;*/
 #endif
 	}
 }
@@ -1418,7 +1449,7 @@ void add_drect(rect_type *source) {
 
 // seg008:1D29
 void draw_leveldoor() {
-	/*short ybottom = draw_main_y - 13;
+	short ybottom = draw_main_y - 13;
 	leveldoor_right = (draw_xh<<3)+48;
 	if (custom->tbl_level_type[current_level]) leveldoor_right += 8;
 	add_backtable(id_chtab_6_environment, 99, draw_xh + 1, 0, ybottom, blitters_0_no_transp_tile, 0); // 99: leveldoor stairs bottom
@@ -1439,7 +1470,7 @@ void draw_leveldoor() {
 		if (y > leveldoor_ybottom) leveldoor_ybottom += 4;
 		else break;
 	} while (true);
-	add_backtable(id_chtab_6_environment, 34, draw_xh + 1, 0, draw_main_y - 64, blitters_0_no_transp_tile, 0); // 34 level door top*/
+	add_backtable(id_chtab_6_environment, 34, draw_xh + 1, 0, draw_main_y - 64, blitters_0_no_transp_tile, 0); // 34 level door top
 }
 
 // seg008:1E0C
@@ -1470,8 +1501,8 @@ void draw_floor_overlay() {
 #endif
 	if (curr_tile == tiles_1_floor ||
 		curr_tile == tiles_3_pillar ||
-		curr_tile == tiles_5_stuck ||
-		curr_tile == tiles_19_torch
+		curr_tile == tiles_5_stuck //||
+		//curr_tile == tiles_19_torch
 	) {
 		// frames 137..144: climb
 		// index overflow here?

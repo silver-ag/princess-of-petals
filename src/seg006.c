@@ -684,7 +684,7 @@ void play_seq() {
 				break;
 			}
 			case SEQ_DIE: // nop
-				death_flash_frames = 10; // test
+				death_flash_frames = 10;
 				break;
 			default:
 				Char.frame = command;
@@ -1258,7 +1258,7 @@ bool check_grab_run_jump() {
             play_sound(sound_9_grab); // grab
             // check_press() is not going to work on the next frame if Shift is released immediately
             // because Char.frame changes to frame_81_hangdrop_1.
-            if (grab_tile == tiles_15_opener || grab_tile == tiles_6_closer) {
+            if (grab_tile == tiles_15_opener || grab_tile == tiles_6_closer || grab_tile == tiles_rose_gate_opener) {
                 trigger_button(1, 0, -1);
             } else if (grab_tile == tiles_11_loose) {
                 is_guard_notice = 1;
@@ -1694,7 +1694,7 @@ void check_press() {
 	} else {
 		return;
 	}
-	if (curr_tile2 == tiles_15_opener || curr_tile2 == tiles_6_closer) {
+	if (curr_tile2 == tiles_15_opener || curr_tile2 == tiles_6_closer || curr_tile2 == tiles_rose_gate_opener) {
 		if (Char.alive < 0) {
 			trigger_button(1, 0, -1);
 		} else {
