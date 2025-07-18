@@ -181,14 +181,13 @@ void draw_tile_aboveroom() {
 
 // seg008:0211
 void redraw_needed(short tilepos) {
-	//if (wipe_frames[tilepos]) {
-	//	--wipe_frames[tilepos];
-	//	draw_tile_wipe(wipe_heights[tilepos]);
-	//} else
-	if (redraw_frames_full[tilepos]) {
-		--redraw_frames_full[tilepos];
+	if (wipe_frames[tilepos]) {
+		--wipe_frames[tilepos];
+		draw_tile_wipe(wipe_heights[tilepos]);
+	}// else if (redraw_frames_full[tilepos]) {
+	//	--redraw_frames_full[tilepos];
 		draw_tile();
-	} else {
+	//} else {
 		if (redraw_frames_anim[tilepos]) {
 			--redraw_frames_anim[tilepos];
 			draw_tile_anim_topright();
@@ -199,7 +198,7 @@ void redraw_needed(short tilepos) {
 			draw_tile_bottom(0);
 #endif
 		}
-	}
+	//}
 	if (redraw_frames2[tilepos]) {
 		--redraw_frames2[tilepos];
 		draw_other_overlay();
@@ -438,7 +437,7 @@ void draw_tile_topright() {
 			id += 4;
 		}
 #endif
-		// test - door opening
+		// rose gate opening
 		if (tiletype == tiles_16_level_door_left) {
 			if (row_below_left_[drawn_col].modifier < 20) {
 				id = 38;

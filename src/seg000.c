@@ -156,8 +156,10 @@ void init_game_main() {
 
 	initialise_custom_levels(); // princess of petals levels
 
-	doorlink1_ad = /*&*/level.doorlinks1;
-	doorlink2_ad = /*&*/level.doorlinks2;
+	doorlinks_rooms = level.doorlinks_rooms;
+	doorlinks_tiles = level.doorlinks_tiles;
+	doorlinks_timers = level.doorlinks_timers;
+	doorlinks_nexts = level.doorlinks_nexts;
 	prandom(1);
 	if (graphics_mode == gmMcgaVga) {
 		// Guard palettes
@@ -1153,6 +1155,12 @@ void load_lev_spr(int level) {
 
 // seg000:0E6C
 void load_level() {
+	/*dat_type* dathandle = open_dat("LEVELS.DAT", 0);
+        load_from_opendats_to_area(current_level + 2000, &level, sizeof(level), "bin");
+        close_dat(dathandle);
+
+        alter_mods_allrm();
+        reset_level_unused_fields(true); */
 	load_custom_level(current_level, &level);
 }
 

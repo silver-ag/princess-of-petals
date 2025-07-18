@@ -727,31 +727,37 @@ void clear_tile_wipes() {
 
 // seg007:0BB6
 short get_doorlink_timer(short index) {
-	return doorlink2_ad[index] & 0x1F;
+	//return doorlink2_ad[index] & 0x1F;
+	return doorlinks_timers[index] & 0x1F; // test
 }
 
 // seg007:0BCD
 short set_doorlink_timer(short index,byte value) {
-	doorlink2_ad[index] &= 0xE0;
-	doorlink2_ad[index] |= value & 0x1F;
-	return doorlink2_ad[index];
+	//doorlink2_ad[index] &= 0xE0;
+	//doorlink2_ad[index] |= value & 0x1F;
+	//return doorlink2_ad[index];
+	doorlinks_timers[index] = value & 0x1F;
+	return doorlinks_timers[index];
 }
 
 // seg007:0BF2
 short get_doorlink_tile(short index) {
-	return doorlink1_ad[index] & 0x1F;
+	//return doorlink1_ad[index] & 0x1F;
+	return doorlinks_tiles[index] & 0x1F;
 }
 
 // seg007:0C09
 short get_doorlink_next(short index) {
-	return !(doorlink1_ad[index] & 0x80);
+	//return !(doorlink1_ad[index] & 0x80);
+	return doorlinks_nexts[index] & 0x01;
 }
 
 // seg007:0C26
 short get_doorlink_room(short index) {
-	return
-		((doorlink1_ad[index] & 0x60) >> 5) +
-		((doorlink2_ad[index] & 0xE0) >> 3);
+	//return
+	//	((doorlink1_ad[index] & 0x60) >> 5) +
+	//	((doorlink2_ad[index] & 0xE0) >> 3);
+	return doorlinks_rooms[index] & 0x1F;
 }
 
 // seg007:0C53

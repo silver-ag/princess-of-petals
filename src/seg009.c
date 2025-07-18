@@ -3875,7 +3875,7 @@ void set_bg_attr(rgb_type colour) {
 #ifdef USE_FLASH
 	if (!enable_flash) return;
 	// Make the black pixels transparent.
-	if (SDL_SetColorKey(offscreen_surface, SDL_TRUE, /*get_bg_colourkey(offscreen_surface->format)*/0) != 0) {	// SDL_SRCCOLORKEY old
+	if (SDL_SetColorKey(offscreen_surface, SDL_TRUE, 0) != 0) {	// SDL_SRCCOLORKEY old
 		sdlperror("set_bg_attr: SDL_SetColorKey");
 		quit(1);
 	}
@@ -3901,7 +3901,7 @@ void set_bg_attr(rgb_type colour) {
 	if (upside_down) {
 		flip_screen(offscreen_surface);
 	}
-	if (SDL_SetColorKey(offscreen_surface, 0, /*get_bg_colourkey(offscreen_surface->format)*/0) != 0) {
+	if (SDL_SetColorKey(offscreen_surface, 0, 0) != 0) {
 		sdlperror("set_bg_attr: SDL_SetColorKey");
 		quit(1);
 	}

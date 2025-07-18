@@ -241,10 +241,13 @@ extern dword random_seed;
 extern surface_type* current_target_surface INIT(= NULL);
 
 // data:4C5C
-extern byte* doorlink2_ad;
+//extern byte* doorlink2_ad;
 // data:4C5A
-extern byte* doorlink1_ad;
-
+//extern byte* doorlink1_ad;
+extern byte* doorlinks_rooms;
+extern byte* doorlinks_tiles;
+extern byte* doorlinks_timers;
+extern byte* doorlinks_nexts;
 
 
 // data:4CC6

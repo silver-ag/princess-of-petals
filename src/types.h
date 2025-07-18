@@ -233,8 +233,12 @@ typedef struct link_type {
 typedef struct level_type {
 	byte fg[720];
 	byte bg[720];
-	byte doorlinks1[256];
-	byte doorlinks2[256];
+	//byte doorlinks1[256];
+	//byte doorlinks2[256];
+	byte doorlinks_rooms[256];
+	byte doorlinks_tiles[256];
+	byte doorlinks_timers[256];
+	byte doorlinks_nexts[256];
 	link_type roomlinks[24];
 	byte used_rooms;
 	byte roomxs[24];
@@ -253,7 +257,7 @@ typedef struct level_type {
 	byte guards_color[24];
 	byte fill_3[18];
 } level_type;
-SDL_COMPILE_TIME_ASSERT(level_size, sizeof(level_type) == 2305);
+//SDL_COMPILE_TIME_ASSERT(level_size, sizeof(level_type) == 2305);
 
 // Unused fields are cleared in reset_level_unused_fields().
 

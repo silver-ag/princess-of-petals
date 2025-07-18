@@ -2142,3 +2142,4 @@ int char_opp_dist() {
 void inc_curr_row() {
 	++Char.curr_row;
 }
+
