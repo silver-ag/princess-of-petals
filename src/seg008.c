@@ -1451,11 +1451,13 @@ void restore_peels() {
 	peel_type* peel;
 	while (peels_count) {
 		peels_count--;
-		peel = peels_table[peels_count];
-		if (need_drects) {
-			add_drect(&peel->rect); // ?
+		if (death_flash_frames != 1) { // don't draw peels when in final silhoutte while dead, because for some reason they come out as black boxes
+			peel = peels_table[peels_count];
+			if (need_drects) {
+				add_drect(&peel->rect);
+			}
+			restore_peel(peel);
 		}
-		restore_peel(peel);
 	}
 	peels_count = 0;
 }
@@ -1715,7 +1717,6 @@ void draw_guard() {
 		}
 		add_sword_to_objtable();
 	}
-	draw_petals();
 }
 
 // seg008:22F0

@@ -184,6 +184,7 @@ enum blitters {
 	blitters_3_xor = 3, // used for the shadow
 	blitters_white = 8,
 	blitters_9_black = 9,
+	blitters_10_transp_peel = 10,
 	blitters_10h_transp = 0x10,
 	/* 0x40..0x4F will draw a monochrome image with color 0..15 */
 	blitters_40h_mono = 0x40,

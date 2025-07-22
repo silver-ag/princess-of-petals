@@ -3,7 +3,7 @@
 // it's honestly easier to construct the level_type structs directly than to use a level editor
 // plus it means we can store extra stuff like background colour directly in our level data
 
-#define NUM_LEVELS 2
+#define NUM_LEVELS 3
 
 typedef struct room_type {
 	byte fg[30];
@@ -38,7 +38,7 @@ void initialise_custom_levels() {
 		}
 	}
 
-	// LEVEL 0
+	// LEVEL 1
 	custom_levels[0].used_rooms = 9;
 	custom_levels[0].start_room = 1;
 	custom_levels[0].start_pos =  20;
@@ -134,7 +134,7 @@ void initialise_custom_levels() {
 	custom_levels[0].rooms[8].links.right = 6;
 
 
-	// LEVEL 2: DUEL 1
+	// LEVEL 1: DUEL 1
 	custom_levels[1].used_rooms = 9;
 	custom_levels[1].start_room = 1;
 	custom_levels[1].start_pos =  20;
@@ -215,6 +215,16 @@ void initialise_custom_levels() {
 	custom_levels[1].rooms[7].links.right = 8;
 	custom_levels[1].rooms[7].links.left = 8;
 
+
+	// LEVEL 2
+	custom_levels[2].used_rooms = 9;
+	custom_levels[2].start_room = 1;
+	custom_levels[2].start_pos =  20;
+	custom_levels[2].bg_colour = (rgb_type){20,20,255};
+	// room 1
+	memcpy(custom_levels[2].rooms[0].fg, (byte[]){  0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+						        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+						        1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, 30);
 }
 
 void load_custom_level(int n, level_type* level_ref) {

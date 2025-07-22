@@ -1790,7 +1790,7 @@ rect_type *shrink2_rect(rect_type* target_rect,const rect_type* source_rect,int 
 // seg009:3BBA
 void restore_peel(peel_type* peel_ptr) {
 	//printf("restoring peel at (x=%d, y=%d)\n", peel_ptr.rect.left, peel_ptr.rect.top); // debug
-	method_6_blit_img_to_scr(peel_ptr->peel, peel_ptr->rect.left, peel_ptr->rect.top, /*0x10*/0);
+	method_6_blit_img_to_scr(peel_ptr->peel, peel_ptr->rect.left, peel_ptr->rect.top, 0x10);
 	free_peel(peel_ptr);
 	//SDL_FreeSurface(peel_ptr.peel);
 }
@@ -2764,16 +2764,18 @@ void draw_overlay(void) {
 
 void update_screen() {
 	draw_overlay();
-	SDL_Surface* princess_ontop = draw_petals();
 	SDL_Surface* surface = get_final_surface();
-	method_1_blit_rect(surface, princess_ontop, &rect_top, &rect_top, blitters_10h_transp); // draw custom graphics overlay, currently used only for drawing petals
+	SDL_Surface* true_final_surface = SDL_CreateRGBSurface(0, 320, 200, 24, Rmsk, Gmsk, Bmsk, 0);
+	method_1_blit_rect(true_final_surface, surface, &rect_top, &rect_top, blitters_0_no_transp);
+	draw_petals(true_final_surface);
+	//method_1_blit_rect(surface, princess_ontop, &rect_top, &rect_top, blitters_10h_transp); // draw custom graphics overlay, currently used only for drawing petals
 	init_scaling();
 	if (scaling_type == 1) {
 		// Make "fuzzy pixels" like DOSBox does:
 		// First scale to double size with nearest-neighbor scaling, then scale to full screen with smooth scaling.
 		// The result is not as blurry as if we did only a smooth scaling, but not as sharp as if we did only nearest-neighbor scaling.
 		if (is_renderer_targettexture_supported) {
-			SDL_UpdateTexture(texture_sharp, NULL, surface->pixels, surface->pitch);
+			SDL_UpdateTexture(texture_sharp, NULL, true_final_surface->pixels, true_final_surface->pitch);
 			SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
 			SDL_SetRenderTarget(renderer_, target_texture);
 			SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "0");
@@ -2781,12 +2783,12 @@ void update_screen() {
 			SDL_RenderCopy(renderer_, texture_sharp, NULL, NULL);
 			SDL_SetRenderTarget(renderer_, NULL);
 		} else {
-			SDL_BlitScaled(surface, NULL, onscreen_surface_2x, NULL);
+			SDL_BlitScaled(true_final_surface, NULL, onscreen_surface_2x, NULL);
 			surface = onscreen_surface_2x;
 			SDL_UpdateTexture(target_texture, NULL, surface->pixels, surface->pitch);
 		}
 	} else {
-		SDL_UpdateTexture(target_texture, NULL, surface->pixels, surface->pitch);
+		SDL_UpdateTexture(target_texture, NULL, true_final_surface->pixels, true_final_surface->pitch);
 	}
 	SDL_RenderClear(renderer_);
 	SDL_RenderCopy(renderer_, target_texture, NULL, NULL);

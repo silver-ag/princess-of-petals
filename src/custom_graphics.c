@@ -29,8 +29,7 @@ void start_drawing_petals(int x, int y) {
 	}
 }
 
-SDL_Surface* draw_petals() {
-	SDL_Surface* sfc = SDL_CreateRGBSurface(0, 320, 200, 32, Rmsk, Gmsk, Bmsk, Amsk);
+void draw_petals(SDL_Surface* sfc) {
 	if (drawing_petals) {
 		for (int i = 0; i < 5; i++) {
 			// animate
@@ -61,5 +60,4 @@ SDL_Surface* draw_petals() {
 			}
 		}
 	}
-	return sfc;
 }

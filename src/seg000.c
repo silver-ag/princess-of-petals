@@ -1273,6 +1273,7 @@ void check_the_end() {
 			end_sequence();
 		}
 		if (current_level % 2 == 0 && drawn_room == 5) { // princess of petals automatically proceed after arena
+			drawing_petals = false;
 			++next_level;
 		}
 		different_room = 1;
