@@ -3,3 +3,5 @@ the problem appears to be that in frames where need_full_redraw is set the game 
 it's not clear why. the processing code for need_full_redraw in seg000 puts the two on seperate branches, but it's not arbitrary, just changing that doesn't fix it.
 
 check diff into fix gate bg for graphics stuff i've added
+
+add gate topper tile

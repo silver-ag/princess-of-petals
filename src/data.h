@@ -36,6 +36,7 @@ The authors of this program may be contacted at https://forum.princed.org
 extern rgb_type bg_colour;
 extern rgb_type stored_colour; // for flashing
 extern int death_flash_frames;
+extern bool drawing_petals; // test
 
 // data:5F8A
 extern word text_time_remaining;

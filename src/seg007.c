@@ -57,9 +57,9 @@ void animate_tile() {
 		case tiles_rose_gate_opener:
 			animate_button();
 		break;
-		case tiles_2_spike:
-			animate_spike();
-		break;
+		//case tiles_2_spike:
+		//	animate_spike();
+		//break;
 		case tiles_11_loose:
 			animate_loose();
 		break;
@@ -467,9 +467,9 @@ Possible values of trob_type:
 				play_sound(sound_15_leveldoor_sliding); // level door sliding (opening)
 			}*/
 			++curr_modifier;
-			if (curr_modifier == 1) {
+			if (curr_modifier == 20) {
 				death_flash_frames = 60;
-			} else if (curr_modifier == 60) {
+			} else if (curr_modifier == 80) {
 				trob.type = -1;
 				leveldoor_open = 1;
 			}
@@ -1074,7 +1074,7 @@ void loose_land() {
 			tiletype = get_tile(curmob.room, curmob.xh >> 2, curmob.row);
 		// fallthrough!
 		case tiles_1_floor:
-		case tiles_2_spike:
+		//case tiles_2_spike:
 		case tiles_10_potion:
 		//case tiles_19_torch:
 		//case tiles_30_torch_with_debris:

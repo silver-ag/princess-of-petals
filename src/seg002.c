@@ -810,8 +810,8 @@ void guard_follows_kid_down() {
 	}
 	if (// there is wall in front of Guard
 		wall_type(get_tile_infrontof_char()) != 0 ||
-		(! tile_is_floor(curr_tile2) && (
-			(get_tile(curr_room, tile_col, ++tile_row) == tiles_2_spike ||
+		(! tile_is_floor(curr_tile2) && ((
+			//(get_tile(curr_room, tile_col, ++tile_row) == tiles_2_spike ||
 			// Guard would fall on loose floor
 			curr_tile2 == tiles_11_loose ||
 			// ... or wall (?)
@@ -1049,7 +1049,7 @@ void check_skel() {
 				Kid.curr_col == /*3*/ custom->skeleton_trigger_column_2)
 	) {
 		get_tile(drawn_room, /*5*/ custom->skeleton_column, /*1*/ custom->skeleton_row);
-		if (curr_tile2 == tiles_21_skeleton) {
+		/*if (curr_tile2 == tiles_21_skeleton) {
 			// erase skeleton
 			curr_room_tiles[curr_tilepos] = tiles_1_floor;
 			redraw_height = 24;
@@ -1059,15 +1059,15 @@ void check_skel() {
 			set_redraw_full(curr_tilepos, 1);
 			set_wipe(curr_tilepos, 1);
 			Char.room = drawn_room;
-			Char.curr_row = /*1*/ custom->skeleton_row;
+			Char.curr_row = custom->skeleton_row;
 			Char.y = y_land[Char.curr_row + 1];
-			Char.curr_col = /*5*/ custom->skeleton_column;
+			Char.curr_col = custom->skeleton_column;
 			Char.x = x_bump[Char.curr_col + FIRST_ONSCREEN_COLUMN] + TILE_SIZEX;
 			Char.direction = dir_FF_left;
 			seqtbl_offset_char(seq_88_skel_wake_up); // skel wake up
 			play_seq();
 			play_sound(sound_44_skel_alive); // skel alive
-			guard_skill = /*2*/ custom->skeleton_skill;
+			guard_skill = custom->skeleton_skill;
 			Char.alive = -1;
 			guardhp_max = guardhp_curr = 3;
 			Char.fall_x = Char.fall_y = 0;
@@ -1075,7 +1075,7 @@ void check_skel() {
 			Char.sword = sword_2_drawn;
 			Char.charid = charid_4_skeleton;
 			saveshad();
-		}
+		}*/
 	}
 }
 

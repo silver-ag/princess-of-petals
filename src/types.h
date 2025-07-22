@@ -83,6 +83,8 @@ typedef struct piece {
 	byte fore_id;
 	byte fore_x;
 	sbyte fore_y;
+	sbyte topright_x;
+	sbyte topright_y;
 } piece;
 typedef struct tile_and_mod {
 	byte tiletype;
@@ -125,7 +127,7 @@ enum soundflags { sfDigi=1, sfMidi=2, soundflags_4=4, sfLoop=0x80 };
 enum tiles {
 	tiles_0_empty = 0,
 	tiles_1_floor = 1,
-	tiles_2_spike = 2,
+	tiles_2_spikes = 2,
 	tiles_3_pillar = 3,
 	tiles_4_gate = 4,
 	tiles_5_stuck = 5,
@@ -145,7 +147,7 @@ enum tiles {
 	//tiles_19_torch = 19,
 	tiles_rose_seal_floor = 19,
 	tiles_20_wall = 20,
-	tiles_21_skeleton = 21,
+	tiles_21_rose_gate_wing_left = 21,
 	tiles_22_sword = 22,
 	tiles_23_balcony_left = 23,
 	tiles_24_balcony_right = 24,
@@ -156,7 +158,7 @@ enum tiles {
 	tiles_29_lattice_right = 29,
 	//tiles_30_torch_with_debris = 30,
 	// added
-	tiles_rose_gate_wing_right = 30,
+	tiles_30_rose_gate_wing_right = 30,
 	tiles_rose_gate_opener = 31,
 };
 
@@ -170,7 +172,8 @@ enum chtabs {
 	id_chtab_6_environment = 6,
 	id_chtab_7_environmentwall = 7,
 	id_chtab_8_princessroom = 8,
-	id_chtab_9_princessbed = 9
+	id_chtab_9_princessbed = 9,
+	id_chtab_10_princessofpetals = 10
 };
 
 enum blitters {

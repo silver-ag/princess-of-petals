@@ -154,12 +154,12 @@ void draw_extras(void) {
 
 		if (!is_trob_here) { // It's not stuck if it's currently animated.
 			// harmless spikes
-			if (tile_type == tiles_2_spike) {
+			/*if (tile_type == tiles_2_spike) {
 				if (modifier >= 5) { // harmless
 					rect_type spike_rect = {y+50, x, y+60, x+32};
 					show_text_with_color(&spike_rect, halign_center, valign_top, "safe", color_10_brightgreen);
 				}
-			}
+			}*/
 
 			// stuck chompers
 			if (tile_type == tiles_18_chomper) {
@@ -303,8 +303,8 @@ void draw_extras(void) {
 
 		if (current_level == /*3*/ custom->skeleton_level &&
 			drawn_room == /*1*/ custom->skeleton_room &&
-			tilepos == /*15*/ custom->skeleton_row * 10 + custom->skeleton_column &&
-			tile_type == tiles_21_skeleton
+			tilepos == /*15*/ custom->skeleton_row * 10 + custom->skeleton_column //&&
+			//tile_type == tiles_21_skeleton
 		) {
 			special_event = "skel wake"; // skeleton wakes
 		}

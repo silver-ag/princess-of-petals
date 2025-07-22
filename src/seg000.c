@@ -924,6 +924,7 @@ void draw_game_frame() {
 		need_full_redraw = 0;
 	} else {
 		if (different_room) {
+			drawing_petals = false; // test
 			drawn_room = next_room;
 			if (custom->tbl_level_type[current_level]) {
 				gen_palace_wall_colors();
@@ -1093,7 +1094,7 @@ void load_opt_sounds(int first,int last) {
 }
 
 // data:03BA
-const char*const tbl_guard_dat[] = {"GUARD.DAT", "FAT.DAT", "SKEL.DAT", "VIZIER.DAT", "SHADOW.DAT"};
+const char*const tbl_guard_dat[] = {"SAIONJI.DAT", "FAT.DAT", "SKEL.DAT", "VIZIER.DAT", "SHADOW.DAT"};
 // data:03C4
 const char*const tbl_envir_gr[] = {"", "C", "C", "E", "E", "V"};
 // data:03D0
@@ -1124,7 +1125,7 @@ void load_lev_spr(int level) {
 		}
 	}
 	curr_guard_color = 0;
-	load_chtab_from_file(id_chtab_7_environmentwall, 360, filename, 1<<6);
+	load_chtab_from_file(id_chtab_7_environmentwall, 3600, filename, 1<<6);
 
 	// Level colors (1.3)
 	if (graphics_mode == gmMcgaVga && level_var_palettes != NULL) {

@@ -995,8 +995,9 @@ byte seqtbl[] = {
 	dx(-3), dy(-8), snd(SND_LEVEL), snd(SND_FOOTSTEP), frame_224_exit_stairs_8,
 	dx(-1), dy(-1), frame_225_exit_stairs_9,
 	dx(-3), dy(-4), frame_226_exit_stairs_10,
-	dx(-1), dy(-5), snd(SND_FOOTSTEP), frame_227_exit_stairs_11,
-	dx(-2), dy(-1), frame_228_exit_stairs_12,
+	// test
+	dx(-1), dy(-5), snd(SND_FOOTSTEP), frame_0, //frame_227_exit_stairs_11,
+	dx(-2), dy(-1), frame_0, //frame_228_exit_stairs_12,
 	frame_0,
 	snd(SND_FOOTSTEP), frame_0, frame_0, frame_0, // these footsteps are only heard when the music is off
 	snd(SND_FOOTSTEP), frame_0, frame_0, frame_0,

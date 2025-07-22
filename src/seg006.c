@@ -957,7 +957,7 @@ int tile_is_floor(int tiletype) {
 // seg006:0658
 void check_spiked() {
 	short frame = Char.frame;
-	if (get_tile(Char.room, Char.curr_col, Char.curr_row) == tiles_2_spike) {
+	/*if (get_tile(Char.room, Char.curr_col, Char.curr_row) == tiles_2_spike) {
 		short harmful = is_spike_harmful();
 		// frames 7..14: running
 		// frames 34..39: start run-jump
@@ -969,7 +969,7 @@ void check_spiked() {
 		) {
 			spiked();
 		}
-	}
+	}*/
 }
 
 // seg006:06BD
@@ -1708,7 +1708,7 @@ void check_press() {
 
 // seg006:1199
 void check_spike_below() {
-	short not_finished;
+	/*short not_finished;
 	short right_col = get_tile_div_mod_m7(char_x_right);
 	if (right_col < 0) return;
 	short row = Char.curr_row;
@@ -1733,6 +1733,7 @@ void check_spike_below() {
 			}
 		} while(not_finished);
 	}
+	*/
 }
 
 // seg006:1231
@@ -1915,6 +1916,7 @@ void play_death_music() {
 
 // seg006:15E8
 void on_guard_killed() {
+	start_drawing_petals(Char.x, Char.y); // test
 	if (current_level == 0) {
 		// demo level: after killing Guard, run out of room
 		checkpoint = 1;

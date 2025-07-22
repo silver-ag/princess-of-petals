@@ -122,7 +122,7 @@ void land() {
 	#endif
 
 	Char.y = y_land[Char.curr_row + 1];
-	if (get_tile_at_char() != tiles_2_spike) {
+	if (1) { //(get_tile_at_char() != tiles_2_spike) {
 
 
 		if (! tile_is_floor(get_tile_infrontof_char()) &&
@@ -152,10 +152,10 @@ void land() {
 	}
 	if (Char.alive < 0) {
 		// alive
-		if ((distance_to_edge_weight() >= 12 &&
-			get_tile_behind_char() == tiles_2_spike) ||
-			get_tile_at_char() == tiles_2_spike
-		) {
+		if ((distance_to_edge_weight() >= 12 //&&
+			//get_tile_behind_char() == tiles_2_spike) ||
+			//get_tile_at_char() == tiles_2_spike
+		)) {
 			// fell on spikes
 			loc_5EE6:
 			if (is_spike_harmful()) {
@@ -904,7 +904,7 @@ void run_jump() {
 		for (short tiles_forward = 0; tiles_forward < 2; ++tiles_forward) { // Iterate through current tile and the next two tiles looking for a tile the player should jump from
 			col += dir_front[Char.direction + 1];
 			get_tile(Char.room, col, Char.curr_row);
-			if (curr_tile2 == tiles_2_spike || ! tile_is_floor(curr_tile2)) {
+			if (/*curr_tile2 == tiles_2_spike ||*/ ! tile_is_floor(curr_tile2)) {
 				pos_adjustment = distance_to_edge(xpos) + TILE_SIZEX * tiles_forward - TILE_SIZEX;
 				if ((word)pos_adjustment < (word)-8 || pos_adjustment >= 2) {
 					if (pos_adjustment < 128) return;

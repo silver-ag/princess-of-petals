@@ -25,42 +25,42 @@ add_table_type ptr_add_table = add_backtable;
 
 // data:259C
 const piece tile_table[32] = {
-// base_id, floor_left, base_y, right_id, floor_right, right_y, stripe_id, topright_id, bottom_id, fore_id, fore_x, fore_y
-{   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0}, // 0x00 empty
-{  41,   1,   0,  42,   1,   2, 145,   0,  43,   0,   0,   0}, // 0x01 floor
-{ 127,   1,   0, 133,   1,   2, 145,   0,  43,   0,   0,   0}, // 0x02 UNUSED spike
-{  92,   1,   0,  93,   1,   2,   0,  94,  43,  95,   1,   0}, // 0x03 pillar
-{  46,   1,   0,  47,   1,   2,   0,  48,  43,  49,   3,   0}, // 0x04 door
-{  41,   1,   1,  35,   1,   3, 145,   0,  36,   0,   0,   0}, // 0x05 stuck floor
-{  41,   1,   0,  42,   1,   2, 145,   0,  96,   0,   0,   0}, // 0x06 close button
-{  46,   1,   0,   0,   0,   2,   0,   0,  43,  49,   3,   0}, // 0x07 door top with floor
-{  86,   1,   0,  87,   1,   2,   0,   0,  43,  88,   1,   0}, // 0x08 big pillar bottom
-{   0,   0,   0,  89,   0,   3,   0,  90,   0,  91,   1,   3}, // 0x09 big pillar top
-{  41,   1,   0,  42,   1,   2, 145,   0,  43,  12,   2,  -3}, // 0x0A potion
-{   0,   1,   0,   0,   0,   0, 145,   0,   0,   0,   0,   0}, // 0x0B loose floor
-{   0,   0,   0,   0,   0,   2,   0,   0,  85,  49,   3,   0}, // 0x0C door top
-{  75,   1,   0,  42,   1,   2,   0,   0,  43,  77,   0,   0}, // 0x0D mirror
-{  97,   1,   0,  98,   1,   2, 145,   0,  43, 100,   0,   0}, // 0x0E debris
-{ 147,   1,   0,  42,   1,   1, 145,   0, 149,   0,   0,   0}, // 0x0F open button
-{  41,   1,   0,  37,   0,   0,   0,  38,  43,   0,   0,   0}, // 0x10 leveldoor left - topright_id to 152, 154 for gate opening
-{   0,   0,   0,  39,   1,   2,   0,  40,  43,   0,   0,   0}, // 0x11 leveldoor right - topright_id to 153, 155 for gate opening
-{   0,   0,   0,  42,   1,   2, 145,   0,  43,   0,   0,   0}, // 0x12 chomper
+// base_id, floor_left, base_y, right_id, floor_right, right_y, stripe_id, topright_id, bottom_id, fore_id, fore_x, fore_y, topright_x, topright_y
+{   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0}, // 0x00 empty
+{  41,   1,   0,  42,   1,   2, 149,   0,  43,   0,   0,   0,   0,   0}, // 0x01 floor
+{ 147,   1,   0, 152,   1,   2, 149,   0,  43,   0,   0,   0,   0,   0}, // 0x02 (spikes) UNUSED
+{  92,   1,   0,  93,   1,   2,   0,  94,  43,  95,   1,   0,   0,   0}, // 0x03 pillar
+{  46,   1,   0,  47,   1,   2,   0,  48,  43,  49,   3,   0,   0,   0}, // 0x04 door
+{  41,   1,   1,  35,   1,   3, 149,   0,  36,   0,   0,   0,   0,   0}, // 0x05 stuck floor
+{  41,   1,   0,  42,   1,   2, 149,   0,  96,   0,   0,   0,   0,   0}, // 0x06 close button
+{  46,   1,   0,   0,   0,   2,   0,   0,  43,  49,   3,   0,   0,   0}, // 0x07 door top with floor
+{  86,   1,   0,  87,   1,   2,   0,   0,  43,  88,   1,   0,   0,   0}, // 0x08 big pillar bottom
+{   0,   0,   0,  89,   0,   3,   0,  90,   0,  91,   1,   3,   0,   0}, // 0x09 big pillar top
+{  41,   1,   0,  42,   1,   2, 149,   0,  43,  12,   2,  -3,   0,   0}, // 0x0A potion
+{   0,   1,   0,   0,   0,   0, 149,   0,   0,   0,   0,   0,   0,   0}, // 0x0B loose floor
+{   0,   0,   0,   0,   0,   2,   0,   0,  85,  49,   3,   0,   0,   0}, // 0x0C door top
+{  75,   1,   0,  42,   1,   2,   0,   0,  43,  77,   0,   0,   0,   0}, // 0x0D mirror
+{  97,   1,   0,  98,   1,   2, 149,   0,  43, 100,   0,   0,   0,   0}, // 0x0E debris
+{ 147,   1,   0,  42,   1,   1, 149,   0, 149,   0,   0,   0,   0,   0}, // 0x0F open button
+{  41,   1,   0,  37,   0,   0,   0, 154,  43,   0,   0,   0,   0,   0}, // 0x10 leveldoor left - topright_id to 152, 154 for gate opening
+{   0,   0,   0,  39,   1,   2,   0, 155,  43,   0,   0,   0,   0,   0}, // 0x11 leveldoor right - topright_id to 153, 155 for gate opening
+{   0,   0,   0,  42,   1,   2, 149,   0,  43,   0,   0,   0,   0,   0}, // 0x12 chomper
 // torches commented out because we can't have more than 32 tile types. it'd be a huge pain to add more because tiles are stored in curr_room_tiles as ints that are the fg and bg put together in one bitfield, so we can't take up more bits
 //{  41,   1,   0,  42,   1,   2,   0,   0,  43,   0,   0,   0}, // 0x13 torch
-{ 157,   1,   1, 158,   1,   2, 145,   0,  43,   0,   0,   0}, // ADDED rose seal floor
-{   0,   0,   0,   1,   1,   2,   0,   2,   0,   0,   0,   0}, // 0x14 wall
-{  30,   1,   0,  31,   1,   2,   0,   0,  43,   0,   0,   0}, // 0x15 skeleton CHANGED to rose gate wing left
-{  41,   1,   0,  42,   1,   2, 145,   0,  43,   0,   0,   0}, // 0x16 sword
-{  41,   1,   0,  10,   0,   0,   0,  11,  43,   0,   0,   0}, // 0x17 balcony left
-{   0,   0,   0,  12,   1,   2,   0,  13,  43,   0,   0,   0}, // 0x18 balcony right
-{  92,   1,   0,  42,   1,   2, 145,   0,  43,  95,   1,   0}, // 0x19 lattice pillar
-{   1,   0,   0,   0,   0,   0,   0,   0,   2,   9,   0, -53}, // 0x1A lattice down
-{   3,   0, -10,   0,   0,   0,   0,   0,   0,   9,   0, -53}, // 0x1B lattice small
-{   4,   0, -10,   0,   0,   0,   0,   0,   0,   9,   0, -53}, // 0x1C lattice left
-{   5,   0, -10,   0,   0,   0,   0,   0,   0,   9,   0, -53}, // 0x1D lattice right
+{ 160,   1,   1, 162,   1,   2, 149,   0,  43,   0,   0,   0,   0,   0}, // ADDED rose seal floor
+{   0,   0,   0,   1,   1,   2,   0,   2,   0,   0,   0,   0,   0,   0}, // 0x14 wall
+{  30,   1,   0, 152,   1,   2,   0,   0,  43,   0,   0,   0,   0,  48}, // 0x15 skeleton CHANGED to rose gate wing left
+{  41,   1,   0,  42,   1,   2, 149,   0,  43,   0,   0,   0,   0,   0}, // 0x16 sword
+{  41,   1,   0,  10,   0,   0,   0,  11,  43,   0,   0,   0,   0,   0}, // 0x17 balcony left
+{   0,   0,   0,  12,   1,   2,   0,  13,  43,   0,   0,   0,   0,   0}, // 0x18 balcony right
+{  92,   1,   0,  42,   1,   2, 149,   0,  43,  95,   1,   0,   0,   0}, // 0x19 lattice pillar
+{   1,   0,   0,   0,   0,   0,   0,   0,   2,   9,   0, -53,   0,   0}, // 0x1A lattice down
+{   3,   0, -10,   0,   0,   0,   0,   0,   0,   9,   0, -53,   0,   0}, // 0x1B lattice small
+{   4,   0, -10,   0,   0,   0,   0,   0,   0,   9,   0, -53,   0,   0}, // 0x1C lattice left
+{   5,   0, -10,   0,   0,   0,   0,   0,   0,   9,   0, -53,   0,   0}, // 0x1D lattice right
 //{  97,   1,   0,  98,   1,   2,   0,   0,  43, 100,   0,   0}, // 0x1E debris with torch
-{ 127,   1,   0, 133,   1,   2, 145,   0,  43,   0,   0,   0}, // ADDED rose gate wing right
-{ 157,   1,   0, 158,   1,   1, 145,   0, 149,   0,   0,   0}, // ADDED rose gate open button
+{ 127,   1,   0, 153,   1,   2, 149,   0,  43,   0,   0,   0,  22,  48}, // ADDED rose gate wing right
+{ 160,   1,   0, 162,   1,   1, 149,   0, 149,   0,   0,   0,   0,   0}, // ADDED rose gate open button
 };
 
 // data:4334
@@ -71,6 +71,9 @@ short draw_bottom_y;
 short draw_main_y;
 // data:34D0
 short drawn_col;
+// global value so we can access it while rendering rose gate in get_image() and draw_tile_topright?
+short leveldoor_height;
+short water_tick = 0;
 
 // data:6592
 byte tile_left;
@@ -426,6 +429,8 @@ void draw_tile_topright() {
 		add_backtable(id_chtab_7_environmentwall, 2, draw_xh, 0, draw_bottom_y, blitters_2_or, 0);
 	} else {
 		int id = tile_table[tiletype].topright_id;
+		int dx = tile_table[tiletype].topright_x;
+		int dy = tile_table[tiletype].topright_y;
 #ifdef USE_TELEPORTS
 		// Use teleport graphics:
 		// * for the left half of a balcony, if it has a non-zero modifier.
@@ -439,23 +444,35 @@ void draw_tile_topright() {
 #endif
 		// rose gate opening
 		if (tiletype == tiles_16_level_door_left) {
-			if (row_below_left_[drawn_col].modifier < 20) {
-				id = 38;
-			} else if (row_below_left_[drawn_col].modifier < 40) {
-				id = 152;
-			} else {
+			if (row_below_left_[drawn_col].modifier < 40) {
 				id = 154;
+			} else if (row_below_left_[drawn_col].modifier < 60) {
+				id = 156;
+			} else {
+				id = 158;
 			}
 		} else if (tiletype == tiles_17_level_door_right) {
-			if (row_below_left_[drawn_col-1].modifier < 20) {
-				id = 40;
-			} else if (row_below_left_[drawn_col-1].modifier < 40) {
-				id = 153;
-			} else {
+			if (row_below_left_[drawn_col-1].modifier < 40) {
 				id = 155;
+			} else if (row_below_left_[drawn_col-1].modifier < 60) {
+				id = 157;
+			} else {
+				id = 159;
+			}
+		} else if (tiletype == tiles_21_rose_gate_wing_left) {
+			if (leveldoor_height > 0) {
+				id = 166 + water_tick;
+			} else {
+				id = 0;
+			}
+		} else if (tiletype == tiles_30_rose_gate_wing_right) {
+			if (leveldoor_height > 0) {
+				id = 166 + water_tick;
+			} else {
+				id = 0;
 			}
 		}
-		add_backtable(id_chtab_6_environment, id, draw_xh, 0, draw_bottom_y, blitters_2_or, 0);
+		add_backtable(id_chtab_6_environment, id, draw_xh, dx, draw_bottom_y+dy, blitters_2_or, 0);
 	}
 }
 
@@ -557,9 +574,9 @@ int get_spike_frame(byte modifier) {
 // seg008:08B5
 void draw_tile_anim_right() {
 	switch (tile_left) {
-		case tiles_2_spike:
-			add_backtable(id_chtab_6_environment, spikes_fram_right[get_spike_frame(modifier_left)], draw_xh, 0, draw_main_y - 7, blitters_10h_transp, 0);
-		break;
+		//case tiles_2_spike:
+		//	add_backtable(id_chtab_6_environment, spikes_fram_right[get_spike_frame(modifier_left)], draw_xh, 0, draw_main_y - 7, blitters_10h_transp, 0);
+		//break;
 		case tiles_4_gate:
 			draw_gate_back();
 		break;
@@ -676,9 +693,9 @@ void draw_tile_anim() {
 	word pot_size = 0;
 	word color = 12; // red
 	switch (curr_tile) {
-		case tiles_2_spike:
-			ptr_add_table(id_chtab_6_environment, spikes_fram_left[get_spike_frame(curr_modifier)], draw_xh, 0, draw_main_y - 2, blitters_10h_transp, 0);
-			break;
+		//case tiles_2_spike:
+		//	ptr_add_table(id_chtab_6_environment, spikes_fram_left[get_spike_frame(curr_modifier)], draw_xh, 0, draw_main_y - 2, blitters_10h_transp, 0);
+		//	break;
 		case tiles_10_potion:
 			switch((curr_modifier & 0xF8) >> 3) {
 				case 0: // empty
@@ -727,9 +744,9 @@ void draw_tile_fore() {
 		draw_gate_fore();
 	}
 	switch (curr_tile) {
-		case tiles_2_spike:
-			add_foretable(id_chtab_6_environment, spikes_fram_fore[get_spike_frame(curr_modifier)], draw_xh, 0, draw_main_y - 2, blitters_10h_transp, 0);
-			break;
+		//case tiles_2_spike:
+		//	add_foretable(id_chtab_6_environment, spikes_fram_fore[get_spike_frame(curr_modifier)], draw_xh, 0, draw_main_y - 2, blitters_10h_transp, 0);
+		//	break;
 		case tiles_18_chomper:
 			chomper_num = chomper_fram1[MIN(curr_modifier & 0x7F, 6)];
 			add_foretable(id_chtab_6_environment, chomper_fram_for[chomper_num], draw_xh, 0, draw_main_y, blitters_10h_transp, 0);
@@ -810,9 +827,22 @@ image_type* get_image(short chtab_id, int id) {
 		printf("Tried to use null chtab %d\n", chtab_id);
 		return NULL;
 	}
-	if (id < 0 || id >= chtab->n_images) {
+	if (id < 0 || id >= chtab->n_images || (id == -1 && chtab_id == id_chtab_6_environment)) {
 		if (id != 255) printf("Tried to use image %d of chtab %d, not in 0..%d\n", id, chtab_id, chtab->n_images-1);
 		return NULL;
+	}
+	// test - construct leveldoor image
+	if (id == 164 && chtab_id == id_chtab_6_environment) { // image 165, rose gate
+		image_type* rose_gate_door_surface = SDL_CreateRGBSurface(0, 43, 54, 32, Rmsk, Gmsk, Bmsk, Amsk);
+		int height = 0;
+		if (leveldoor_height > 20) {
+			height = leveldoor_height - 20;
+		}
+		method_1_blit_rect(rose_gate_door_surface, chtab->images[143], &(rect_type){5,5,50,43}, &(rect_type){0,0,49,41}, blitters_10h_transp);
+		method_1_blit_rect(rose_gate_door_surface, chtab->images[162], &(rect_type){0,0,54,43}, &(rect_type){0,height/1.5,62,43+height/1.5}, blitters_10h_transp);
+		method_1_blit_rect(rose_gate_door_surface, chtab->images[163], &(rect_type){0,0,54,43}, &(rect_type){0,-(height/1.5),62,43-(height/1.5)}, blitters_10h_transp);
+		method_1_blit_rect(rose_gate_door_surface, chtab->images[164], &(rect_type){0,0,54,43}, &(rect_type){height,0,62+height,43}, blitters_10h_transp);
+		return rose_gate_door_surface;
 	}
 	return chtab->images[id];
 }
@@ -1139,7 +1169,7 @@ void calc_gate_pos() {
 const byte door_fram_slice[] = {67, 59, 58, 57, 56, 55, 54, 53, 52};
 // seg008:17B7
 void draw_gate_back() {
-	draw_tile_wipe(60); // clear behind gate
+	draw_tile_wipe(70); // clear behind gate
 	calc_gate_pos();
 	if (gate_bottom_y + 12 < draw_main_y) {
 		add_backtable(id_chtab_6_environment, 50 /*gate bottom with B*/, draw_xh, 0, gate_bottom_y, blitters_10h_transp, 0);
@@ -1395,6 +1425,8 @@ void draw_tile_wipe(byte height) {
 
 // seg008:1BEB
 void draw_tables() {
+	water_tick = (water_tick + 1) % 4;
+
 	drects_count = 0;
 	current_target_surface = offscreen_surface;
 	if (is_blind_mode) {
@@ -1451,8 +1483,8 @@ void draw_leveldoor() {
 	short ybottom = draw_main_y - 13;
 	leveldoor_right = (draw_xh<<3)+48;
 	if (custom->tbl_level_type[current_level]) leveldoor_right += 8;
-	add_backtable(id_chtab_6_environment, 99, draw_xh + 1, 0, ybottom, blitters_0_no_transp_tile, 0); // 99: leveldoor stairs bottom
-	if (modifier_left) {
+	//add_backtable(id_chtab_6_environment, 99, draw_xh + 1, 0, ybottom, blitters_0_no_transp_tile, 0); // 99: leveldoor stairs bottom
+	/*if (modifier_left) {
 		if (level.start_room != drawn_room) {
 			add_backtable(id_chtab_6_environment, 144, draw_xh + 1, 0, ybottom - 4, blitters_0_no_transp_tile, 0); // 144 level door stairs
 		}
@@ -1461,15 +1493,16 @@ void draw_leveldoor() {
 			sbyte x_low = (custom->tbl_level_type[current_level] == 0) ? 2 : 0; // dungeon level doors are shifted 2px to the right
 			add_wipetable(0, 8*(draw_xh + 1) + x_low, ybottom - 4, 45, leveldoor_width, 0);
 		}
-	}
-	leveldoor_ybottom = ybottom - (modifier_left & 3) - 48;
-	short y = ybottom - modifier_left;
-	do { // runs at least once
-		add_backtable(id_chtab_6_environment, 33, draw_xh + 1, 0, leveldoor_ybottom, blitters_0_no_transp_tile, 0); // 33 level door bottom
-		if (y > leveldoor_ybottom) leveldoor_ybottom += 4;
-		else break;
-	} while (true);
-	add_backtable(id_chtab_6_environment, 34, draw_xh + 1, 0, draw_main_y - 64, blitters_0_no_transp_tile, 0); // 34 level door top
+	}*/
+	//leveldoor_ybottom = ybottom - (modifier_left & 3) - 48;
+	//short y = ybottom - modifier_left;
+	//do { // runs at least once //test
+	leveldoor_height = modifier_left; // test
+	add_backtable(id_chtab_6_environment, 165, draw_xh + 1, 0, /*leveldoor_ybottom*/ybottom, blitters_10h_transp, 0); // 33 special leveldoor value to be handled in get_image()
+	//	if (y > leveldoor_ybottom) leveldoor_ybottom += 4;
+	//	else break;
+	//} while (true);
+	//add_backtable(id_chtab_6_environment, 34, draw_xh + 1, 0, draw_main_y - 64, blitters_0_no_transp_tile, 0); // 34 level door top
 }
 
 // seg008:1E0C
@@ -1620,6 +1653,8 @@ void draw_objtable_item(int index) {
 		case 5: // hurt splash
 			add_midtable(obj_chtab, obj_id + 1, obj_xh, obj_xl, obj_y, blitters_10h_transp, 1);
 		break;
+		case 6: // petal
+		break; // test
 		case 1: // shadow
 		shadow:
 			if (united_with_shadow == 2) {
@@ -1682,6 +1717,7 @@ void draw_guard() {
 		}
 		add_sword_to_objtable();
 	}
+	draw_petals(); //test
 }
 
 // seg008:22F0

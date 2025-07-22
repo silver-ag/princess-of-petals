@@ -133,6 +133,80 @@ void initialise_custom_levels() {
 	custom_levels[0].rooms[8].links.up = 7;
 	custom_levels[0].rooms[8].links.right = 6;
 
+
+	// LEVEL 2: DUEL 1
+	custom_levels[1].used_rooms = 9;
+	custom_levels[1].start_room = 1;
+	custom_levels[1].start_pos =  20;
+	custom_levels[1].start_dir =  0;
+	// room 1: stairs base
+	memcpy(custom_levels[1].rooms[0].fg, (byte[]){  0, 0, 0, 0, 1, 3, 0, 0, 0,20,
+						        0, 0, 0, 1, 3, 0, 0, 0, 0,20,
+						        1, 1, 1, 3, 1, 1, 1, 1, 1,20}, 30);
+	custom_levels[1].rooms[0].links.left = 4;
+	custom_levels[1].rooms[0].links.right = 7;
+	custom_levels[1].rooms[0].links.up = 2;
+
+	// room 2: stairs top
+	memcpy(custom_levels[1].rooms[1].fg, (byte[]){  0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+						        0, 0, 0, 0, 0, 0, 1,31, 4, 1,
+						        0, 0, 0, 0, 0, 1, 3, 0, 0,20}, 30);
+	memcpy(custom_levels[1].rooms[1].bg, (byte[]){  0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+						        0, 0, 0, 0, 0, 0, 0, 1, 0, 0,
+						        0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 30);
+	custom_levels[1].doorlinks_rooms[1] = 2;
+	custom_levels[1].doorlinks_tiles[1] = 18;
+	custom_levels[1].doorlinks_timers[1] = 0;
+	custom_levels[1].doorlinks_nexts[1] = 0;
+	custom_levels[1].rooms[1].links.left = 7;
+	custom_levels[1].rooms[1].links.right = 3;
+	custom_levels[1].rooms[1].links.down = 1;
+	custom_levels[1].rooms[1].links.up = 7;
+
+	// room 3: arena
+	memcpy(custom_levels[1].rooms[2].fg, (byte[]){  0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+						        1, 1, 1, 1, 1, 1, 1, 1, 4, 1,
+						       20,20,20,20,20,20,20,20,20,20}, 30);
+	custom_levels[1].rooms[2].links.left = 2;
+	custom_levels[1].rooms[2].links.right = 5;
+	custom_levels[1].rooms[2].links.up = 7;
+	custom_levels[1].rooms[2].links.down = 7;
+	custom_levels[1].rooms[2].guard_tile = 16;
+
+
+	// room 4: pre-entry
+	// just for the gate visible from at the edge of room 1
+	memcpy(custom_levels[1].rooms[3].fg, (byte[]){  0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+						        0, 0, 0, 0, 0, 0, 0, 0, 0,20,
+						        0, 0, 0, 0, 0, 0, 0, 0, 0, 4}, 30);
+	custom_levels[1].rooms[6].links.right = 1;
+
+	// room 5: post-entry
+	// win immediately on entry
+	memcpy(custom_levels[1].rooms[4].fg, (byte[]){  0, 0, 0, 0, 0, 0, 0, 0, 0,20,
+						        1, 1, 1, 1, 1, 1, 1, 1, 1,20,
+						        0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 30);
+
+
+	// room 7: sky
+	// for putting next to rooms that shouldn't have walls displayed on that edge
+	memcpy(custom_levels[1].rooms[6].fg, (byte[]){  0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+						        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+						        0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 30);
+	custom_levels[1].rooms[6].links.down = 8;
+	custom_levels[1].rooms[6].links.left = 7;
+	custom_levels[1].rooms[6].links.up = 7;
+	custom_levels[1].rooms[6].links.right = 7;
+
+	// room 8: floor
+	// for falling onto from room 7
+	memcpy(custom_levels[1].rooms[7].fg, (byte[]){  0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+						        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+						        1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, 30);
+	custom_levels[1].rooms[7].links.up = 7;
+	custom_levels[1].rooms[7].links.right = 8;
+	custom_levels[1].rooms[7].links.left = 8;
+
 }
 
 void load_custom_level(int n, level_type* level_ref) {
