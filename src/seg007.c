@@ -468,7 +468,7 @@ Possible values of trob_type:
 			}*/
 			++curr_modifier;
 			if (curr_modifier == 20) {
-				death_flash_frames = 60;
+				start_death_flash(60);
 			} else if (curr_modifier == 80) {
 				trob.type = -1;
 				leveldoor_open = 1;

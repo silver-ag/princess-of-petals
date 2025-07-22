@@ -684,7 +684,7 @@ void play_seq() {
 				break;
 			}
 			case SEQ_DIE: // nop
-				death_flash_frames = 10;
+				start_death_flash(10);
 				break;
 			default:
 				Char.frame = command;
@@ -976,6 +976,7 @@ void check_spiked() {
 int take_hp(int count) {
 	word dead = 0;
 	if (Char.charid == charid_0_kid) {
+		start_death_flash(5);
 		if (count >= hitp_curr) {
 			hitp_delta = -hitp_curr;
 			dead = 1;
@@ -1867,7 +1868,7 @@ void proc_get_object() {
 				stop_sounds();
 				play_sound(sound_30_big_potion); // big potion
 				flash_color = (rgb_type){255,0,0};
-				death_flash_frames = 8;
+				start_death_flash(8);
 				add_life();
 			break;
 			case 3: // feather

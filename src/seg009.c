@@ -2765,8 +2765,8 @@ void draw_overlay(void) {
 void update_screen() {
 	draw_overlay();
 	SDL_Surface* surface = get_final_surface();
-	SDL_Surface* true_final_surface = SDL_CreateRGBSurface(0, 320, 200, 24, Rmsk, Gmsk, Bmsk, 0);
-	method_1_blit_rect(true_final_surface, surface, &rect_top, &rect_top, blitters_0_no_transp);
+	SDL_Surface* true_final_surface = SDL_CreateRGBSurface(0, surface->w, surface->h, 24, Rmsk, Gmsk, Bmsk, 0);
+	method_1_blit_rect(true_final_surface, surface, &screen_rect, &screen_rect, blitters_0_no_transp);
 	draw_petals(true_final_surface);
 	//method_1_blit_rect(surface, princess_ontop, &rect_top, &rect_top, blitters_10h_transp); // draw custom graphics overlay, currently used only for drawing petals
 	init_scaling();
