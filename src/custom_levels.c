@@ -167,6 +167,10 @@ void initialise_custom_levels() {
 	memcpy(custom_levels[1].rooms[2].fg, (byte[]){  0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 						        1, 1, 1, 1, 1, 1, 1, 1, 4, 1,
 						       20,20,20,20,20,20,20,20,20,20}, 30);
+	custom_levels[1].doorlinks_rooms[2] = 3;
+	custom_levels[1].doorlinks_tiles[2] = 18;
+	custom_levels[1].doorlinks_timers[2] = 0;
+	custom_levels[1].doorlinks_nexts[2] = 0;
 	custom_levels[1].rooms[2].links.left = 2;
 	custom_levels[1].rooms[2].links.right = 5;
 	custom_levels[1].rooms[2].links.up = 7;
@@ -186,6 +190,10 @@ void initialise_custom_levels() {
 	memcpy(custom_levels[1].rooms[4].fg, (byte[]){  0, 0, 0, 0, 0, 0, 0, 0, 0,20,
 						        1, 1, 1, 1, 1, 1, 1, 1, 1,20,
 						        0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 30);
+	custom_levels[1].rooms[6].links.left = 3;
+	custom_levels[1].rooms[6].links.right = 7;
+	custom_levels[1].rooms[6].links.up = 7;
+	custom_levels[1].rooms[6].links.down = 7;
 
 
 	// room 7: sky

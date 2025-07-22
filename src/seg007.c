@@ -728,7 +728,7 @@ void clear_tile_wipes() {
 // seg007:0BB6
 short get_doorlink_timer(short index) {
 	//return doorlink2_ad[index] & 0x1F;
-	return doorlinks_timers[index] & 0x1F; // test
+	return doorlinks_timers[index] & 0x1F;
 }
 
 // seg007:0BCD

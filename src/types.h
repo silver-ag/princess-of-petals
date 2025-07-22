@@ -178,7 +178,7 @@ enum chtabs {
 
 enum blitters {
 	blitters_0_no_transp = 0,
-	blitters_0_no_transp_tile = 1, // test - for silhouette mode
+	blitters_0_no_transp_tile = 1, // for silhouette mode
 	// It seems to me that the "or" blitter can be safely replaced with the "transparent" blitter.
 	blitters_2_or = 2,
 	blitters_3_xor = 3, // used for the shadow

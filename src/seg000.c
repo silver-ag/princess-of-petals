@@ -924,7 +924,7 @@ void draw_game_frame() {
 		need_full_redraw = 0;
 	} else {
 		if (different_room) {
-			drawing_petals = false; // test
+			drawing_petals = false;
 			drawn_room = next_room;
 			if (custom->tbl_level_type[current_level]) {
 				gen_palace_wall_colors();
@@ -1271,6 +1271,9 @@ void check_the_end() {
 #endif
 			// Special event: end of game
 			end_sequence();
+		}
+		if (current_level % 2 == 0 && drawn_room == 5) { // princess of petals automatically proceed after arena
+			++next_level;
 		}
 		different_room = 1;
 		loadkid();

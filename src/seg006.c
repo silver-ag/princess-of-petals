@@ -956,8 +956,8 @@ int tile_is_floor(int tiletype) {
 
 // seg006:0658
 void check_spiked() {
-	short frame = Char.frame;
-	/*if (get_tile(Char.room, Char.curr_col, Char.curr_row) == tiles_2_spike) {
+	/*short frame = Char.frame;
+	if (get_tile(Char.room, Char.curr_col, Char.curr_row) == tiles_2_spike) {
 		short harmful = is_spike_harmful();
 		// frames 7..14: running
 		// frames 34..39: start run-jump
@@ -1916,7 +1916,8 @@ void play_death_music() {
 
 // seg006:15E8
 void on_guard_killed() {
-	start_drawing_petals(Char.x, Char.y); // test
+	start_drawing_petals(Char.x, Char.y);
+	do_trigger_list(2, tiles_rose_gate_opener); // trigger 2 opens the gate out of the arena
 	if (current_level == 0) {
 		// demo level: after killing Guard, run out of room
 		checkpoint = 1;
@@ -1993,7 +1994,7 @@ void load_obj() {
 
 // seg006:16CE
 void draw_hurt_splash() {
-	short frame = Char.frame;
+	/*short frame = Char.frame;
 	if (frame != frame_178_chomped) { // chomped
 		save_obj();
 		obj_tilepos = -1;
@@ -2018,7 +2019,7 @@ void draw_hurt_splash() {
 		reset_obj_clip();
 		add_objtable(5); // hurt splash
 		load_obj();
-	}
+	}*/
 }
 
 // seg006:175D

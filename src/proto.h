@@ -738,3 +738,4 @@ void load_custom_level(int n, level_type* level_ref);
 // custom_graphics.c
 void death_flash(void);
 SDL_Surface* draw_petals(void);
+void start_drawing_petals(int x, int y);

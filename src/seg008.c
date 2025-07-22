@@ -690,13 +690,13 @@ const byte chomper_fram_y[] = {0, 0, 0x25, 0x2F, 0x32};
 // seg008:0B2B
 void draw_tile_anim() {
 	word chomper_num;
-	word pot_size = 0;
-	word color = 12; // red
+	//word pot_size = 0;
+	//word color = 12; // red
 	switch (curr_tile) {
 		//case tiles_2_spike:
 		//	ptr_add_table(id_chtab_6_environment, spikes_fram_left[get_spike_frame(curr_modifier)], draw_xh, 0, draw_main_y - 2, blitters_10h_transp, 0);
 		//	break;
-		case tiles_10_potion:
+		/*case tiles_10_potion:
 			switch((curr_modifier & 0xF8) >> 3) {
 				case 0: // empty
 					return;
@@ -712,9 +712,9 @@ void draw_tile_anim() {
 					pot_size = 1;
 					break;
 			}
-			//add_backtable(id_chtab_1_flameswordpotion, 23 /*bubble mask*/, draw_xh + 3, 1, draw_main_y - (pot_size << 2) - 14, blitters_40h_mono, 0);
+			//add_backtable(id_chtab_1_flameswordpotion, 23 bubble mask, draw_xh + 3, 1, draw_main_y - (pot_size << 2) - 14, blitters_40h_mono, 0);
 			add_foretable(id_chtab_1_flameswordpotion, potion_fram_bubb[curr_modifier & 0x7], draw_xh + 3, 1, draw_main_y - (pot_size << 2) - 14, blitters_10h_transp, 0);
-			break;
+			break;*/
 		case tiles_22_sword:
 			add_midtable(id_chtab_1_flameswordpotion, (curr_modifier == 1) + 10, draw_xh, 0, draw_main_y - 3, blitters_10h_transp, curr_modifier == 1);
 			break;
@@ -824,14 +824,14 @@ image_type* get_image(short chtab_id, int id) {
 	}
 	chtab_type* chtab = chtab_addrs[chtab_id];
 	if (chtab == NULL) {
-		printf("Tried to use null chtab %d\n", chtab_id);
+		//printf("Tried to use null chtab %d\n", chtab_id);
 		return NULL;
 	}
 	if (id < 0 || id >= chtab->n_images || (id == -1 && chtab_id == id_chtab_6_environment)) {
 		if (id != 255) printf("Tried to use image %d of chtab %d, not in 0..%d\n", id, chtab_id, chtab->n_images-1);
 		return NULL;
 	}
-	// test - construct leveldoor image
+	// construct leveldoor image
 	if (id == 164 && chtab_id == id_chtab_6_environment) { // image 165, rose gate
 		image_type* rose_gate_door_surface = SDL_CreateRGBSurface(0, 43, 54, 32, Rmsk, Gmsk, Bmsk, Amsk);
 		int height = 0;
@@ -1496,9 +1496,9 @@ void draw_leveldoor() {
 	}*/
 	//leveldoor_ybottom = ybottom - (modifier_left & 3) - 48;
 	//short y = ybottom - modifier_left;
-	//do { // runs at least once //test
-	leveldoor_height = modifier_left; // test
-	add_backtable(id_chtab_6_environment, 165, draw_xh + 1, 0, /*leveldoor_ybottom*/ybottom, blitters_10h_transp, 0); // 33 special leveldoor value to be handled in get_image()
+	//do { // runs at least once
+	leveldoor_height = modifier_left;
+	add_backtable(id_chtab_6_environment, 165, draw_xh + 1, 0, ybottom, blitters_10h_transp, 0); // 33 special leveldoor value to be handled in get_image()
 	//	if (y > leveldoor_ybottom) leveldoor_ybottom += 4;
 	//	else break;
 	//} while (true);
@@ -1653,8 +1653,6 @@ void draw_objtable_item(int index) {
 		case 5: // hurt splash
 			add_midtable(obj_chtab, obj_id + 1, obj_xh, obj_xl, obj_y, blitters_10h_transp, 1);
 		break;
-		case 6: // petal
-		break; // test
 		case 1: // shadow
 		shadow:
 			if (united_with_shadow == 2) {
@@ -1717,7 +1715,7 @@ void draw_guard() {
 		}
 		add_sword_to_objtable();
 	}
-	draw_petals(); //test
+	draw_petals();
 }
 
 // seg008:22F0

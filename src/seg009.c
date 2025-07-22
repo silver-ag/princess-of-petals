@@ -2766,7 +2766,7 @@ void update_screen() {
 	draw_overlay();
 	SDL_Surface* princess_ontop = draw_petals();
 	SDL_Surface* surface = get_final_surface();
-	method_1_blit_rect(surface, princess_ontop, &rect_top, &rect_top, blitters_10h_transp); // test
+	method_1_blit_rect(surface, princess_ontop, &rect_top, &rect_top, blitters_10h_transp); // draw custom graphics overlay, currently used only for drawing petals
 	init_scaling();
 	if (scaling_type == 1) {
 		// Make "fuzzy pixels" like DOSBox does:
