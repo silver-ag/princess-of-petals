@@ -1621,6 +1621,7 @@ int wall_type(byte tiletype) {
 		case tiles_12_doortop:
 			return 1; // wall at right
 		case tiles_13_mirror:
+		case tiles_23_left_gate:
 			return 2; // wall at left
 		case tiles_18_chomper:
 			return 3; // chomper at left

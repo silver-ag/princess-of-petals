@@ -47,11 +47,12 @@ const piece tile_table[32] = {
 {   0,   0,   0,  42,   1,   2, 149,   0,  43,   0,   0,   0,   0,   0}, // 0x12 chomper
 // torches commented out because we can't have more than 32 tile types. it'd be a huge pain to add more because tiles are stored in curr_room_tiles as ints that are the fg and bg put together in one bitfield, so we can't take up more bits
 //{  41,   1,   0,  42,   1,   2,   0,   0,  43,   0,   0,   0}, // 0x13 torch
-{ 160,   1,   1, 162,   1,   2, 149,   0,  43,   0,   0,   0,   0,   0}, // ADDED rose seal floor
+{ 171,   1,   1, 162,   1,   2, 149,   0,  43,   0,   0,   0,   0,   0}, // ADDED rose seal floor
 {   0,   0,   0,   1,   1,   2,   0,   2,   0,   0,   0,   0,   0,   0}, // 0x14 wall
 {  30,   1,   0, 152,   1,   2,   0,   0,  43,   0,   0,   0,   0,  48}, // 0x15 skeleton CHANGED to rose gate wing left
 {  41,   1,   0,  42,   1,   2, 149,   0,  43,   0,   0,   0,   0,   0}, // 0x16 sword
-{  41,   1,   0,  10,   0,   0,   0,  11,  43,   0,   0,   0,   0,   0}, // 0x17 balcony left
+//{  41,   1,   0,  10,   0,   0,   0,  11,  43,   0,   0,   0,   0,   0}, // 0x17 balcony left
+{ 170,   1,   0,  42,   1,   2,   0,   0,  43,  49,   0,   0,   0,   0}, // 0x17 CHANGED door left
 {   0,   0,   0,  12,   1,   2,   0,  13,  43,   0,   0,   0,   0,   0}, // 0x18 balcony right
 {  92,   1,   0,  42,   1,   2, 149,   0,  43,  95,   1,   0,   0,   0}, // 0x19 lattice pillar
 {   1,   0,   0,   0,   0,   0,   0,   0,   2,   9,   0, -53,   0,   0}, // 0x1A lattice down
@@ -435,12 +436,12 @@ void draw_tile_topright() {
 		// Use teleport graphics:
 		// * for the left half of a balcony, if it has a non-zero modifier.
 		// * for the right half of a balcony, if it has modifier == 1.
-		if (
+		/*if (
 			(tiletype == tiles_23_balcony_left && row_below_left_[drawn_col].modifier != 0)
 			|| (tiletype == tiles_24_balcony_right && row_below_left_[drawn_col].modifier == 1)
 		) {
 			id += 4;
-		}
+		}*/
 #endif
 		// rose gate opening
 		if (tiletype == tiles_16_level_door_left) {
@@ -510,11 +511,11 @@ void draw_tile_right() {
 			// Use teleport graphics:
 			// * for the left half of a balcony, if it has a non-zero modifier.
 			// * for the right half of a balcony, if it has modifier == 1.
-			if (tile_left == tiles_23_balcony_left && modifier_left != 0) {
+			/*if (tile_left == tiles_23_balcony_left && modifier_left != 0) {
 				id += 4;
 			} else if (tile_left == tiles_24_balcony_right && modifier_left == 1) {
 				id += 4;
-			}
+			}*/
 #endif
 			if (id) {
 				if (tile_left == tiles_5_stuck) {
@@ -578,7 +579,7 @@ void draw_tile_anim_right() {
 		//	add_backtable(id_chtab_6_environment, spikes_fram_right[get_spike_frame(modifier_left)], draw_xh, 0, draw_main_y - 7, blitters_10h_transp, 0);
 		//break;
 		case tiles_4_gate:
-			draw_gate_back();
+			draw_gate_back(false);
 		break;
 		case tiles_11_loose:
 			add_backtable(id_chtab_6_environment, loose_fram_right[get_loose_frame(modifier_left)], draw_xh, 0, draw_bottom_y - 1, blitters_2_or, 0);
@@ -715,6 +716,11 @@ void draw_tile_anim() {
 			//add_backtable(id_chtab_1_flameswordpotion, 23 bubble mask, draw_xh + 3, 1, draw_main_y - (pot_size << 2) - 14, blitters_40h_mono, 0);
 			add_foretable(id_chtab_1_flameswordpotion, potion_fram_bubb[curr_modifier & 0x7], draw_xh + 3, 1, draw_main_y - (pot_size << 2) - 14, blitters_10h_transp, 0);
 			break;*/
+		case tiles_23_left_gate:
+			draw_xh += 4; // because we're in draw_tile_anim(), not draw_tile_anim_right() which is where draw_gate_*() expects to be called from
+			draw_gate_back(true);
+			draw_xh -= 4;
+			break;
 		case tiles_22_sword:
 			add_midtable(id_chtab_1_flameswordpotion, (curr_modifier == 1) + 10, draw_xh, 0, draw_main_y - 3, blitters_10h_transp, curr_modifier == 1);
 			break;
@@ -741,7 +747,11 @@ void draw_tile_fore() {
 	word id;
 	word chomper_num;
 	if (tile_left == tiles_4_gate && Kid.curr_row == drawn_row && Kid.curr_col == drawn_col - 1 && Kid.room != room_R) {
-		draw_gate_fore();
+		draw_gate_fore(false);
+	} else if (tile_left == tiles_23_left_gate && Kid.curr_row == drawn_row && Kid.curr_col + 2 == drawn_col) { // && Kid.room != room_R) { // left gate
+		draw_gate_fore(true);
+	} else if (tile_left == tiles_23_left_gate && Kid.curr_row == drawn_row + 1 && Kid.curr_col + 1 == drawn_col) { //test && Kid.room != room_R) { // left gate climb up (no equivalent for regular gates because you can't climb up behind them because they're on the front side of the tile wrt to the isometric view)
+		draw_gate_fore(true);
 	}
 	switch (curr_tile) {
 		//case tiles_2_spike:
@@ -1168,15 +1178,19 @@ void calc_gate_pos() {
 // data:2785
 const byte door_fram_slice[] = {67, 59, 58, 57, 56, 55, 54, 53, 52};
 // seg008:17B7
-void draw_gate_back() {
-	draw_tile_wipe(70); // clear behind gate
+void draw_gate_back(bool left_gate) {
+	int x_offset = 0;
+	if (left_gate) {
+		x_offset = -24;
+	}
+	draw_tile_wipe(60); // clear behind gate
 	calc_gate_pos();
 	if (gate_bottom_y + 12 < draw_main_y) {
-		add_backtable(id_chtab_6_environment, 50 /*gate bottom with B*/, draw_xh, 0, gate_bottom_y, blitters_10h_transp, 0);
+		add_backtable(id_chtab_6_environment, 50 /*gate bottom with B*/, draw_xh, x_offset, gate_bottom_y, blitters_10h_transp, 0);
 	} else {
 		// The following line (erroneously) erases the top-right of the tile below-left (because it is drawn non-transparently).
 		// -- But it draws something that was already drawn! (in draw_tile_right()).
-		add_backtable(id_chtab_6_environment, tile_table[tiles_4_gate].right_id, draw_xh, 0,
+		add_backtable(id_chtab_6_environment, tile_table[tiles_4_gate].right_id, draw_xh, x_offset,
 		              tile_table[tiles_4_gate].right_y + draw_main_y, blitters_10h_transp, 0);
 		// And this line tries to fix it. But it fails if it was a gate or a pillar.
 		if (can_see_bottomleft()) draw_tile_topright();
@@ -1189,28 +1203,32 @@ void draw_gate_back() {
 		draw_tile_bottom(0);
 		draw_loose(0);
 		draw_tile_base();
-		add_backtable(id_chtab_6_environment, 51 /*gate bottom*/, draw_xh, 0, gate_bottom_y - 2, blitters_10h_transp, 0);
+		add_backtable(id_chtab_6_environment, 51 /*gate bottom*/, draw_xh, x_offset, gate_bottom_y - 2, blitters_10h_transp, 0);
 	}
 	short ybottom = gate_bottom_y - 12;
 	if (ybottom < 192) {
 		for (; ybottom >= 0 && ybottom > 7 && ybottom - 7 > gate_top_y; ybottom -= 8) {
-			add_backtable(id_chtab_6_environment, 52 /*gate slice 8px*/, draw_xh, 0, ybottom, blitters_10h_transp, 0);
+			add_backtable(id_chtab_6_environment, 52 /*gate slice 8px*/, draw_xh, x_offset, ybottom, blitters_10h_transp, 0);
 		}
 	}
 	word gate_frame = ybottom - gate_top_y + 1;
 	if (gate_frame > 0 && gate_frame < 9) {
-		add_backtable(id_chtab_6_environment, door_fram_slice[gate_frame], draw_xh, 0, ybottom, blitters_10h_transp, 0);
+		add_backtable(id_chtab_6_environment, door_fram_slice[gate_frame], draw_xh, x_offset, ybottom, blitters_10h_transp, 0);
 	}
 }
 
 // seg008:18BE
-void draw_gate_fore() {
+void draw_gate_fore(bool left_gate) {
+	int x_offset = 0;
+	if (left_gate) {
+		x_offset = -24;
+	}
 	calc_gate_pos();
-	add_foretable(id_chtab_6_environment, 51 /*gate bottom*/, draw_xh, 0, gate_bottom_y - 2, blitters_10h_transp, 0);
+	add_foretable(id_chtab_6_environment, 51 /*gate bottom*/, draw_xh, x_offset, gate_bottom_y - 2, blitters_10h_transp, 0);
 	short ybottom = gate_bottom_y - 12;
 	if (ybottom < 192) {
 		for (; ybottom >= 0 && ybottom > 7 && ybottom - 7 > gate_top_y; ybottom -= 8) {
-			add_foretable(id_chtab_6_environment, 52 /*gate slice 8px*/, draw_xh, 0, ybottom, blitters_10h_transp, 0);
+			add_foretable(id_chtab_6_environment, 52 /*gate slice 8px*/, draw_xh, x_offset, ybottom, blitters_10h_transp, 0);
 		}
 	}
 }

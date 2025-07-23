@@ -149,7 +149,8 @@ enum tiles {
 	tiles_20_wall = 20,
 	tiles_21_rose_gate_wing_left = 21,
 	tiles_22_sword = 22,
-	tiles_23_balcony_left = 23,
+	//tiles_23_balcony_left = 23,
+	tiles_23_left_gate = 23,
 	tiles_24_balcony_right = 24,
 	tiles_25_lattice_pillar = 25,
 	tiles_26_lattice_down = 26, // a.k.a. lattice support

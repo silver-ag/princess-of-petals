@@ -257,12 +257,12 @@ void draw_extras(void) {
 		}
 
 #ifdef USE_TELEPORTS
-		if (tile_type == tiles_23_balcony_left && modifier != 0) {
+		/*if (tile_type == tiles_23_balcony_left && modifier != 0) {
 			char number[4];
 			snprintf(events, sizeof(number), "%d", modifier);
 			rect_type number_rect = {y,x+32,y+63,x+64};
 			show_text_with_color(&number_rect, halign_center, valign_top, events, color_14_brightyellow);
-		}
+		}*/
 #endif
 
 		// special events

@@ -429,7 +429,7 @@ void up_pressed() {
 #ifdef USE_TELEPORTS
 	// If there is a teleport nearby, enter it.
 	// (A teleport is a repurposed left half balcony with a non-zero modifier.)
-	leveldoor_tilepos = -1;
+	/*leveldoor_tilepos = -1;
 	// This detection is not perfect...
 	if (get_tile_at_char() == tiles_23_balcony_left) leveldoor_tilepos = curr_tilepos;
 	else if (get_tile_behind_char() == tiles_23_balcony_left) leveldoor_tilepos = curr_tilepos;
@@ -447,7 +447,7 @@ void up_pressed() {
 			seqtbl_offset_char(seq_teleport);
 			return;
 		}
-	}
+	}*/
 #endif
 
 	// Else just jump up.
@@ -801,10 +801,13 @@ void control_hanging() {
 			if (Char.action != actions_6_hang_straight &&
 				(get_tile_at_char() == tiles_20_wall ||
 				(Char.direction == dir_FF_left && ( // facing left
+					curr_tile2 == tiles_4_gate ||
 					curr_tile2 == tiles_7_doortop_with_floor ||
-					curr_tile2 == tiles_12_doortop
-				)))
+					curr_tile2 == tiles_12_doortop)) ||
+				(Char.direction == dir_0_right &&   // facing right
+					curr_tile2 == tiles_23_left_gate))
 			) {
+				in_wall();
 				if (grab_timer == 0) {
 					play_sound(sound_8_bumped); // touching a wall (hang against wall)
 				}
@@ -832,7 +835,7 @@ void can_climb_up() {
 	}
 #endif
 	get_tile_above_char();
-	if (((curr_tile2 == tiles_13_mirror || curr_tile2 == tiles_18_chomper) &&
+	if (((curr_tile2 == tiles_13_mirror || curr_tile2 == tiles_18_chomper || curr_tile2 == tiles_23_left_gate) &&
 		Char.direction == dir_0_right) ||
 		(curr_tile2 == tiles_4_gate && Char.direction != dir_0_right &&
 		curr_room_modif[curr_tilepos] >> 2 < 6)
@@ -855,12 +858,15 @@ void hang_fall() {
 	) {
 		seqtbl_offset_char(seq_23_release_ledge_and_fall); // release ledge and fall
 	} else {
-		if (get_tile_at_char() == tiles_20_wall ||
-			(Char.direction < dir_0_right && ( // looking left
-				curr_tile2 == tiles_7_doortop_with_floor ||
-				curr_tile2 == tiles_12_doortop
-			))
+		if		((get_tile_at_char() == tiles_20_wall ||
+				(Char.direction == dir_FF_left && ( // facing left
+					curr_tile2 == tiles_4_gate ||
+					curr_tile2 == tiles_7_doortop_with_floor ||
+					curr_tile2 == tiles_12_doortop)) ||
+				(Char.direction == dir_0_right &&   // facing right
+					curr_tile2 == tiles_23_left_gate))
 		) {
+			in_wall();
 			Char.x = char_dx_forward(-7);
 		}
 		seqtbl_offset_char(seq_11_release_ledge_and_land); // end of climb down
@@ -1127,10 +1133,10 @@ void teleport() {
 			if (dest_room == source_room && dest_tilepos == source_tilepos) continue;
 
 			// The pair is a balcony tile with the same modifier.
-			if (get_curr_tile(dest_tilepos) == tiles_23_balcony_left && curr_modifier == source_modifier) {
+			/*if (get_curr_tile(dest_tilepos) == tiles_23_balcony_left && curr_modifier == source_modifier) {
 				found = true;
 				goto exit;
-			}
+			}*/ // commented out for tiles_23_balcony_left
 		}
 	}
 	exit:

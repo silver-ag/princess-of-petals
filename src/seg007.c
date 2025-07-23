@@ -70,6 +70,7 @@ void animate_tile() {
 			animate_chomper();
 		break;
 		case tiles_4_gate:
+		case tiles_23_left_gate:
 			animate_door();
 		break;
 		case tiles_16_level_door_left:
@@ -647,7 +648,7 @@ short trigger_gate(short room,short tilepos,short button_type) {
 // seg007:0999
 short trigger_1(short target_type,short room,short tilepos,short button_type) {
 	short result = -1;
-	if (target_type == tiles_4_gate) {
+	if (target_type == tiles_4_gate || target_type == tiles_23_left_gate) {
 		result = trigger_gate(room, tilepos, button_type);
 	} else if (target_type == tiles_16_level_door_left) {
 		if (curr_room_modif[tilepos] != 0) {
