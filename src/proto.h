@@ -477,8 +477,10 @@ void draw_mid(int index);
 void draw_image(image_type *image,image_type *mask,int xpos,int ypos,int blit);
 void draw_wipe(int index);
 void calc_gate_pos(void);
-void draw_gate_back(bool left_gate);
-void draw_gate_fore(bool left_gate);
+void calc_left_gate_pos(void);//test
+void draw_gate_back(void);
+void draw_left_gate_back(void);//test
+void draw_gate_fore(void);
 void alter_mods_allrm(void);
 void load_alter_mod(int tile_ix);
 void draw_moving(void);
@@ -615,6 +617,7 @@ int load_from_opendats_to_area(int resource,void* area,int length, const char* e
 void rect_to_sdlrect(const rect_type* rect, SDL_Rect* sdlrect);
 void method_1_blit_rect(surface_type* target_surface,surface_type* source_surface,const rect_type* target_rect, const rect_type* source_rect,int blit);
 image_type* method_3_blit_mono(image_type* image,int xpos,int ypos,int blitter,byte color);
+image_type* method_3_point_5_blit_mono_rgb(image_type* image,int xpos,int ypos,int blitter,rgb_type colour);
 const rect_type* method_5_rect(const rect_type* rect,int blit,byte color);
 void draw_rect_with_alpha(const rect_type* rect, byte color, byte alpha);
 image_type* method_6_blit_img_to_scr(image_type* image,int xpos,int ypos,int blit);

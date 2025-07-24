@@ -98,7 +98,7 @@ void initialise_custom_levels() {
 						        0, 0, 0, 0, 1, 0, 0, 0, 0, 0}, 30);
 	custom_levels[0].doorlinks_rooms[1] = 6;
 	custom_levels[0].doorlinks_tiles[1] = 14;
-	custom_levels[0].doorlinks_timers[1] = 0;
+	custom_levels[0].doorlinks_timers[1] = 20;
 	custom_levels[0].doorlinks_nexts[1] = 0;
 	custom_levels[0].rooms[5].links.down = 5;
 	custom_levels[0].rooms[5].links.up = 7;
@@ -218,8 +218,8 @@ void initialise_custom_levels() {
 
 	// LEVEL 2
 	custom_levels[2].used_rooms = 9;
-	custom_levels[2].start_room = 1;
-	custom_levels[2].start_pos =  24;
+	custom_levels[2].start_room = 2;
+	custom_levels[2].start_pos =  23;
 	custom_levels[2].bg_colour = (rgb_type){20,20,255};
 	// room 1
 	memcpy(custom_levels[2].rooms[0].fg, (byte[]){  0, 0, 0, 3, 0, 0, 3, 0, 0, 0,
@@ -228,7 +228,7 @@ void initialise_custom_levels() {
 	custom_levels[2].rooms[0].links.up = 2;
 
 	// room 2
-	memcpy(custom_levels[2].rooms[1].fg, (byte[]){  4, 0, 0, 3, 0, 0, 3, 0, 0,23,
+	memcpy(custom_levels[2].rooms[1].fg, (byte[]){  4, 0, 0,23, 0, 0, 3, 0, 0,23,
 						        4, 0, 0, 3, 0, 0, 3, 0, 0,23,
 						        4, 0, 0, 3, 0, 0, 3, 0, 0,23}, 30);
 	memcpy(custom_levels[2].rooms[1].bg, (byte[]){  0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -239,6 +239,14 @@ void initialise_custom_levels() {
 	custom_levels[2].rooms[1].links.up = 3;
 	custom_levels[2].rooms[1].links.left = 4;
 	custom_levels[2].rooms[1].links.right = 5;
+
+	custom_levels[2].doorlinks_rooms[1] = 2;
+	custom_levels[2].doorlinks_tiles[1] = 0;
+	custom_levels[2].doorlinks_timers[1] = 0;
+	custom_levels[2].doorlinks_nexts[1] = 1;
+	custom_levels[2].doorlinks_rooms[2] = 2;
+	custom_levels[2].doorlinks_tiles[2] = 9;
+	custom_levels[2].doorlinks_nexts[2] = 0;
 
 
 	// room 3
@@ -251,16 +259,10 @@ void initialise_custom_levels() {
 	memcpy(custom_levels[2].rooms[3].fg, (byte[]){  0, 0, 0, 0, 0, 0, 0,20,31, 1,
 						        0, 0, 0, 0, 0, 0, 0,20,31, 1,
 						        0, 0, 0, 0, 0, 0, 0,20,31, 1}, 30);
-	memcpy(custom_levels[2].rooms[3].bg, (byte[]){  0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
-						        0, 0, 0, 0, 0, 0, 0, 0, 3,255,
-						        0, 0, 0, 0, 0, 0, 0, 0, 4,255}, 30);
+	memcpy(custom_levels[2].rooms[3].bg, (byte[]){  0, 0, 0, 0, 0, 0, 0, 0, 3, 0,
+						        0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
+						        0, 0, 0, 0, 0, 0, 0, 0, 4, 0}, 30);
 	custom_levels[2].rooms[3].links.right = 2;
-	custom_levels[2].doorlinks_rooms[1] = 3;
-	custom_levels[2].doorlinks_tiles[1] = 9;
-	custom_levels[2].doorlinks_nexts[1] = 1;
-	custom_levels[2].doorlinks_rooms[2] = 4;
-	custom_levels[2].doorlinks_tiles[2] = 0;
-	custom_levels[2].doorlinks_nexts[1] = 0;
 
 	// room 5
 	memcpy(custom_levels[2].rooms[4].fg, (byte[]){ 11,31,20, 0, 0, 0, 0, 0, 0, 0,

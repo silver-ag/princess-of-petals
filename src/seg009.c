@@ -3042,6 +3042,11 @@ void method_1_blit_rect(surface_type* target_surface,surface_type* source_surfac
 }
 
 image_type* method_3_blit_mono(image_type* image,int xpos,int ypos,int blitter,byte color) {
+	rgb_type palette_color = palette[color];
+	return method_3_point_5_blit_mono_rgb(image, xpos, ypos, blitter, (rgb_type){palette_color.r<<2, palette_color.g<<2, palette_color.b<<2});
+}
+
+image_type* method_3_point_5_blit_mono_rgb(image_type* image,int xpos,int ypos,int blitter,rgb_type colour) {
 	int w = image->w;
 	int h = image->h;
 	if (SDL_SetColorKey(image, SDL_TRUE, 0) != 0) {
@@ -3063,8 +3068,7 @@ image_type* method_3_blit_mono(image_type* image,int xpos,int ypos,int blitter,b
 		quit(1);
 	}
 
-	rgb_type palette_color = palette[color];
-	uint32_t rgb_color = SDL_MapRGB(colored_image->format, palette_color.r<<2, palette_color.g<<2, palette_color.b<<2) & 0xFFFFFF;
+	uint32_t rgb_color = SDL_MapRGB(colored_image->format, colour.r, colour.g, colour.b) & 0xFFFFFF;
 	int stride = colored_image->pitch;
 	for (int y = 0; y < h; ++y) {
 		uint32_t* pixel_ptr = (uint32_t*) ((byte*)colored_image->pixels + stride * y);
@@ -3300,6 +3304,11 @@ image_type* method_6_blit_img_to_scr(image_type* image,int xpos,int ypos,int bli
 
 	if (blit == blitters_9_black || ((blit == blitters_10h_transp || blit == blitters_2_or || blitters_0_no_transp_tile) && death_flash_frames % 2)) {
 		method_3_blit_mono(image, xpos, ypos, blitters_9_black, 0);
+		return image;
+	}
+
+	if (blit == blitters_11_mono_bg) {
+		method_3_point_5_blit_mono_rgb(image, xpos, ypos, blitters_9_black, bg_colour);
 		return image;
 	}
 
