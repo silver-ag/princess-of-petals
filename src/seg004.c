@@ -234,7 +234,7 @@ int is_obstacle() {
 	} else if (curr_tile2 == tiles_4_gate) {
 		if (! can_bump_into_gate()) return 0;
 	} else if (curr_tile2 == tiles_23_left_gate) {
-		if (! can_bump_into_gate()) return 0;//test
+		if (! can_bump_into_gate()) return 0;
 	} else if (curr_tile2 == tiles_18_chomper) {
 		// is the chomper closed?
 		if (curr_room_modif[curr_tilepos] != 2) return 0;
@@ -588,7 +588,7 @@ int check_chomped_here() {
 
 // seg004:0A10
 int dist_from_wall_forward(byte tiletype) {
-	if (tiletype == tiles_4_gate && ! can_bump_into_gate()) {
+	if ((tiletype == tiles_4_gate || tiletype == tiles_23_left_gate) && ! can_bump_into_gate()) {
 		return -1;
 	} else {
 		coll_tile_left_xpos = x_bump[tile_col + FIRST_ONSCREEN_COLUMN] + TILE_MIDX;

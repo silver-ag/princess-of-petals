@@ -834,10 +834,12 @@ void can_climb_up() {
 	}
 #endif
 	get_tile_above_char();
-	if (((curr_tile2 == tiles_13_mirror || curr_tile2 == tiles_18_chomper || curr_tile2 == tiles_23_left_gate) &&
+	if (((curr_tile2 == tiles_13_mirror || curr_tile2 == tiles_18_chomper) &&
 		Char.direction == dir_0_right) ||
 		(curr_tile2 == tiles_4_gate && Char.direction != dir_0_right &&
-		curr_room_modif[curr_tilepos] >> 2 < 6)
+		  curr_room_modif[curr_tilepos] >> 2 < 6) ||
+		(curr_tile2 == tiles_23_left_gate && Char.direction != dir_FF_left &&
+		  curr_room_modif[curr_tilepos] >> 2 < 6)
 	) {
 		seq_id = seq_73_climb_up_to_closed_gate; // climb up to closed gate and down
 	}
