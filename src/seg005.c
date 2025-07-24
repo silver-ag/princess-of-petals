@@ -807,7 +807,6 @@ void control_hanging() {
 				(Char.direction == dir_0_right &&   // facing right
 					curr_tile2 == tiles_23_left_gate))
 			) {
-				in_wall();
 				if (grab_timer == 0) {
 					play_sound(sound_8_bumped); // touching a wall (hang against wall)
 				}

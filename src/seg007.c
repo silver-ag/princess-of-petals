@@ -629,7 +629,7 @@ short trigger_gate(short room,short tilepos,short button_type) {
 			return -1;
 		}
 		curr_room_modif[tilepos] = (modifier + 3) & 0xFC;
-		return 1; // regular open
+		return 2;  //changed to permanent open for princess of petals
 	} else if (button_type == tiles_14_debris) {
 		// If it's not fully open:
 		if (modifier < 188) return 2; // permanent open

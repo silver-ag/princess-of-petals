@@ -17,7 +17,7 @@ typedef struct custom_level_data {
 	room_type rooms[24];
 	byte doorlinks_rooms[256];  // five bits, 0-32
 	byte doorlinks_tiles[256];  // five bits, 0-32
-	byte doorlinks_timers[256]; // five bits, 0-32
+	byte doorlinks_timers[256]; // five bits, 0-32 - USED TO STORE INFO DURING PLAY, SETTING IT DOES NOTHING
 	byte doorlinks_nexts[256];  // one bit, 0-1
 	byte used_rooms;
 	byte start_room;
@@ -98,7 +98,6 @@ void initialise_custom_levels() {
 						        0, 0, 0, 0, 1, 0, 0, 0, 0, 0}, 30);
 	custom_levels[0].doorlinks_rooms[1] = 6;
 	custom_levels[0].doorlinks_tiles[1] = 14;
-	custom_levels[0].doorlinks_timers[1] = 20;
 	custom_levels[0].doorlinks_nexts[1] = 0;
 	custom_levels[0].rooms[5].links.down = 5;
 	custom_levels[0].rooms[5].links.up = 7;
@@ -223,8 +222,13 @@ void initialise_custom_levels() {
 	custom_levels[2].bg_colour = (rgb_type){20,20,255};
 	// room 1
 	memcpy(custom_levels[2].rooms[0].fg, (byte[]){  0, 0, 0, 3, 0, 0, 3, 0, 0, 0,
-						        0, 0, 0, 3, 0, 0, 3, 0, 0, 0,
-						        1, 1, 1, 3, 1, 1, 3, 1, 1, 1}, 30);
+						        0, 0, 0, 3, 0, 1, 3, 0, 0, 0,
+						        1, 1,31, 3, 1,23, 3, 1, 1, 1}, 30);
+	memcpy(custom_levels[2].rooms[0].bg, (byte[]){  0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+						        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+						        0, 0, 3, 0, 0, 0, 0, 0, 0, 0}, 30);
+	custom_levels[2].doorlinks_rooms[3] = 1;
+	custom_levels[2].doorlinks_tiles[3] = 25;
 	custom_levels[2].rooms[0].links.up = 2;
 
 	// room 2
@@ -242,7 +246,6 @@ void initialise_custom_levels() {
 
 	custom_levels[2].doorlinks_rooms[1] = 2;
 	custom_levels[2].doorlinks_tiles[1] = 0;
-	custom_levels[2].doorlinks_timers[1] = 0;
 	custom_levels[2].doorlinks_nexts[1] = 1;
 	custom_levels[2].doorlinks_rooms[2] = 2;
 	custom_levels[2].doorlinks_tiles[2] = 9;

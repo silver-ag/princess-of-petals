@@ -477,9 +477,10 @@ void draw_mid(int index);
 void draw_image(image_type *image,image_type *mask,int xpos,int ypos,int blit);
 void draw_wipe(int index);
 void calc_gate_pos(void);
-void calc_left_gate_pos(void);//test
+void calc_left_gate_pos(void);
 void draw_gate_back(void);
-void draw_left_gate_back(void);//test
+void draw_left_gate_back(void);
+void draw_left_gate_fore(void);
 void draw_gate_fore(void);
 void alter_mods_allrm(void);
 void load_alter_mod(int tile_ix);

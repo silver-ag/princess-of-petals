@@ -749,11 +749,18 @@ void draw_tile_fore() {
 	word id;
 	word chomper_num;
 	if (tile_left == tiles_4_gate && Kid.curr_row == drawn_row && Kid.curr_col == drawn_col - 1 && Kid.room != room_R) {
-		draw_gate_fore();
+		if (!((Kid.frame >= 70 && Kid.frame < 100) || (Kid.frame >= frame_135_climbing_1 && Kid.frame <= frame_149_climbing_15))) { //test
+			draw_gate_fore();
+		}
 	} else if (tile_left == tiles_23_left_gate && Kid.curr_row == drawn_row && Kid.curr_col + 2 == drawn_col) { // && Kid.room != room_R) { // left gate
 		draw_left_gate_fore();
 	} else if (tile_left == tiles_23_left_gate && Kid.curr_row == drawn_row + 1 && Kid.curr_col + 1 == drawn_col) { // && Kid.room != room_R) { // left gate climb up (no equivalent for regular gates because you can't climb up behind them because they're on the front side of the tile wrt to the isometric view)
 		draw_left_gate_fore();
+	} else if (tile_left == tiles_23_left_gate) {// && Kid.curr_row == drawn_row) {
+		if ((Kid.frame >= 70 && Kid.frame < 100) || (Kid.frame >= frame_135_climbing_1 && Kid.frame <= frame_149_climbing_15)) { //test
+			printf("-");fflush(stdout);
+			draw_left_gate_fore();
+		}
 	}
 	switch (curr_tile) {
 		//case tiles_2_spike:
@@ -1270,7 +1277,8 @@ void draw_gate_fore() {
 		}
 	}
 }
-void draw_left_gate_fore() {//test
+void draw_left_gate_fore() {
+	printf(".");fflush(stdout);//test
 	int x_offset = -24;
 	calc_gate_pos();
 	add_foretable(id_chtab_6_environment, 51 /*gate bottom*/, draw_xh, x_offset, gate_bottom_y - 2, blitters_10h_transp, 0);

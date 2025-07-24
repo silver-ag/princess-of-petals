@@ -233,6 +233,8 @@ int is_obstacle() {
 		return 0;
 	} else if (curr_tile2 == tiles_4_gate) {
 		if (! can_bump_into_gate()) return 0;
+	} else if (curr_tile2 == tiles_23_left_gate) {
+		if (! can_bump_into_gate()) return 0;//test
 	} else if (curr_tile2 == tiles_18_chomper) {
 		// is the chomper closed?
 		if (curr_room_modif[curr_tilepos] != 2) return 0;
