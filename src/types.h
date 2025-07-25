@@ -272,6 +272,32 @@ typedef struct level_type {
 // fill_2[] is used by RoomShaker: If you place a Debug Start in RoomShaker,
 // the start_* fields will contain the location of the Debug Start, and fill_2[] will contain the location of the Player Start.
 
+// custom levels
+typedef struct room_type {
+        byte fg[30];
+        byte bg[30];
+        link_type links;
+        byte guard_tile;
+        // more guard info to come once we know how we're handling guards
+} room_type;
+
+typedef struct rgb_type { // moved up to use in custom_level_data
+	byte r,g,b;
+} rgb_type;
+
+typedef struct custom_level_data {
+        room_type rooms[24];
+        byte doorlinks_rooms[256];  // five bits, 0-32
+        byte doorlinks_tiles[256];  // five bits, 0-32
+        byte doorlinks_timers[256]; // five bits, 0-32 - USED TO STORE INFO DURING PLAY, SETTING IT DOES NOTHING
+        byte doorlinks_nexts[256];  // one bit, 0-1
+        byte used_rooms;
+        byte start_room;
+        byte start_pos;
+        byte start_dir;
+        rgb_type bg_colour;
+} custom_level_data;
+
 #pragma pack(pop)
 
 typedef SDL_Surface surface_type;
@@ -297,9 +323,6 @@ typedef struct full_image_type {
 } full_image_type;
 
 #pragma pack(push,1)
-typedef struct rgb_type {
-	byte r,g,b;
-} rgb_type;
 typedef struct dat_pal_type {
 	word row_bits;
 	byte n_colors;

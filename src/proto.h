@@ -735,9 +735,10 @@ void init_midi(void);
 void midi_callback(void *userdata, Uint8 *stream, int len);
 void play_midi_sound(sound_buffer_type* buffer);
 
-// custom_levels.c
+// custom_levels.c and custom_levels/?.c
 void initialise_custom_levels(void);
 void load_custom_level(int n, level_type* level_ref);
+void make_level_1(custom_level_data* level);
 
 // custom_graphics.c
 void death_flash(void);
