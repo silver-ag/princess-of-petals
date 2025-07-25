@@ -28,7 +28,7 @@ const piece tile_table[32] = {
 // base_id, floor_left, base_y, right_id, floor_right, right_y, stripe_id, topright_id, bottom_id, fore_id, fore_x, fore_y, topright_x, topright_y
 {   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0}, // 0x00 empty
 {  41,   1,   0,  42,   1,   2, 149,   0,  43,   0,   0,   0,   0,   0}, // 0x01 floor
-{ 147,   1,   0, 152,   1,   2, 149,   0,  43,   0,   0,   0,   0,   0}, // 0x02 (spikes) UNUSED
+{  41,   1,   0,  42,   1,   2, 149,   0,  43,   0,   0,   0,   0,   0}, // 0x02 CHANGED egg
 {  92,   1,   0,  93,   1,   2,   0,  94,  43,  95,   1,   0,   0,   0}, // 0x03 pillar
 {  46,   1,   0,  47,   1,   2,   0,  48,  43,  49,   3,   0,   0,   0}, // 0x04 door
 {  41,   1,   1,  35,   1,   3, 149,   0,  36,   0,   0,   0,   0,   0}, // 0x05 stuck floor
@@ -762,9 +762,9 @@ void draw_tile_fore() {
 		}
 	}
 	switch (curr_tile) {
-		//case tiles_2_spike:
-		//	add_foretable(id_chtab_6_environment, spikes_fram_fore[get_spike_frame(curr_modifier)], draw_xh, 0, draw_main_y - 2, blitters_10h_transp, 0);
-		//	break;
+		case tiles_2_egg:
+			draw_egg();
+			break;
 		case tiles_18_chomper:
 			chomper_num = chomper_fram1[MIN(curr_modifier & 0x7F, 6)];
 			add_foretable(id_chtab_6_environment, chomper_fram_for[chomper_num], draw_xh, 0, draw_main_y, blitters_10h_transp, 0);
@@ -871,7 +871,7 @@ int add_backtable(short chtab_id, int id, sbyte xh, sbyte xl, int ybottom, int b
 		return 0;
 	}
 	word index = backtable_count;
-	if (index >= 200) {
+	if (index >= 300) {
 		show_dialog("BackTable Overflow");
 		return 0; // added
 	}
@@ -1171,6 +1171,13 @@ void draw_wipe(int index) {
 		add_drect(&rect);
 	}
 }
+
+int egg_fram_fore[8] = {171, 172, 173, 174, 175, 177, 176, 178};
+void draw_egg() {
+	add_wipetable(0, (draw_xh*8)+20, draw_bottom_y, 60, 4*8, 0); //test
+	add_foretable(id_chtab_6_environment, egg_fram_fore[((curr_modifier-1)/2)%8], draw_xh, 15, draw_main_y - 5, blitters_10h_transp, 0);
+}
+
 
 // data:4E8C
 word gate_top_y;

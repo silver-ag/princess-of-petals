@@ -129,7 +129,7 @@ void get_row_collision_data(short row, sbyte *row_coll_room_ptr, byte *row_coll_
 
 // seg004:0226
 int get_left_wall_xpos(int room,int column,int row) {
-	short type = wall_type(get_tile(room, column, row));
+	short type = wall_type(get_tile(room, column, row), get_modifier(room, column, row));
 	if (type) {
 		return wall_dist_from_left[type] + coll_tile_left_xpos;
 	} else {
@@ -139,7 +139,7 @@ int get_left_wall_xpos(int room,int column,int row) {
 
 // seg004:025F
 int get_right_wall_xpos(int room,int column,int row) {
-	short type = wall_type(get_tile(room, column, row));
+	short type = wall_type(get_tile(room, column, row), get_modifier(room, column, row));
 	if (type) {
 		return coll_tile_left_xpos - wall_dist_from_right[type] + TILE_RIGHTX;
 	} else {
@@ -383,9 +383,9 @@ int get_edge_distance() {
 	load_frame_to_obj();
 	set_char_collision();
 	byte tiletype = get_tile_at_char();
-	if (wall_type(tiletype) != 0) {
+	if (wall_type(tiletype, get_modifier_at_char()) != 0) {
 		tile_col = Char.curr_col;
-		distance = dist_from_wall_forward(tiletype);
+		distance = dist_from_wall_forward(tiletype, get_modifier_at_char());
 		if (distance >= 0) {
 			loc_59DD:
 			if (distance <= TILE_RIGHTX) {
@@ -405,9 +405,9 @@ int get_edge_distance() {
 			edge_type = EDGE_TYPE_CLOSER;
 			distance = distance_to_edge_weight();
 		} else {
-			if (wall_type(tiletype) != 0) {
+			if (wall_type(tiletype, get_modifier_infrontof_char()) != 0) {
 				tile_col = infrontx;
-				distance = dist_from_wall_forward(tiletype);
+				distance = dist_from_wall_forward(tiletype, get_modifier_infrontof_char());
 				if (distance >= 0) goto loc_59DD;
 			}
 			if (tiletype == tiles_11_loose) goto loc_59FB;
@@ -546,7 +546,7 @@ void check_guard_bumped() {
 			set_char_collision();
 			if (is_obstacle()) {
 				short delta_x;
-				delta_x = dist_from_wall_behind(curr_tile2);
+				delta_x = dist_from_wall_behind(curr_tile2, 0 /*guard interactions with egg never happen, so don't care*/);
 				if (delta_x < 0 && delta_x > -13) {
 					Char.x = char_dx_forward(-delta_x);
 					seqtbl_offset_char(seq_65_bump_forward_with_sword); // pushed to wall with sword (Guard)
@@ -587,12 +587,12 @@ int check_chomped_here() {
 }
 
 // seg004:0A10
-int dist_from_wall_forward(byte tiletype) {
+int dist_from_wall_forward(byte tiletype, byte modifier) {
 	if ((tiletype == tiles_4_gate || tiletype == tiles_23_left_gate) && ! can_bump_into_gate()) {
 		return -1;
 	} else {
 		coll_tile_left_xpos = x_bump[tile_col + FIRST_ONSCREEN_COLUMN] + TILE_MIDX;
-		short type = wall_type(tiletype);
+		short type = wall_type(tiletype, modifier);
 		if (type == 0) return -1;
 		if (Char.direction < dir_0_right) {
 			// looking left
@@ -606,8 +606,8 @@ int dist_from_wall_forward(byte tiletype) {
 }
 
 // seg004:0A7B
-int dist_from_wall_behind(byte tiletype) {
-	short type = wall_type(tiletype);
+int dist_from_wall_behind(byte tiletype, byte modifier) {
+	short type = wall_type(tiletype, modifier);
 	if (type == 0) {
 		return 99;
 	} else {

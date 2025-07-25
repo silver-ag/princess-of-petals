@@ -809,13 +809,13 @@ void guard_follows_kid_down() {
 		return;
 	}
 	if (// there is wall in front of Guard
-		wall_type(get_tile_infrontof_char()) != 0 ||
+		wall_type(get_tile_infrontof_char(), get_modifier_infrontof_char()) != 0 ||
 		(! tile_is_floor(curr_tile2) && ((
 			//(get_tile(curr_room, tile_col, ++tile_row) == tiles_2_spike ||
 			// Guard would fall on loose floor
 			curr_tile2 == tiles_11_loose ||
 			// ... or wall (?)
-			wall_type(curr_tile2) != 0 ||
+			wall_type(curr_tile2, 0/*don't care if we're falling on an egg cus that won't happen*/) != 0 ||
 			// ... or into a chasm
 			! tile_is_floor(curr_tile2)) ||
 			// ... or Kid is not below

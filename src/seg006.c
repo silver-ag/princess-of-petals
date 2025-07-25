@@ -42,6 +42,35 @@ int get_tile(int room,int col,int row) {
 	return curr_tile2;
 }
 
+void set_modifier(int room,int col,int row,int value) {
+	curr_room = room;
+	tile_col = col;
+	tile_row = row;
+	curr_room = find_room_of_tile();
+	// bugfix: check_chomped_kid may call with room = -1
+	if (curr_room > 0) {
+		get_room_address(curr_room);
+		curr_tilepos = tbl_line[tile_row] + tile_col;
+		curr_room_modif[curr_tilepos] = value;
+	}
+}
+int get_modifier(int room,int col,int row) {
+	curr_room = room;
+	tile_col = col;
+	tile_row = row;
+	curr_room = find_room_of_tile();
+	// bugfix: check_chomped_kid may call with room = -1
+	if (curr_room > 0) {
+		get_room_address(curr_room);
+		curr_tilepos = tbl_line[tile_row] + tile_col;
+		curr_modifier = curr_room_modif[curr_tilepos];
+	} else {
+		// wall in room 0
+		curr_modifier = 0;
+	}
+	return curr_modifier;
+}
+
 // seg006:005D
 int find_room_of_tile() {
 	again:
@@ -998,6 +1027,12 @@ int take_hp(int count) {
 int get_tile_at_char() {
 	return get_tile(Char.room, Char.curr_col, Char.curr_row);
 }
+int get_modifier_at_char() {
+	return get_modifier(Char.room, Char.curr_col, Char.curr_row);
+}
+void set_modifier_at_char(int value) {
+	set_modifier(Char.room, Char.curr_col, Char.curr_row, value);
+}
 
 // seg006:0723
 void set_char_collision() {
@@ -1296,6 +1331,14 @@ void in_wall() {
 int get_tile_infrontof_char() {
 	infrontx = dir_front[Char.direction + 1] + Char.curr_col;
 	return get_tile(Char.room, infrontx, Char.curr_row);
+}
+int get_modifier_infrontof_char() {
+	infrontx = dir_front[Char.direction + 1] + Char.curr_col;
+	return get_modifier(Char.room, infrontx, Char.curr_row);
+}
+void set_modifier_infrontof_char(int value) {
+	infrontx = dir_front[Char.direction + 1] + Char.curr_col;
+	set_modifier(Char.room, infrontx, Char.curr_row, value);
 }
 
 // seg006:0B30
@@ -1614,7 +1657,7 @@ int can_grab() {
 }
 
 // seg006:0FC3
-int wall_type(byte tiletype) {
+int wall_type(byte tiletype, byte modifier) {
 	switch (tiletype) {
 		case tiles_4_gate:
 		case tiles_7_doortop_with_floor:
@@ -1625,6 +1668,12 @@ int wall_type(byte tiletype) {
 			return 2; // wall at left
 		case tiles_18_chomper:
 			return 3; // chomper at left
+		case tiles_2_egg:
+			if (modifier == 0) {
+				return 4;
+			} else {
+				return 0;
+			}
 		case tiles_20_wall:
 			return 4; // wall at both sides
 		default:

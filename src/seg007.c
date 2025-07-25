@@ -57,9 +57,9 @@ void animate_tile() {
 		case tiles_rose_gate_opener:
 			animate_button();
 		break;
-		//case tiles_2_spike:
-		//	animate_spike();
-		//break;
+		case tiles_2_egg:
+			animate_egg();
+		break;
 		case tiles_11_loose:
 			animate_loose();
 		break;
@@ -335,6 +335,18 @@ void animate_spike() {
 		}
 	}
 	redraw_21h();
+}
+
+void animate_egg() {
+	if (curr_modifier > 0) {
+		curr_modifier += 1;
+	}
+	if (curr_modifier > 16) {
+		curr_modifier = 9;
+	} else if (curr_modifier == 8) {
+		hitp_delta = -1;
+		start_death_flash(5);
+	}
 }
 
 // data:27B2
@@ -616,6 +628,11 @@ void start_anim_spike(short room,short tilepos) {
 			}
 		}
 	}
+}
+
+void start_anim_egg(short room, short tilepos) {
+	curr_room_modif[tilepos] = 0;
+	add_trob(room, tilepos, 1);
 }
 
 // seg007:092C

@@ -1002,6 +1002,9 @@ void draw_game_frame() {
 void anim_tile_modif() {
 	for (word tilepos = 0; tilepos < 30; ++tilepos) {
 		switch (get_curr_tile(tilepos)) {
+			case tiles_2_egg:
+				start_anim_egg(drawn_room, tilepos);//test
+			break;
 			case tiles_10_potion:
 				start_anim_potion(drawn_room, tilepos);
 			break;

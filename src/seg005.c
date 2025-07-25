@@ -619,7 +619,8 @@ void safe_step() {
 // seg005:06F0
 int check_get_item() {
 	if (get_tile_at_char() == tiles_10_potion ||
-		curr_tile2 == tiles_22_sword
+		curr_tile2 == tiles_22_sword ||
+		get_tile_at_char() == tiles_2_egg
 	) {
 		if (! tile_is_floor(get_tile_behind_char())) {
 			return 0;
@@ -628,7 +629,8 @@ int check_get_item() {
 		load_fram_det_col();
 	}
 	if (get_tile_infrontof_char() == tiles_10_potion ||
-		curr_tile2 == tiles_22_sword
+		curr_tile2 == tiles_22_sword ||
+		get_tile_infrontof_char() == tiles_2_egg
 	) {
 		get_item();
 		return 1;
@@ -638,7 +640,13 @@ int check_get_item() {
 
 // seg005:073E
 void get_item() {
-	if (Char.frame != frame_109_crouch) { // crouching
+	if (get_tile_at_char() == tiles_2_egg && get_modifier_at_char() == 0) {
+		draw_sword();
+		set_modifier_at_char(1);
+	} else if (get_tile_infrontof_char() == tiles_2_egg && get_modifier_infrontof_char() == 0) {
+		draw_sword();
+		set_modifier_infrontof_char(1);
+	} else if (Char.frame != frame_109_crouch) { // crouching
 		short distance = get_edge_distance();
 		if (edge_type != EDGE_TYPE_FLOOR) {
 			Char.x = char_dx_forward(distance);

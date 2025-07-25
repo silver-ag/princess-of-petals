@@ -127,7 +127,7 @@ enum soundflags { sfDigi=1, sfMidi=2, soundflags_4=4, sfLoop=0x80 };
 enum tiles {
 	tiles_0_empty = 0,
 	tiles_1_floor = 1,
-	tiles_2_spikes = 2,
+	tiles_2_egg = 2, // egg for level 3
 	tiles_3_pillar = 3,
 	tiles_4_gate = 4,
 	tiles_5_stuck = 5,
