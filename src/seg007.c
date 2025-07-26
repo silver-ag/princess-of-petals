@@ -341,9 +341,9 @@ void animate_egg() {
 	if (curr_modifier > 0) {
 		curr_modifier += 1;
 	}
-	if (curr_modifier > 16) {
-		curr_modifier = 9;
-	} else if (curr_modifier == 8) {
+	if (curr_modifier > 18) {
+		curr_modifier = 11;
+	} else if (curr_modifier == 10) {
 		hitp_delta = -1;
 		start_death_flash(5);
 	}
@@ -631,7 +631,7 @@ void start_anim_spike(short room,short tilepos) {
 }
 
 void start_anim_egg(short room, short tilepos) {
-	curr_room_modif[tilepos] = 0;
+	//curr_room_modif[tilepos] = 0; //test
 	add_trob(room, tilepos, 1);
 }
 

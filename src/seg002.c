@@ -79,18 +79,18 @@ void check_shadow() {
 			return;
 		}
 	} /*else*/
-	if (current_level == /*6*/ custom->shadow_step_level) {
+	/*if (current_level == custom->shadow_step_level) {
 		// Special event: level 6 shadow
 		Char.room = drawn_room;
-		if (Char.room == /*1*/ custom->shadow_step_room) {
+		if (Char.room == custom->shadow_step_room) {
 			if (leveldoor_open != 0x4D) {
 				play_sound(sound_25_presentation); // presentation (level 6 shadow)
 				leveldoor_open = 0x4D;
 			}
-			do_init_shad(/*&*/custom->init_shad_6, 2 /*stand*/);
+			do_init_shad(custom->init_shad_6, 2);
 			return;
 		}
-	} /*else*/
+	}*/ /*else*/
 	if (current_level == /*5*/ custom->shadow_steal_level) {
 		// Special event: level 5 shadow
 		Char.room = drawn_room;
@@ -193,11 +193,11 @@ loc_left_guard_tile:
 
 	// level 3 has skeletons with infinite lives
 	//if (current_level == 3) {
-	if (custom->tbl_guard_type[current_level] == 2) {
-		Char.charid = charid_4_skeleton;
-	} else {
-		Char.charid = charid_2_guard;
-	}
+	//if (custom->tbl_guard_type[current_level] == 2) {
+	//	Char.charid = charid_4_skeleton;
+	//} else {
+	Char.charid = charid_2_guard;
+	//}
 	byte seq_hi = level.guards_seq_hi[room_minus_1];
 	if (seq_hi == 0) {
 		if (Char.charid == charid_4_skeleton) {

@@ -5,6 +5,7 @@ void make_level_2_duel(custom_level_data* level) {
 	level->start_room = 1;
 	level->start_pos =  20;
 	level->start_dir =  0;
+	level->bg_colour = (rgb_type){125,75,255};
 	// room 1: stairs base
 	memcpy(level->rooms[0].fg, (byte[]){  0, 0, 0, 0, 1, 3, 0, 0, 0,20,
 						        0, 0, 0, 1, 3, 0, 0, 0, 0,20,

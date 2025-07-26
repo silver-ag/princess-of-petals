@@ -1097,7 +1097,7 @@ void load_opt_sounds(int first,int last) {
 }
 
 // data:03BA
-const char*const tbl_guard_dat[] = {"SAIONJI.DAT", "MIKI.DAT", "SKEL.DAT", "VIZIER.DAT", "SHADOW.DAT"};
+const char*const tbl_guard_dat[] = {"SAIONJI.DAT", "MIKI.DAT", "JURI.DAT", "VIZIER.DAT", "SHADOW.DAT"};
 // data:03C4
 const char*const tbl_envir_gr[] = {"", "C", "C", "E", "E", "V"};
 // data:03D0

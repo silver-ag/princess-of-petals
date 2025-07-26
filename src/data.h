@@ -850,11 +850,11 @@ extern custom_options_type custom_defaults INIT(= {
 		// data:02B2
 		.tbl_level_type = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
 		// 1.3
-		.tbl_level_color = {0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 0, 0, 3, 3, 4, 0},
+		.tbl_level_color = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
 		// data:03D4
 		//.tbl_guard_type = {0, 0, 0, 2, 0, 0, 1, 0, 0, 0, 0, 0, 4, 3, -1, -1},
 		// modified:
-		.tbl_guard_type = {0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 4, 3, -1, -1},
+		.tbl_guard_type = {0, 0, 0, 0, 1, 0, 2, 0, 3, 0, 4, 0, 5, 0, 0, 0},
 		// data:0EDA
 		.tbl_guard_hp = {4, 3, 3, 3, 3, 4, 5, 4, 4, 5, 5, 5, 4, 6, 0, 0},
 		.tbl_cutscenes_by_index = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15},

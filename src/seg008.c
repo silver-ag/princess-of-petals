@@ -472,6 +472,14 @@ void draw_tile_topright() {
 			} else {
 				id = 0;
 			}
+		} else if (tiletype == tiles_1_floor && (row_below_left_[drawn_col].modifier == 11 || row_below_left_[drawn_col].modifier == 12)) { // johnny statue
+			if (row_below_left_[drawn_col].modifier == 11) {
+				id = 179;
+			} else {
+				id = 180;
+			}
+			dy = 50;
+			dx = -35;
 		}
 		add_backtable(id_chtab_6_environment, id, draw_xh, dx, draw_bottom_y+dy, blitters_2_or, 0);
 	}
@@ -778,6 +786,10 @@ void draw_tile_fore() {
 			}
 			if (graphics_mode != gmCga && graphics_mode != gmHgaHerc) {
 				wall_pattern(1, 1);
+			}
+			// shrine text
+			if (curr_modifier == 1) {
+				add_foretable(id_chtab_7_environmentwall, 18, draw_xh-27, 0, draw_main_y-10, blitters_0_no_transp_tile, 0);
 			}
 			break;
 #ifdef USE_SUPER_HIGH_JUMP
@@ -1172,10 +1184,10 @@ void draw_wipe(int index) {
 	}
 }
 
-int egg_fram_fore[8] = {171, 172, 173, 174, 175, 177, 176, 178};
+int egg_fram_fore[9] = {171, 172, 173, 174, 174, 175, 177, 176, 178};
 void draw_egg() {
 	add_wipetable(0, (draw_xh*8)+20, draw_bottom_y, 60, 4*8, 0); //test
-	add_foretable(id_chtab_6_environment, egg_fram_fore[((curr_modifier-1)/2)%8], draw_xh, 15, draw_main_y - 5, blitters_10h_transp, 0);
+	add_foretable(id_chtab_6_environment, egg_fram_fore[((curr_modifier-1)/2)%10], draw_xh, 15, draw_main_y - 5, blitters_10h_transp, 0);
 }
 
 

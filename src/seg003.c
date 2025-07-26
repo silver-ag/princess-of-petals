@@ -286,6 +286,11 @@ void redraw_screen(int drawing_different_room) {
 		memset(table_counts, 0, sizeof(table_counts));
 		draw_moving();
 		draw_tables();
+	// show shrine message
+        if (next_room == 3 && current_level == 5) {
+        	//showmessage("remember the prophet of trash!", 1, &key_test_quit);
+                show_text_with_color(&(rect_type){20,20,100,100}, halign_center, valign_middle, "remember the prophet of trash!", color_15_brightwhite);
+        }
 		if (is_keyboard_mode) {
 			clear_kbd_buf();
 		}

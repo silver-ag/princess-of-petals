@@ -1,11 +1,11 @@
 #include "../common.h"
 
-void make_level_1_duel(custom_level_data* level) {
+void make_level_3_duel(custom_level_data* level) {
 	level->used_rooms = 9;
 	level->start_room = 1;
 	level->start_pos =  20;
 	level->start_dir =  0;
-	level->bg_colour = (rgb_type){100,90,255};
+	level->bg_colour = (rgb_type){200,170,155};
 	// room 1: stairs base
 	memcpy(level->rooms[0].fg, (byte[]){  0, 0, 0, 0, 1, 3, 0, 0, 0,20,
 						        0, 0, 0, 1, 3, 0, 0, 0, 0,20,

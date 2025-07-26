@@ -3148,7 +3148,7 @@ const rect_type* method_5_rect(const rect_type* rect,int blit,byte color) {
 void draw_rect_rgb(const rect_type* rect, rgb_type colour) {
 	SDL_Rect dest_rect;
 	rect_to_sdlrect(rect, &dest_rect);
-	uint32_t rgb_color = SDL_MapRGBA(current_target_surface->format, colour.r<<2, colour.g<<2, colour.b<<2, 0xFF);
+	uint32_t rgb_color = SDL_MapRGBA(current_target_surface->format, colour.r, colour.g, colour.b, 0xFF);
 	if (safe_SDL_FillRect(current_target_surface, &dest_rect, rgb_color) != 0) {
 		sdlperror("draw_rect_rgb: SDL_FillRect");
 		quit(1);

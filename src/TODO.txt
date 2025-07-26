@@ -6,4 +6,4 @@ check diff into fix gate bg for graphics stuff i've added
 
 add gate topper tile
 
-move drawing left gates back into draw_tile_anim() and just write a seperate draw_left_gate_back() and draw_left_gate_fore()
+johnny music in shrine (maybe my own version??)
