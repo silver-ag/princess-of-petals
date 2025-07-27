@@ -2,7 +2,7 @@
 
 void make_level_4(custom_level_data* level) {
 	level->used_rooms = 14;
-        level->start_room = 1;
+        level->start_room = 7;//test
         level->start_pos =  15;
         level->bg_colour = (rgb_type){220,55,255};
 
@@ -63,6 +63,9 @@ void make_level_4(custom_level_data* level) {
         memcpy(level->rooms[6].fg, (byte[]){ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                              0, 0, 0, 0, 1, 1, 4, 1, 1, 0,
                                              1, 1, 1,11, 3,20,20,20, 3, 1}, 30);
+        memcpy(level->rooms[6].bg, (byte[]){ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                             0, 0, 0, 0, 0, 0,255, 0, 0, 0,
+                                             0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 30);
 	level->rooms[6].links.left = 4;
 	level->rooms[6].links.right = 8;
 	level->rooms[6].links.down = 1;

@@ -31,6 +31,7 @@ void init_game(int level) {
 	}
 	offscreen_surface = make_offscreen_buffer(&rect_top);
 	load_kid_sprite();
+	//load_chtab_from_file(id_chtab_10_shadow_move, 750, "SAIONJI.DAT", 0); //test
 	text_time_remaining = 0;
 	text_time_total = 0;
 	is_show_time = 0;

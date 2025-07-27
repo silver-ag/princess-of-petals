@@ -74,7 +74,7 @@ extern short start_level INIT(= -1);
 // data:4CE6
 extern byte * guard_palettes;
 // data:4338
-extern chtab_type *chtab_addrs[10];
+extern chtab_type *chtab_addrs[11];
 
 
 #ifdef USE_COPYPROT
@@ -200,7 +200,7 @@ extern rect_type drects[30];
 // data:4CB8
 extern sbyte obj_direction;
 // data:2588
-extern const byte chtab_flip_clip[10] INIT(= {1,0,1,1,1,1,0,0,0,0});
+extern const byte chtab_flip_clip[11] INIT(= {1,0,1,1,1,1,0,0,0,0,1}); // add 1 add end for chtab_10_shadow_move - why the fuck is this stored outside the chtab_type??
 // data:42A6
 extern short obj_clip_left;
 // data:42C6

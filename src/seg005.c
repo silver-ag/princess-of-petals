@@ -630,7 +630,7 @@ int check_get_item() {
 	}
 	if (get_tile_infrontof_char() == tiles_10_potion ||
 		curr_tile2 == tiles_22_sword ||
-		get_tile_infrontof_char() == tiles_2_egg
+		(get_tile_infrontof_char() == tiles_2_egg && get_modifier_infrontof_char() == 0) // only if not already broken
 	) {
 		get_item();
 		return 1;

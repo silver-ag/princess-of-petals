@@ -1186,7 +1186,7 @@ void draw_wipe(int index) {
 
 int egg_fram_fore[9] = {171, 172, 173, 174, 174, 175, 177, 176, 178};
 void draw_egg() {
-	add_wipetable(0, (draw_xh*8)+20, draw_bottom_y, 60, 4*8, 0); //test
+	add_wipetable(0, (draw_xh*8)+20, draw_bottom_y, 60, 4*8, 0);
 	add_foretable(id_chtab_6_environment, egg_fram_fore[((curr_modifier-1)/2)%10], draw_xh, 15, draw_main_y - 5, blitters_10h_transp, 0);
 }
 
@@ -1632,8 +1632,8 @@ void draw_floor_overlay() {
 	) {
 		// frames 137..144: climb
 		// index overflow here?
-		if (Kid.frame >= frame_137_climbing_3 && Kid.frame <= frame_144_climbing_10) {
-			add_midtable(id_chtab_6_environment, floor_left_overlay[Kid.frame - 137], draw_xh, 0, (curr_tile == tiles_5_stuck) + draw_main_y, blitters_10h_transp, 0);
+		if (Char.frame >= frame_137_climbing_3 && Char.frame <= frame_144_climbing_10) { // changed to Char from Kid because now the shadow needs to climb sometimes
+			add_midtable(id_chtab_6_environment, floor_left_overlay[Char.frame - 137], draw_xh, 0, (curr_tile == tiles_5_stuck) + draw_main_y, blitters_10h_transp, 0);
 		} else {
 			// triggered by 02-random-broken
 			printf("draw_floor_overlay: attempted to draw floor overlay with frame %d not in 137..144\n", Kid.frame);
@@ -1752,8 +1752,10 @@ void draw_objtable_item(int index) {
 			if (united_with_shadow == 2) {
 				play_sound(sound_41_end_level_music); // united with shadow
 			}
-			add_midtable(obj_chtab, obj_id + 1, obj_xh, obj_xl, obj_y, blitters_2_or, 1);
-			add_midtable(obj_chtab, obj_id + 1, obj_xh, obj_xl + 1, obj_y, blitters_3_xor, 1);
+			// test
+			add_midtable(id_chtab_10_shadow_move, obj_id + 1, obj_xh, obj_xl, obj_y, blitters_10h_transp, 1);
+			//add_midtable(obj_chtab, obj_id + 1, obj_xh, obj_xl, obj_y, blitters_2_or, 1);
+			//add_midtable(obj_chtab, obj_id + 1, obj_xh, obj_xl + 1, obj_y, blitters_3_xor, 1);
 		break;
 		case 0x80: // loose floor
 			obj_direction = dir_FF_left;

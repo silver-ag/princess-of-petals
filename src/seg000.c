@@ -2139,7 +2139,8 @@ void draw_full_image(enum full_image_id id) {
 }
 
 // seg000:1D2C
-void load_kid_sprite() {
+void load_kid_sprite() { //test
+	load_chtab_from_file(id_chtab_10_shadow_move, 400, "SHADOW_MOVE.DAT", 1<<7);
 	load_chtab_from_file(id_chtab_2_kid, 400, "KID.DAT", 1<<7);
 }
 

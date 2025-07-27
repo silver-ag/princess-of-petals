@@ -174,7 +174,7 @@ enum chtabs {
 	id_chtab_7_environmentwall = 7,
 	id_chtab_8_princessroom = 8,
 	id_chtab_9_princessbed = 9,
-	id_chtab_10_princessofpetals = 10
+	id_chtab_10_shadow_move = 10
 };
 
 enum blitters {

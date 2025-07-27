@@ -44,6 +44,7 @@ void do_init_shad(const byte *source,int seq_index) {
 	seqtbl_offset_char(seq_index);
 	Char.charid = charid_1_shadow;
 	demo_time = 0;
+	demo_index = 0; // added
 	guard_skill = 3;
 	guardhp_delta = guardhp_curr = guardhp_max = 4;
 	saveshad();
@@ -55,14 +56,17 @@ void get_guard_hp() {
 }
 
 // These were moved to custom_options_type.
-/*
 // data:0EEA
-const byte init_shad_6[] = {0x0F, 0x51, 0x76, 0, 0, 1, 0, 0};
+//const byte init_shad_6[] = {0x0F, 0x51, 0x76, 0, 0, 1, 0, 0};
 // data:0EF2
-const byte init_shad_5[] = {0x0F, 0x37, 0x37, 0, 0xFF, 0, 0, 0};
+//const byte init_shad_5[] = {0x0F, 0x37, 0x37, 0, 0xFF, 0, 0, 0};
 // data:0EFA
-const byte init_shad_12[] = {0x0F, 0x51, 0xE8, 0, 0, 0, 0, 0};
-*/
+//const byte init_shad_12[] = {0x0F, 0x51, 0xE8, 0, 0, 0, 0, 0};
+
+int shadow_appeared_in = 0;
+const byte init_shad_7_1[] = {frame_15_stand, 0x51, 0xb6, 0, 0, 1, 0, 0};
+const byte init_shad_7_2[] = {frame_15_stand, 0x8a, 0x76, 0, 0, 1, 0, 0};
+const byte init_shad_7_3[] = {frame_15_stand, 0xaa, 0x76, 0, 0, 1, 0, 0};
 
 // seg002:0064
 void check_shadow() {
@@ -91,14 +95,21 @@ void check_shadow() {
 			return;
 		}
 	}*/ /*else*/
-	if (current_level == /*5*/ custom->shadow_steal_level) {
-		// Special event: level 5 shadow
+	if (current_level == 7) {
+		// test
 		Char.room = drawn_room;
-		if (Char.room == /*24*/ custom->shadow_steal_room) {
-			if (get_tile(/*24*/ custom->shadow_steal_room, 3, 0) != tiles_10_potion) {
-				return;
-			}
-			do_init_shad(/*&*/custom->init_shad_5, 2 /*stand*/);
+		if (Char.room == 1 && shadow_appeared_in < 1) {
+			shadow_appeared_in = 1;
+			do_init_shad(init_shad_7_1, seq_2_stand);
+			return;
+		} else if (Char.room == 3 && shadow_appeared_in < 2) {
+			shadow_appeared_in = 2;
+			do_init_shad(init_shad_7_2, seq_2_stand);
+			return;
+		} else if (Char.room == 7 && shadow_appeared_in < 3) {
+			shadow_appeared_in = 3;
+			do_init_shad(init_shad_7_3, seq_2_stand);
+			add_trob(7, 16, 3);//trigger_gate(7, 16, 0);//test
 			return;
 		}
 	}
@@ -665,21 +676,26 @@ void autocontrol_mouse() {
 	}
 }
 
+
 // seg002:081D
 void autocontrol_shadow() {
-	if (current_level == /*4*/ custom->mirror_level) {
+	/*if (current_level == custom->mirror_level) {
 		autocontrol_shadow_level4();
-	} /*else*/
-	if (current_level == /*5*/ custom->shadow_steal_level) {
+	} // else
+	if (current_level == custom->shadow_steal_level) {
 		autocontrol_shadow_level5();
-	} /*else*/
-	if (current_level == /*6*/ custom->shadow_step_level) {
+	} // else
+	if (current_level == custom->shadow_step_level) {
 		autocontrol_shadow_level6();
-	} /*else*/
+	} // else
 	if (current_level == 12) {
 		autocontrol_shadow_level12();
+	}*/
+	if (current_level == 7) {
+		autocontrol_shadow_level4(); // level 4 is internally called 7 because the duels are seperate levels internally
 	}
 }
+
 
 // seg002:0850
 void autocontrol_skeleton() {
@@ -1091,6 +1107,9 @@ void do_auto_moves(const auto_move_type *moves_ptr) {
 	}
 	short curr_move = moves_ptr[demoindex].move;
 	switch (curr_move) {
+		case -2://test
+			clear_char();
+			break;
 		case -1:
 		break;
 		case 0:
@@ -1121,14 +1140,43 @@ void do_auto_moves(const auto_move_type *moves_ptr) {
 	}
 }
 
+const auto_move_type shadow_level7_room1[] = {
+{0x00, 0}, // nothing
+{0x04, 2}, // turn
+{0x08, 0}, // nothing
+{0x0d, 1}, // forward
+{0x20, -2}, // end
+};
+const auto_move_type shadow_level7_room3[] = {
+{0x00, 0}, // nothing
+{0x10, 3}, // climb
+{0x50, -2}, // end
+};
+const auto_move_type shadow_level7_room7[] = {
+{0x00, 0}, // nothing
+{0x10, 1}, // forward
+{0x14, 0}, // nothing
+{0x10, 5}, // jump
+{0x50, -2}, // end
+};
+
 // seg002:1000
 void autocontrol_shadow_level4() {
-	if (Char.room == /*4*/ custom->mirror_room) {
+	/*if (Char.room == custom->mirror_room) {
 		if (Char.x < 80) {
 			clear_char();
 		} else {
 			move_1_forward();
 		}
+	}*/
+	//test
+	if (Char.room == 1) {
+		do_auto_moves(shadow_level7_room1);
+	} else if (Char.room == 3) {
+		do_auto_moves(shadow_level7_room3);
+	} else if (Char.room == 7) {
+		move_6_shift();
+		do_auto_moves(shadow_level7_room7);
 	}
 }
 
