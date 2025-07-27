@@ -7,3 +7,8 @@ check diff into fix gate bg for graphics stuff i've added
 add gate topper tile
 
 johnny music in shrine (maybe my own version??)
+
+touga duel:
+giant touga in the sky turns around on the first screen. then in the second, bg colour has changed. he descends from above, flashing and impaled,
+and draws his sword from you. he's indestructible, but each time you hit him a tile wobbles and falls. at first they're behind you, but eventually
+one goes behind him. this allows you to climb down one of the holes behind you, move past him on the floor below and climb back up to reach the final gate.

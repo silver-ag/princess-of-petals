@@ -47,7 +47,7 @@ void make_level_3(custom_level_data* level) {
 
 	// room 6: tower D
         memcpy(level->rooms[5].fg, (byte[]){ 1, 1, 1, 2, 1, 1, 2, 1, 1, 1,
-                                             1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                                             1, 1, 1, 1,11,11,11, 1, 1, 1,
                                              0, 0, 9, 0, 0, 0, 0, 9, 0, 0}, 30);
 	level->rooms[5].links.left = 5;
 	level->rooms[5].links.right = 7;
