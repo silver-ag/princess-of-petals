@@ -83,6 +83,7 @@ void play_level(int level_number) {
 			load_lev_spr(level_number);
 		}
 		death_flash_frames = 0; // reset graphics
+		silhouette_mode = false; // .
 		load_level();
 		pos_guards();
 		clear_coll_rooms();

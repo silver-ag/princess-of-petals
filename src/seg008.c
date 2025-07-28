@@ -1543,13 +1543,13 @@ void restore_peels() {
 	peel_type* peel;
 	while (peels_count) {
 		peels_count--;
-		if (death_flash_frames != 1) { // don't draw peels when in final silhoutte while dead, because for some reason they come out as black boxes
+		//if (death_flash_frames != 1) { // don't draw peels when in final silhoutte while dead, because for some reason they come out as black boxes
 			peel = peels_table[peels_count];
 			if (need_drects) {
 				add_drect(&peel->rect);
 			}
 			restore_peel(peel);
-		}
+		//}
 	}
 	peels_count = 0;
 }

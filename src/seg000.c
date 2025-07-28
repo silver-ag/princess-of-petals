@@ -86,6 +86,8 @@ void pop_main() {
 #endif
 
 	// Initialize everything before load_mod_options() so it can show an error dialog if needed.
+	// test
+	silhouette_mode = false;
 	/*video_mode =*/ parse_grmode();
 	current_target_surface = rect_sthg(onscreen_surface_, &screen_rect);
 	set_hc_pal();

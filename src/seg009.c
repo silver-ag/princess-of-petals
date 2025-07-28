@@ -1790,7 +1790,7 @@ rect_type *shrink2_rect(rect_type* target_rect,const rect_type* source_rect,int 
 // seg009:3BBA
 void restore_peel(peel_type* peel_ptr) {
 	//printf("restoring peel at (x=%d, y=%d)\n", peel_ptr.rect.left, peel_ptr.rect.top); // debug
-	method_6_blit_img_to_scr(peel_ptr->peel, peel_ptr->rect.left, peel_ptr->rect.top, 0x10);
+	method_6_blit_img_to_scr(peel_ptr->peel, peel_ptr->rect.left, peel_ptr->rect.top, blitters_10_transp_peel);
 	free_peel(peel_ptr);
 	//SDL_FreeSurface(peel_ptr.peel);
 }
@@ -1801,19 +1801,19 @@ peel_type* read_peel_from_screen(const rect_type* rect) {
 	peel_type* result = calloc(1, sizeof(peel_type));
 	//memset(&result, 0, sizeof(result));
 	result->rect = *rect;
-#ifndef USE_ALPHA
-	SDL_Surface* peel_surface = SDL_CreateRGBSurface(0, rect->right - rect->left, rect->bottom - rect->top,
-	                                                 24, Rmsk, Gmsk, Bmsk, 0);
-#else
+//#ifndef USE_ALPHA
+//	SDL_Surface* peel_surface = SDL_CreateRGBSurface(0, rect->right - rect->left, rect->bottom - rect->top,
+//	                                                 24, Rmsk, Gmsk, Bmsk, 0);
+//#else
 	SDL_Surface* peel_surface = SDL_CreateRGBSurface(0, rect->right - rect->left, rect->bottom - rect->top, 32, Rmsk, Gmsk, Bmsk, Amsk);
-#endif
+//#endif
 	if (peel_surface == NULL) {
 		sdlperror("read_peel_from_screen: SDL_CreateRGBSurface");
 		quit(1);
 	}
 	result->peel = peel_surface;
 	rect_type target_rect = {0, 0, rect->right - rect->left, rect->bottom - rect->top};
-	method_1_blit_rect(result->peel, current_target_surface, &target_rect, rect, 0);
+	method_1_blit_rect(result->peel, current_target_surface, &target_rect, rect, blitters_10_transp_peel);//test
 	return result;
 }
 
@@ -2768,7 +2768,36 @@ void update_screen() {
 	SDL_Surface* true_final_surface = SDL_CreateRGBSurface(0, surface->w, surface->h, 24, Rmsk, Gmsk, Bmsk, 0);
 	method_1_blit_rect(true_final_surface, surface, &screen_rect, &screen_rect, blitters_0_no_transp);
 	draw_petals(true_final_surface);
-	//method_1_blit_rect(surface, princess_ontop, &rect_top, &rect_top, blitters_10h_transp); // draw custom graphics overlay, currently used only for drawing petals
+	if (silhouette_mode) {
+		int w = true_final_surface->w;
+        	int h = true_final_surface->h;
+	        if (SDL_SetColorKey(true_final_surface, SDL_TRUE, 0) != 0) {
+        	        sdlperror("method_3_blit_mono: SDL_SetColorKey");
+                	quit(1);
+	        }
+        	SDL_Surface* coloured_image = SDL_ConvertSurfaceFormat(true_final_surface, SDL_PIXELFORMAT_RGB888, 0);
+
+	        SDL_SetSurfaceBlendMode(coloured_image, SDL_BLENDMODE_NONE);
+
+	        if (SDL_LockSurface(coloured_image) != 0) {
+        	        sdlperror("method_3_blit_mono: SDL_LockSurface");
+                	quit(1);
+	        }
+		uint32_t rgb_color = 0; //SDL_MapRGB(colored_image->format, colour.r, colour.g, colour.b) & 0xFFFFFF;
+	        int stride = coloured_image->pitch;
+        	for (int y = 0; y < h; ++y) {
+        	        uint32_t* pixel_ptr = (uint32_t*) ((byte*)coloured_image->pixels + stride * y);
+                	for (int x = 0; x < w; ++x) {
+                        	// set RGB but leave alpha
+				if ((*pixel_ptr & 0xFFFFFF) != (SDL_MapRGB(coloured_image->format, bg_colour.r, bg_colour.g, bg_colour.b) & 0xFFFFFF)) {
+					*pixel_ptr = (byte)0;
+				}
+        	                ++pixel_ptr;
+                	}
+	        }
+		SDL_UnlockSurface(coloured_image);
+		method_1_blit_rect(true_final_surface, coloured_image, &rect_top, &rect_top, blitters_0_no_transp);
+	}
 	init_scaling();
 	if (scaling_type == 1) {
 		// Make "fuzzy pixels" like DOSBox does:
@@ -3056,12 +3085,6 @@ image_type* method_3_point_5_blit_mono_rgb(image_type* image,int xpos,int ypos,i
 	SDL_Surface* colored_image = SDL_ConvertSurfaceFormat(image, SDL_PIXELFORMAT_ARGB8888, 0);
 
 	SDL_SetSurfaceBlendMode(colored_image, SDL_BLENDMODE_NONE);
-	/* Causes problems with SDL 2.0.5 (see #105)
-	if (SDL_SetColorKey(colored_image, SDL_TRUE, 0) != 0) {
-		sdlperror("method_3_blit_mono: SDL_SetColorKey");
-		quit(1);
-	}
-	*/
 
 	if (SDL_LockSurface(colored_image) != 0) {
 		sdlperror("method_3_blit_mono: SDL_LockSurface");
@@ -3302,7 +3325,7 @@ image_type* method_6_blit_img_to_scr(image_type* image,int xpos,int ypos,int bli
 		return NULL;
 	}
 
-	if (blit == blitters_9_black || ((blit == blitters_10h_transp || blit == blitters_2_or || blitters_0_no_transp_tile) && death_flash_frames % 2)) {
+	if (blit == blitters_9_black /*|| ((blit == blitters_10h_transp || blit == blitters_2_or || blitters_0_no_transp_tile) && death_flash_frames % 2) || silhouette_mode*/) {
 		method_3_blit_mono(image, xpos, ypos, blitters_9_black, 0);
 		return image;
 	}

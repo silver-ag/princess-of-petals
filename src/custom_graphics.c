@@ -18,8 +18,10 @@ void death_flash() {
 		death_flash_frames--;
 		if (death_flash_frames % 2) {
 			bg_colour = (rgb_type){255,0,0};
+			silhouette_mode = true;
 		} else {
 			bg_colour = stored_colour;
+			silhouette_mode = false;
 		}
 		need_full_redraw = 1;
 	}
