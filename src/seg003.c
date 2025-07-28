@@ -84,6 +84,7 @@ void play_level(int level_number) {
 		}
 		death_flash_frames = 0; // reset graphics
 		silhouette_mode = false; // .
+		shadow_appeared_in = 0; // reset shadow position tracker
 		load_level();
 		pos_guards();
 		clear_coll_rooms();

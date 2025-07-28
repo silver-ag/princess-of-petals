@@ -63,10 +63,10 @@ void get_guard_hp() {
 // data:0EFA
 //const byte init_shad_12[] = {0x0F, 0x51, 0xE8, 0, 0, 0, 0, 0};
 
-int shadow_appeared_in = 0;
 const byte init_shad_7_1[] = {frame_15_stand, 0x51, 0xb6, 0, 0, 1, 0, 0};
 const byte init_shad_7_2[] = {frame_15_stand, 0x8a, 0x76, 0, 0, 1, 0, 0};
 const byte init_shad_7_3[] = {frame_15_stand, 0xaa, 0x76, 0, 0, 1, 0, 0};
+const byte init_shad_7_4[] = {frame_15_stand, 0xb5, 0x36, 0, 0, 1, 0, 0};
 
 // seg002:0064
 void check_shadow() {
@@ -110,6 +110,10 @@ void check_shadow() {
 			shadow_appeared_in = 3;
 			do_init_shad(init_shad_7_3, seq_2_stand);
 			add_trob(7, 16, 3);//trigger_gate(7, 16, 0);//test
+			return;
+		} else if (Char.room == 8 && shadow_appeared_in < 4) {
+			shadow_appeared_in = 4;
+			do_init_shad(init_shad_7_4, seq_2_stand);
 			return;
 		}
 	}
@@ -1159,6 +1163,11 @@ const auto_move_type shadow_level7_room7[] = {
 {0x10, 5}, // jump
 {0x50, -2}, // end
 };
+const auto_move_type shadow_level7_room8[] = {
+{0x00, 0}, // nothing
+{0x10, 3}, // climb
+{0x35, -2}, // end
+};
 
 // seg002:1000
 void autocontrol_shadow_level4() {
@@ -1177,6 +1186,8 @@ void autocontrol_shadow_level4() {
 	} else if (Char.room == 7) {
 		move_6_shift();
 		do_auto_moves(shadow_level7_room7);
+	} else if (Char.room == 8) {
+		do_auto_moves(shadow_level7_room8);
 	}
 }
 

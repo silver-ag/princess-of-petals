@@ -38,6 +38,7 @@ extern rgb_type stored_colour; // for flashing
 extern int death_flash_frames;
 extern bool drawing_petals;
 extern bool silhouette_mode;
+extern int shadow_appeared_in;
 
 // data:5F8A
 extern word text_time_remaining;
