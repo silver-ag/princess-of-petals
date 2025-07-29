@@ -755,3 +755,4 @@ void draw_petals(SDL_Surface* sfc);
 void start_drawing_petals(int x, int y);
 SDL_Surface* princess_shaders();
 void start_death_flash(int frames);
+image_type* silhouette_of(image_type* image);

@@ -2768,36 +2768,7 @@ void update_screen() {
 	SDL_Surface* true_final_surface = SDL_CreateRGBSurface(0, surface->w, surface->h, 24, Rmsk, Gmsk, Bmsk, 0);
 	method_1_blit_rect(true_final_surface, surface, &screen_rect, &screen_rect, blitters_0_no_transp);
 	draw_petals(true_final_surface);
-	if (silhouette_mode) {
-		int w = true_final_surface->w;
-        	int h = true_final_surface->h;
-	        if (SDL_SetColorKey(true_final_surface, SDL_TRUE, 0) != 0) {
-        	        sdlperror("method_3_blit_mono: SDL_SetColorKey");
-                	quit(1);
-	        }
-        	SDL_Surface* coloured_image = SDL_ConvertSurfaceFormat(true_final_surface, SDL_PIXELFORMAT_RGB888, 0);
 
-	        SDL_SetSurfaceBlendMode(coloured_image, SDL_BLENDMODE_NONE);
-
-	        if (SDL_LockSurface(coloured_image) != 0) {
-        	        sdlperror("method_3_blit_mono: SDL_LockSurface");
-                	quit(1);
-	        }
-		uint32_t rgb_color = 0; //SDL_MapRGB(colored_image->format, colour.r, colour.g, colour.b) & 0xFFFFFF;
-	        int stride = coloured_image->pitch;
-        	for (int y = 0; y < h; ++y) {
-        	        uint32_t* pixel_ptr = (uint32_t*) ((byte*)coloured_image->pixels + stride * y);
-                	for (int x = 0; x < w; ++x) {
-                        	// set RGB but leave alpha
-				if ((*pixel_ptr & 0xFFFFFF) != (SDL_MapRGB(coloured_image->format, bg_colour.r, bg_colour.g, bg_colour.b) & 0xFFFFFF)) {
-					*pixel_ptr = (byte)0;
-				}
-        	                ++pixel_ptr;
-                	}
-	        }
-		SDL_UnlockSurface(coloured_image);
-		method_1_blit_rect(true_final_surface, coloured_image, &rect_top, &rect_top, blitters_0_no_transp);
-	}
 	init_scaling();
 	if (scaling_type == 1) {
 		// Make "fuzzy pixels" like DOSBox does:
@@ -3325,7 +3296,7 @@ image_type* method_6_blit_img_to_scr(image_type* image,int xpos,int ypos,int bli
 		return NULL;
 	}
 
-	if (blit == blitters_9_black /*|| ((blit == blitters_10h_transp || blit == blitters_2_or || blitters_0_no_transp_tile) && death_flash_frames % 2) || silhouette_mode*/) {
+	if (blit == blitters_9_black) {
 		method_3_blit_mono(image, xpos, ypos, blitters_9_black, 0);
 		return image;
 	}

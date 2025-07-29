@@ -31,7 +31,6 @@ void init_game(int level) {
 	}
 	offscreen_surface = make_offscreen_buffer(&rect_top);
 	load_kid_sprite();
-	//load_chtab_from_file(id_chtab_10_shadow_move, 750, "SAIONJI.DAT", 0); //test
 	text_time_remaining = 0;
 	text_time_total = 0;
 	is_show_time = 0;
@@ -79,11 +78,11 @@ void play_level(int level_number) {
 				load_intro(level_number > 2, cutscene_func, 1);
 			}
 		}
+		silhouette_mode = false; // before load_lev_spr because that's what sets silhouette mode for level 5
 		if (level_number != current_level) {
 			load_lev_spr(level_number);
 		}
 		death_flash_frames = 0; // reset graphics
-		silhouette_mode = false; // .
 		shadow_appeared_in = 0; // reset shadow position tracker
 		load_level();
 		pos_guards();

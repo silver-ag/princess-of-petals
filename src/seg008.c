@@ -874,7 +874,12 @@ image_type* get_image(short chtab_id, int id) {
 		method_1_blit_rect(rose_gate_door_surface, chtab->images[164], &(rect_type){0,0,54,43}, &(rect_type){height,0,62+height,43}, blitters_10h_transp);
 		return rose_gate_door_surface;
 	}
-	return chtab->images[id];
+
+	if (silhouette_mode && !(current_level == 9 && chtab_id == id_chtab_2_kid)) {
+		return silhouette_of(chtab->images[id]);
+	} else {
+		return chtab->images[id];
+	}
 }
 
 // seg008:10A8
@@ -1042,6 +1047,7 @@ void draw_back_fore(int which_table,int index) {
 		mask = chtab->images[chtab->n_images / 2 + table_entry->id];
 	}
 	*/
+
 	draw_image(image, mask, table_entry->xh * 8 + table_entry->xl, table_entry->y, table_entry->blit);
 }
 
@@ -1120,6 +1126,7 @@ void draw_mid(int index) {
 		add_peel(round_xpos_to_byte(xpos, 0), round_xpos_to_byte(image->w/*width*/ + xpos, 1), ypos, image->h/*height*/);
 	}
 	//printf("Midtable: drawing (chtab %d, image %d) at (x=%d, y=%d)\n",chtab_id,image_id,xpos,ypos); // debug
+
 	draw_image(image, mask, xpos, ypos, blit);
 
 	if (chtab_flip_clip[chtab_id]) {

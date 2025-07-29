@@ -7,11 +7,13 @@
 #include "custom_levels/level_3.c"
 #include "custom_levels/level_3_duel.c"
 #include "custom_levels/level_4.c"
+#include "custom_levels/level_4_duel.c"
+#include "custom_levels/level_5.c"
 
 // it's honestly easier to construct the level_type structs directly than to use a level editor
 // plus it means we can store extra stuff like background colour directly in our level data
 
-#define NUM_LEVELS 7
+#define NUM_LEVELS 9
 
 custom_level_data custom_levels[NUM_LEVELS];
 
@@ -32,6 +34,8 @@ void initialise_custom_levels() {
 	make_level_3(&custom_levels[4]);
 	make_level_3_duel(&custom_levels[5]);
 	make_level_4(&custom_levels[6]);
+	make_level_4_duel(&custom_levels[7]);
+	make_level_5(&custom_levels[8]);
 }
 
 void load_custom_level(int n, level_type* level_ref) {

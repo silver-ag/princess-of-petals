@@ -21,7 +21,9 @@ void death_flash() {
 			silhouette_mode = true;
 		} else {
 			bg_colour = stored_colour;
-			silhouette_mode = false;
+			if (current_level != 9) { // while in shadow world, don't flash regular
+				silhouette_mode = false;
+			}
 		}
 		need_full_redraw = 1;
 	}
@@ -66,4 +68,33 @@ void draw_petals(SDL_Surface* sfc) {
 			}
 		}
 	}
+}
+
+image_type* silhouette_of(image_type* image) {
+        int w = image->w;
+        int h = image->h;
+        if (SDL_SetColorKey(image, SDL_FALSE, 0) != 0) {
+                sdlperror("silhouette_of: SDL_SetColorKey");
+                quit(1);
+        }
+        SDL_Surface* coloured_image = SDL_ConvertSurfaceFormat(image, SDL_PIXELFORMAT_ARGB8888, 0);
+
+        SDL_SetSurfaceBlendMode(coloured_image, SDL_BLENDMODE_NONE);
+
+        if (SDL_LockSurface(coloured_image) != 0) {
+                sdlperror("silhouette_of_mono: SDL_LockSurface");
+                quit(1);
+        }
+	uint32_t rgb_colour = SDL_MapRGB(coloured_image->format, 0, 0, 0) & 0xFFFFFF;
+        int stride = coloured_image->pitch;
+        for (int y = 0; y < h; ++y) {
+                uint32_t* pixel_ptr = (uint32_t*) ((byte*)coloured_image->pixels + stride * y);
+                for (int x = 0; x < w; ++x) {
+                        // set RGB but leave alpha
+                        *pixel_ptr = (*pixel_ptr & 0xFF000000) | rgb_colour;
+                        ++pixel_ptr;
+                }
+        }
+        SDL_UnlockSurface(coloured_image);
+	return coloured_image;
 }

@@ -14,3 +14,5 @@ and draws his sword from you. he's indestructible, but each time you hit him a t
 one goes behind him. this allows you to climb down one of the holes behind you, move past him on the floor below and climb back up to reach the final gate.
 
 shadow should wear a black rose during the duel (ie. in SHADOW rather than SHADOW_MOVE)
+
+add spinning rose frame at start of each duel (also allow for sword drawing intro)

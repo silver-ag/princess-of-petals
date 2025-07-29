@@ -631,7 +631,6 @@ void start_anim_spike(short room,short tilepos) {
 }
 
 void start_anim_egg(short room, short tilepos) {
-	//curr_room_modif[tilepos] = 0; //test
 	add_trob(room, tilepos, 1);
 }
 

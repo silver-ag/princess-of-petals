@@ -96,7 +96,6 @@ void check_shadow() {
 		}
 	}*/ /*else*/
 	if (current_level == 7) {
-		// test
 		Char.room = drawn_room;
 		if (Char.room == 1 && shadow_appeared_in < 1) {
 			shadow_appeared_in = 1;
@@ -109,7 +108,7 @@ void check_shadow() {
 		} else if (Char.room == 7 && shadow_appeared_in < 3) {
 			shadow_appeared_in = 3;
 			do_init_shad(init_shad_7_3, seq_2_stand);
-			add_trob(7, 16, 3);//trigger_gate(7, 16, 0);//test
+			add_trob(7, 16, 3); // open gate
 			return;
 		} else if (Char.room == 8 && shadow_appeared_in < 4) {
 			shadow_appeared_in = 4;
@@ -1111,7 +1110,7 @@ void do_auto_moves(const auto_move_type *moves_ptr) {
 	}
 	short curr_move = moves_ptr[demoindex].move;
 	switch (curr_move) {
-		case -2://test
+		case -2:
 			clear_char();
 			break;
 		case -1:
@@ -1178,7 +1177,6 @@ void autocontrol_shadow_level4() {
 			move_1_forward();
 		}
 	}*/
-	//test
 	if (Char.room == 1) {
 		do_auto_moves(shadow_level7_room1);
 	} else if (Char.room == 3) {

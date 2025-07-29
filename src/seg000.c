@@ -86,7 +86,6 @@ void pop_main() {
 #endif
 
 	// Initialize everything before load_mod_options() so it can show an error dialog if needed.
-	// test
 	silhouette_mode = false;
 	/*video_mode =*/ parse_grmode();
 	current_target_surface = rect_sthg(onscreen_surface_, &screen_rect);
@@ -1005,7 +1004,7 @@ void anim_tile_modif() {
 	for (word tilepos = 0; tilepos < 30; ++tilepos) {
 		switch (get_curr_tile(tilepos)) {
 			case tiles_2_egg:
-				start_anim_egg(drawn_room, tilepos);//test
+				start_anim_egg(drawn_room, tilepos);
 			break;
 			case tiles_10_potion:
 				start_anim_potion(drawn_room, tilepos);
@@ -1099,7 +1098,7 @@ void load_opt_sounds(int first,int last) {
 }
 
 // data:03BA
-const char*const tbl_guard_dat[] = {"SAIONJI.DAT", "MIKI.DAT", "JURI.DAT", "VIZIER.DAT", "SHADOW.DAT"};
+const char*const tbl_guard_dat[] = {"SAIONJI.DAT", "MIKI.DAT", "JURI.DAT", "SHADOW.DAT", "SHADOW.DAT"};
 // data:03C4
 const char*const tbl_envir_gr[] = {"", "C", "C", "E", "E", "V"};
 // data:03D0
@@ -1111,6 +1110,13 @@ void load_lev_spr(int level) {
 	char filename[20];
 	dathandle = NULL;
 	current_level = next_level = level;
+	if (current_level == 9) {
+		silhouette_mode = true;
+		// swap kid and shadow chtabs
+		chtab_type* swap = chtab_addrs[id_chtab_2_kid];
+		chtab_addrs[id_chtab_2_kid] = chtab_addrs[id_chtab_10_shadow_move];
+		chtab_addrs[id_chtab_10_shadow_move] = swap;
+	}
 	draw_rect(&screen_rect, color_0_black);
 	free_optsnd_chtab();
 	snprintf(filename, sizeof(filename), "%s%s.DAT",
@@ -1157,6 +1163,7 @@ void load_lev_spr(int level) {
 	/*if (comp_spike[current_level])*/ {
 		load_opt_sounds(48, 49); // something spiked, spikes
 	}
+
 }
 
 // seg000:0E6C
@@ -2141,7 +2148,7 @@ void draw_full_image(enum full_image_id id) {
 }
 
 // seg000:1D2C
-void load_kid_sprite() { //test
+void load_kid_sprite() {
 	load_chtab_from_file(id_chtab_10_shadow_move, 400, "SHADOW_MOVE.DAT", 1<<7);
 	load_chtab_from_file(id_chtab_2_kid, 400, "KID.DAT", 1<<7);
 }
