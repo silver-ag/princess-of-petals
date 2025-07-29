@@ -1968,7 +1968,9 @@ void play_death_music() {
 // seg006:15E8
 void on_guard_killed() {
 	start_drawing_petals(Char.x, Char.y);
-	do_trigger_list(2, tiles_rose_gate_opener); // trigger 2 opens the gate out of the arena
+	if (current_level != 9) { // not on level where we do fight guards outside the arena
+		do_trigger_list(2, tiles_rose_gate_opener); // trigger 2 opens the gate out of the arena
+	}
 	if (current_level == 0) {
 		// demo level: after killing Guard, run out of room
 		checkpoint = 1;
