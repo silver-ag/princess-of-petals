@@ -21,7 +21,7 @@ void death_flash() {
 			silhouette_mode = true;
 		} else {
 			bg_colour = stored_colour;
-			if (current_level != 9) { // while in shadow world, don't flash regular
+			if (current_level != 9 && current_level != 10) { // while in shadow world, don't flash regular
 				silhouette_mode = false;
 			}
 		}

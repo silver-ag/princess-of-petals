@@ -1813,7 +1813,7 @@ peel_type* read_peel_from_screen(const rect_type* rect) {
 	}
 	result->peel = peel_surface;
 	rect_type target_rect = {0, 0, rect->right - rect->left, rect->bottom - rect->top};
-	method_1_blit_rect(result->peel, current_target_surface, &target_rect, rect, blitters_10_transp_peel);//test
+	method_1_blit_rect(result->peel, current_target_surface, &target_rect, rect, blitters_10_transp_peel);
 	return result;
 }
 

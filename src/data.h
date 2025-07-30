@@ -39,6 +39,7 @@ extern int death_flash_frames;
 extern bool drawing_petals;
 extern bool silhouette_mode;
 extern int shadow_appeared_in;
+extern bool chtabs_swapped INIT(=false); // keep track of whether the kid and shadow chtabs have been swapped round for level 5
 
 // data:5F8A
 extern word text_time_remaining;

@@ -78,8 +78,8 @@ void play_level(int level_number) {
 				load_intro(level_number > 2, cutscene_func, 1);
 			}
 		}
-		if (level_number != 9) {
-			silhouette_mode = false; // before load_lev_spr because that's what sets silhouette mode for level 5
+		if (level_number != 9 && level_number != 10) {
+			silhouette_mode = false; // before load_lev_spr because that's what sets silhouette mode for level 5 (we still need to check because of restarting the same level)
 		}
 		if (level_number != current_level) {
 			load_lev_spr(level_number);

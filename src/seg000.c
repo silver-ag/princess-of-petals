@@ -1110,12 +1110,23 @@ void load_lev_spr(int level) {
 	char filename[20];
 	dathandle = NULL;
 	current_level = next_level = level;
-	if (current_level == 9) {
+	if (current_level == 9 || current_level == 10) {
 		silhouette_mode = true;
 		// swap kid and shadow chtabs
-		chtab_type* swap = chtab_addrs[id_chtab_2_kid];
-		chtab_addrs[id_chtab_2_kid] = chtab_addrs[id_chtab_10_shadow_move];
-		chtab_addrs[id_chtab_10_shadow_move] = swap;
+		if (!chtabs_swapped) {
+			chtabs_swapped = true;
+			chtab_type* swap = chtab_addrs[id_chtab_2_kid];
+			chtab_addrs[id_chtab_2_kid] = chtab_addrs[id_chtab_10_shadow_move];
+			chtab_addrs[id_chtab_10_shadow_move] = swap;
+		}
+	} else if (current_level == 11) {
+		// swap kid and shadow chtabs back
+		if (chtabs_swapped) {
+			chtabs_swapped = false;
+			chtab_type* swap = chtab_addrs[id_chtab_2_kid];
+			chtab_addrs[id_chtab_2_kid] = chtab_addrs[id_chtab_10_shadow_move];
+			chtab_addrs[id_chtab_10_shadow_move] = swap;
+		}
 	}
 	draw_rect(&screen_rect, color_0_black);
 	free_optsnd_chtab();

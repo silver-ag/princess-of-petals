@@ -872,10 +872,14 @@ image_type* get_image(short chtab_id, int id) {
 		method_1_blit_rect(rose_gate_door_surface, chtab->images[162], &(rect_type){0,0,54,43}, &(rect_type){0,height/1.5,62,43+height/1.5}, blitters_10h_transp);
 		method_1_blit_rect(rose_gate_door_surface, chtab->images[163], &(rect_type){0,0,54,43}, &(rect_type){0,-(height/1.5),62,43-(height/1.5)}, blitters_10h_transp);
 		method_1_blit_rect(rose_gate_door_surface, chtab->images[164], &(rect_type){0,0,54,43}, &(rect_type){height,0,62+height,43}, blitters_10h_transp);
-		return rose_gate_door_surface;
+		if (silhouette_mode) {
+			return silhouette_of(rose_gate_door_surface);
+		} else {
+			return rose_gate_door_surface;
+		}
 	}
 
-	if (silhouette_mode && !(current_level == 9 && chtab_id == id_chtab_2_kid)) {
+	if (silhouette_mode && !((current_level == 9 || current_level  == 10) && chtab_id == id_chtab_2_kid)) {
 		return silhouette_of(chtab->images[id]);
 	} else {
 		return chtab->images[id];
@@ -1639,7 +1643,9 @@ void draw_floor_overlay() {
 	) {
 		// frames 137..144: climb
 		// index overflow here?
-		if ((Kid.frame >= frame_137_climbing_3 && Kid.frame <= frame_144_climbing_10) || (Char.frame >= frame_137_climbing_3 && Char.frame <= frame_144_climbing_10)) { // changed to Char from Kid because now the shadow needs to climb sometimes
+		if (Kid.frame >= frame_137_climbing_3 && Kid.frame <= frame_144_climbing_10) {
+			add_midtable(id_chtab_6_environment, floor_left_overlay[Kid.frame - 137], draw_xh, 0, (curr_tile == tiles_5_stuck) + draw_main_y, blitters_10h_transp, 0);
+		} else if (Char.frame >= frame_137_climbing_3 && Char.frame <= frame_144_climbing_10) { // shadow needs to climb too
 			add_midtable(id_chtab_6_environment, floor_left_overlay[Char.frame - 137], draw_xh, 0, (curr_tile == tiles_5_stuck) + draw_main_y, blitters_10h_transp, 0);
 		} else {
 			// triggered by 02-random-broken
@@ -1759,7 +1765,6 @@ void draw_objtable_item(int index) {
 			if (united_with_shadow == 2) {
 				play_sound(sound_41_end_level_music); // united with shadow
 			}
-			// test
 			add_midtable(id_chtab_10_shadow_move, obj_id + 1, obj_xh, obj_xl, obj_y, blitters_10h_transp, 1);
 			//add_midtable(obj_chtab, obj_id + 1, obj_xh, obj_xl, obj_y, blitters_2_or, 1);
 			//add_midtable(obj_chtab, obj_id + 1, obj_xh, obj_xl + 1, obj_y, blitters_3_xor, 1);
