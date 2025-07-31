@@ -1990,8 +1990,8 @@ void on_guard_killed() {
 		if (!chtabs_swapped) {
                         chtabs_swapped = true;
                         chtab_type* swap = chtab_addrs[id_chtab_2_kid];
-                        chtab_addrs[id_chtab_2_kid] = chtab_addrs[id_chtab_10_shadow_move];
-                        chtab_addrs[id_chtab_10_shadow_move] = swap;
+                        chtab_addrs[id_chtab_2_kid] = chtab_addrs[id_chtab_10_shadow];
+                        chtab_addrs[id_chtab_10_shadow] = swap;
                 }
 	} else if (current_level == 10) { // turn back
 		shadow_world = false;
@@ -1999,8 +1999,8 @@ void on_guard_killed() {
 		if (chtabs_swapped) {
                         chtabs_swapped = false;
                         chtab_type* swap = chtab_addrs[id_chtab_2_kid];
-                        chtab_addrs[id_chtab_2_kid] = chtab_addrs[id_chtab_10_shadow_move];
-                        chtab_addrs[id_chtab_10_shadow_move] = swap;
+                        chtab_addrs[id_chtab_2_kid] = chtab_addrs[id_chtab_10_shadow];
+                        chtab_addrs[id_chtab_10_shadow] = swap;
                 }
 	}
 }

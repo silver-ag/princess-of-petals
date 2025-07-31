@@ -174,7 +174,7 @@ enum chtabs {
 	id_chtab_7_environmentwall = 7,
 	id_chtab_8_princessroom = 8,
 	id_chtab_9_princessbed = 9,
-	id_chtab_10_shadow_move = 10,
+	id_chtab_10_shadow = 10,
 	id_chtab_11_temp_A = 11,
 	id_chtab_12_temp_B = 12,
 	id_chtab_13_temp_C = 13

@@ -879,7 +879,7 @@ image_type* get_image(short chtab_id, int id) {
 		}
 	}
 
-	if (((!shadow_world) && silhouette_mode) || (shadow_world && chtab_id != id_chtab_2_kid && chtab_id != id_chtab_10_shadow_move && chtab_id != id_chtab_5_guard)) {
+	if (((!shadow_world) && silhouette_mode) || (shadow_world && chtab_id != id_chtab_2_kid && chtab_id != id_chtab_10_shadow && chtab_id != id_chtab_5_guard)) {
 		return silhouette_of(chtab->images[id]);
 	} else {
 		return chtab->images[id];
@@ -1763,7 +1763,7 @@ void draw_objtable_item(int index) {
 			if (united_with_shadow == 2) {
 				play_sound(sound_41_end_level_music); // united with shadow
 			}
-			add_midtable(id_chtab_10_shadow_move, obj_id + 1, obj_xh, obj_xl, obj_y, blitters_10h_transp, 1);
+			add_midtable(id_chtab_10_shadow, obj_id + 1, obj_xh, obj_xl, obj_y, blitters_10h_transp, 1);
 			//add_midtable(obj_chtab, obj_id + 1, obj_xh, obj_xl, obj_y, blitters_2_or, 1);
 			//add_midtable(obj_chtab, obj_id + 1, obj_xh, obj_xl + 1, obj_y, blitters_3_xor, 1);
 		break;

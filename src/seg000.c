@@ -1098,7 +1098,7 @@ void load_opt_sounds(int first,int last) {
 }
 
 // data:03BA
-const char*const tbl_guard_dat[] = {"SAIONJI.DAT", "MIKI.DAT", "JURI.DAT", "SHADOW.DAT", "SHADOW.DAT"};
+const char*const tbl_guard_dat[] = {"SAIONJI.DAT", "MIKI.DAT", "JURI.DAT", "SHADOW_GUARD.DAT", "NANAMI_GUARD.DAT"};
 // data:03C4
 const char*const tbl_envir_gr[] = {"", "C", "C", "E", "E", "V"};
 // data:03D0
@@ -1116,8 +1116,8 @@ void load_lev_spr(int level) {
 		if (!chtabs_swapped) {
 			chtabs_swapped = true;
 			chtab_type* swap = chtab_addrs[id_chtab_2_kid];
-			chtab_addrs[id_chtab_2_kid] = chtab_addrs[id_chtab_10_shadow_move];
-			chtab_addrs[id_chtab_10_shadow_move] = swap;
+			chtab_addrs[id_chtab_2_kid] = chtab_addrs[id_chtab_10_shadow];
+			chtab_addrs[id_chtab_10_shadow] = swap;
 		}
 	} else if (current_level == 11) {
 		shadow_world = false;
@@ -1125,8 +1125,8 @@ void load_lev_spr(int level) {
 		if (chtabs_swapped) {
 			chtabs_swapped = false;
 			chtab_type* swap = chtab_addrs[id_chtab_2_kid];
-			chtab_addrs[id_chtab_2_kid] = chtab_addrs[id_chtab_10_shadow_move];
-			chtab_addrs[id_chtab_10_shadow_move] = swap;
+			chtab_addrs[id_chtab_2_kid] = chtab_addrs[id_chtab_10_shadow];
+			chtab_addrs[id_chtab_10_shadow] = swap;
 		}
 	}
 	draw_rect(&screen_rect, color_0_black);
@@ -2161,8 +2161,8 @@ void draw_full_image(enum full_image_id id) {
 
 // seg000:1D2C
 void load_kid_sprite() {
-	load_chtab_from_file(id_chtab_10_shadow_move, 400, "SHADOW_MOVE.DAT", 1<<7);
-	load_chtab_from_file(id_chtab_2_kid, 400, "KID.DAT", 1<<7);
+	load_chtab_from_file(id_chtab_10_shadow, 400, "SHADOW.DAT", 1<<7);
+	load_chtab_from_file(id_chtab_2_kid, 400, "NANAMI.DAT", 1<<7);
 }
 
 const char* save_file = "PRINCE.SAV";
