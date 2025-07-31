@@ -1967,23 +1967,41 @@ void play_death_music() {
 
 // seg006:15E8
 void on_guard_killed() {
-	start_drawing_petals(Char.x, Char.y);
+	start_drawing_petals(Guard.x, Guard.y);
 	if (current_level != 9) { // not on level where we do fight guards outside the arena
 		do_trigger_list(2, tiles_rose_gate_opener); // trigger 2 opens the gate out of the arena
 	}
-	if (current_level == 0) {
+	/*if (current_level == 0) {
 		// demo level: after killing Guard, run out of room
 		checkpoint = 1;
 		demo_index = demo_time = 0;
-	} else if (current_level == /*13*/ custom->jaffar_victory_level) {
+	} else if (current_level == custom->jaffar_victory_level) {
 		// Jaffar's level: flash
 		flash_color = (rgb_type){255,255,255}; // white
-		flash_time = /*18*/ custom->jaffar_victory_flash_time;
+		flash_time = custom->jaffar_victory_flash_time;
 		is_show_time = 1;
 		leveldoor_open = 2;
 		play_sound(sound_43_victory_Jaffar); // Jaffar's death
 	} else if (Char.charid != charid_1_shadow) {
 		play_sound(sound_37_victory); // Guard's death
+	}*/
+	if (current_level == 8) { // turn into shadow
+		shadow_world = true;
+		if (!chtabs_swapped) {
+                        chtabs_swapped = true;
+                        chtab_type* swap = chtab_addrs[id_chtab_2_kid];
+                        chtab_addrs[id_chtab_2_kid] = chtab_addrs[id_chtab_10_shadow_move];
+                        chtab_addrs[id_chtab_10_shadow_move] = swap;
+                }
+	} else if (current_level == 10) { // turn back
+		shadow_world = false;
+		silhouette_mode = false;
+		if (chtabs_swapped) {
+                        chtabs_swapped = false;
+                        chtab_type* swap = chtab_addrs[id_chtab_2_kid];
+                        chtab_addrs[id_chtab_2_kid] = chtab_addrs[id_chtab_10_shadow_move];
+                        chtab_addrs[id_chtab_10_shadow_move] = swap;
+                }
 	}
 }
 

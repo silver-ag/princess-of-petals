@@ -2,8 +2,6 @@ when the death flash is happening, if you leave the room the camera doesn't foll
 the problem appears to be that in frames where need_full_redraw is set the game can't move to other rooms.
 it's not clear why. the processing code for need_full_redraw in seg000 puts the two on seperate branches, but it's not arbitrary, just changing that doesn't fix it.
 
-check diff into fix gate bg for graphics stuff i've added
-
 add gate topper tile
 
 johnny music in shrine (maybe my own version??)
@@ -13,6 +11,6 @@ giant touga in the sky turns around on the first screen. then in the second, bg 
 and draws his sword from you. he's indestructible, but each time you hit him a tile wobbles and falls. at first they're behind you, but eventually
 one goes behind him. this allows you to climb down one of the holes behind you, move past him on the floor below and climb back up to reach the final gate.
 
-shadow should wear a black rose during the duel (ie. in SHADOW rather than SHADOW_MOVE)
-
 add spinning rose frame at start of each duel (also allow for sword drawing intro)
+
+should mouse be replaced with chuchu?

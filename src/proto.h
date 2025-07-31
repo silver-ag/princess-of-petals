@@ -202,7 +202,7 @@ void bump_into_opponent(void);
 void pos_guards(void);
 void check_can_guard_see_kid(void);
 byte get_tile_at_kid(int xpos);
-void do_mouse(void);
+void do_mouse(int row);
 int flash_if_hurt(void);
 void remove_flash_if_hurt(void);
 

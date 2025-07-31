@@ -1111,7 +1111,7 @@ void load_lev_spr(int level) {
 	dathandle = NULL;
 	current_level = next_level = level;
 	if (current_level == 9 || current_level == 10) {
-		silhouette_mode = true;
+		shadow_world = true;
 		// swap kid and shadow chtabs
 		if (!chtabs_swapped) {
 			chtabs_swapped = true;
@@ -1120,6 +1120,7 @@ void load_lev_spr(int level) {
 			chtab_addrs[id_chtab_10_shadow_move] = swap;
 		}
 	} else if (current_level == 11) {
+		shadow_world = false;
 		// swap kid and shadow chtabs back
 		if (chtabs_swapped) {
 			chtabs_swapped = false;

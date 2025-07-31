@@ -21,9 +21,7 @@ void death_flash() {
 			silhouette_mode = true;
 		} else {
 			bg_colour = stored_colour;
-			if (current_level != 9 && current_level != 10) { // while in shadow world, don't flash regular
-				silhouette_mode = false;
-			}
+			silhouette_mode = false;
 		}
 		need_full_redraw = 1;
 	}
@@ -71,6 +69,9 @@ void draw_petals(SDL_Surface* sfc) {
 }
 
 image_type* silhouette_of(image_type* image) {
+	if (image == NULL) {
+		return SDL_CreateRGBSurface(0,1,1,32,Rmsk,Gmsk,Bmsk,Amsk);
+	}
         int w = image->w;
         int h = image->h;
         if (SDL_SetColorKey(image, SDL_FALSE, 0) != 0) {

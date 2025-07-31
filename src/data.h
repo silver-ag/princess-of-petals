@@ -37,9 +37,11 @@ extern rgb_type bg_colour;
 extern rgb_type stored_colour; // for flashing
 extern int death_flash_frames;
 extern bool drawing_petals;
-extern bool silhouette_mode;
+extern bool silhouette_mode INIT(=false);
+extern bool shadow_world INIT(=false); // shadow world is a persistent silhouette mode that isn't undone by flashing or restarting level
 extern int shadow_appeared_in;
 extern bool chtabs_swapped INIT(=false); // keep track of whether the kid and shadow chtabs have been swapped round for level 5
+extern int mouse_appeared_in;
 
 // data:5F8A
 extern word text_time_remaining;
@@ -77,7 +79,7 @@ extern short start_level INIT(= -1);
 // data:4CE6
 extern byte * guard_palettes;
 // data:4338
-extern chtab_type *chtab_addrs[11];
+extern chtab_type *chtab_addrs[14];
 
 
 #ifdef USE_COPYPROT

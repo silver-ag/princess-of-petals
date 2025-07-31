@@ -872,14 +872,14 @@ image_type* get_image(short chtab_id, int id) {
 		method_1_blit_rect(rose_gate_door_surface, chtab->images[162], &(rect_type){0,0,54,43}, &(rect_type){0,height/1.5,62,43+height/1.5}, blitters_10h_transp);
 		method_1_blit_rect(rose_gate_door_surface, chtab->images[163], &(rect_type){0,0,54,43}, &(rect_type){0,-(height/1.5),62,43-(height/1.5)}, blitters_10h_transp);
 		method_1_blit_rect(rose_gate_door_surface, chtab->images[164], &(rect_type){0,0,54,43}, &(rect_type){height,0,62+height,43}, blitters_10h_transp);
-		if (silhouette_mode) {
+		if (silhouette_mode || shadow_world) {
 			return silhouette_of(rose_gate_door_surface);
 		} else {
 			return rose_gate_door_surface;
 		}
 	}
 
-	if (silhouette_mode && !((current_level == 9 || current_level  == 10) && chtab_id == id_chtab_2_kid)) {
+	if (((!shadow_world) && silhouette_mode) || (shadow_world && chtab_id != id_chtab_2_kid && chtab_id != id_chtab_10_shadow_move && chtab_id != id_chtab_5_guard)) {
 		return silhouette_of(chtab->images[id]);
 	} else {
 		return chtab->images[id];
@@ -1554,13 +1554,11 @@ void restore_peels() {
 	peel_type* peel;
 	while (peels_count) {
 		peels_count--;
-		//if (death_flash_frames != 1) { // don't draw peels when in final silhoutte while dead, because for some reason they come out as black boxes
-			peel = peels_table[peels_count];
-			if (need_drects) {
-				add_drect(&peel->rect);
-			}
-			restore_peel(peel);
-		//}
+		peel = peels_table[peels_count];
+		if (need_drects) {
+			add_drect(&peel->rect);
+		}
+		restore_peel(peel);
 	}
 	peels_count = 0;
 }
@@ -2000,17 +1998,12 @@ void show_level() {
 #ifdef FIX_LEVEL_14_RESTARTING
 	text_time_remaining = text_time_total = 0;
 #endif
-	char sprintf_temp[32];
+	char sprintf_temp[38];
 	byte disp_level = current_level;
-	if (disp_level != 0 && disp_level < /*14*/ custom->hide_level_number_from_level && seamless == 0) {
-		if (disp_level == 13) {
-			disp_level = /*12*/ custom->level_13_level_number;
-		}
-		text_time_remaining = text_time_total = 24;
-		snprintf(sprintf_temp, sizeof(sprintf_temp), "LEVEL %d", disp_level);
-		display_text_bottom(sprintf_temp);
-		is_show_time = 1;
-	}
+	text_time_remaining = text_time_total = 24;
+	snprintf(sprintf_temp, sizeof(sprintf_temp), "LEVEL %d%s", (disp_level+1)/2, disp_level%2?"":" DUEL");
+	display_text_bottom(sprintf_temp);
+	is_show_time = 1;
 	seamless = 0;
 }
 

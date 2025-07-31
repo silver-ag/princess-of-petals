@@ -78,14 +78,13 @@ void play_level(int level_number) {
 				load_intro(level_number > 2, cutscene_func, 1);
 			}
 		}
-		if (level_number != 9 && level_number != 10) {
-			silhouette_mode = false; // before load_lev_spr because that's what sets silhouette mode for level 5 (we still need to check because of restarting the same level)
-		}
 		if (level_number != current_level) {
 			load_lev_spr(level_number);
 		}
 		death_flash_frames = 0; // reset graphics
+		silhouette_mode = false; // "
 		shadow_appeared_in = 0; // reset shadow position tracker
+		mouse_appeared_in = 0; // reset mouse position tracker
 		load_level();
 		pos_guards();
 		clear_coll_rooms();
@@ -250,6 +249,19 @@ void redraw_screen(int drawing_different_room) {
 		update_screen();
 		SDL_Delay(100);
 #endif
+		if (current_level == 9) {
+			load_chtab_from_file(id_chtab_11_temp_A, 750, "YUUKO.DAT", 1<<8);
+			load_chtab_from_file(id_chtab_12_temp_B, 750, "AIKO.DAT", 1<<8);
+			load_chtab_from_file(id_chtab_13_temp_C, 750, "KEIKO.DAT", 1<<8);
+			printf("entering room %d\n",drawn_room);fflush(stdout);
+			if (drawn_room == 2) {
+				chtab_addrs[id_chtab_5_guard] = chtab_addrs[id_chtab_11_temp_A];
+			} else if (drawn_room == 3) {
+				chtab_addrs[id_chtab_5_guard] = chtab_addrs[id_chtab_12_temp_B];
+			} else if (drawn_room == 6) {
+				chtab_addrs[id_chtab_5_guard] = chtab_addrs[id_chtab_13_temp_C];
+			}
+		}
 	}
 
 	different_room = 0;
@@ -542,7 +554,7 @@ void timers() {
 		++leveldoor_open;
 		// time before mouse comes: 150/12=12.5 seconds
 		if (leveldoor_open == /*150*/ custom->mouse_delay) {
-			do_mouse();
+			do_mouse(2);
 		}
 	}
 #ifdef USE_SUPER_HIGH_JUMP
@@ -759,15 +771,16 @@ byte get_tile_at_kid(int xpos) {
 }
 
 // seg003:0ABA
-void do_mouse() {
-	loadkid();
+void do_mouse(int row) {
+	//loadkid();
+	//clear_char();
 	Char.charid = /*charid_24_mouse*/ custom->mouse_object;
-	Char.x = /*200*/ custom->mouse_start_x;
-	Char.curr_row = 0;
+	Char.x = 190;
+	Char.curr_row = row;
 	Char.y = y_land[Char.curr_row + 1];
 	Char.alive = -1;
 	Char.direction = dir_FF_left;
-	guardhp_curr = 1;
+	guardhp_curr = 3;
 	seqtbl_offset_char(seq_105_mouse_forward); // mouse forward
 	play_seq();
 	saveshad();

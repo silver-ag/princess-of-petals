@@ -71,7 +71,7 @@ const byte init_shad_7_4[] = {frame_15_stand, 0xb5, 0x36, 0, 0, 1, 0, 0};
 // seg002:0064
 void check_shadow() {
 	offguard = 0;
-	if (current_level == 12) {
+	/*if (current_level == 12) {
 		// Special event: level 12 shadow
 		if (!united_with_shadow && drawn_room == 15) {
 			Char.room = drawn_room;
@@ -79,11 +79,11 @@ void check_shadow() {
 				return;
 			}
 			shadow_initialized = 0;
-			do_init_shad(/*&*/custom->init_shad_12, 7 /*fall*/);
+			do_init_shad(custom->init_shad_12, 7 );
 			return;
 		}
-	} /*else*/
-	/*if (current_level == custom->shadow_step_level) {
+	}
+	if (current_level == custom->shadow_step_level) {
 		// Special event: level 6 shadow
 		Char.room = drawn_room;
 		if (Char.room == custom->shadow_step_room) {
@@ -114,6 +114,14 @@ void check_shadow() {
 			shadow_appeared_in = 4;
 			do_init_shad(init_shad_7_4, seq_2_stand);
 			return;
+		}
+	} else if (current_level == 11) {
+		if (Char.room == 1 && mouse_appeared_in < 1) {
+			mouse_appeared_in = 1;
+			do_mouse(0);
+		} else if (Char.room == 8 && mouse_appeared_in < 2) {
+			mouse_appeared_in = 2;
+			do_mouse(1);
 		}
 	}
 	enter_guard();
@@ -667,12 +675,12 @@ void autocontrol_mouse() {
 	if (Char.direction == dir_56_none) {
 		return;
 	}
-	if (Char.action == actions_0_stand) {
-		if (Char.x >= 200) {
+		if (Char.x >= 200 || Char.x <= 0) {
 			clear_char();
 		}
+	if (Char.action == actions_0_stand) {
 	} else {
-		if (Char.x < 166) {
+		if (Char.x < 150 && Char.room == 1) {
 			seqtbl_offset_char(seq_107_mouse_stand_up_and_go); // mouse
 			play_seq();
 		}
