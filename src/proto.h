@@ -753,6 +753,7 @@ void make_level_1(custom_level_data* level);
 void death_flash(void);
 void draw_petals(SDL_Surface* sfc);
 void start_drawing_petals(int x, int y);
+void start_drawing_lots_of_petals(int x, int y);
 SDL_Surface* princess_shaders();
 void start_death_flash(int frames);
 image_type* silhouette_of(image_type* image);

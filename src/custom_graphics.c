@@ -6,7 +6,7 @@ typedef struct petal_t {
 	int type;
 } petal_t;
 
-petal_t petals[5];
+petal_t petals[50];
 
 void start_death_flash(int frames) {
 	stored_colour = bg_colour;
@@ -33,11 +33,24 @@ void start_drawing_petals(int x, int y) {
 		petals[i].x = x+20;
 		petals[i].y = y-25;
 	}
+	petals[5].x = 0;
+	petals[5].y = 0;
+}
+
+void start_drawing_lots_of_petals(int x, int y) {
+	drawing_petals = true;
+	for (int i = 0; i < 50; i++) {
+		petals[i].x = x+20+prandom(10);
+		petals[i].y = y-25+prandom(20);
+	}
 }
 
 void draw_petals(SDL_Surface* sfc) {
 	if (drawing_petals) {
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 50; i++) {
+			if (petals[i].x == 0 && petals[i].y == 0) {
+				break;
+			}
 			// animate
 			int move_dir = rand() % 9;
 			if (move_dir < 3) {

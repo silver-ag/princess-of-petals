@@ -839,7 +839,7 @@ extern custom_options_type custom_defaults INIT(= {
 		.mouse_delay = 150,
 		.mouse_object = 24,
 		.mouse_start_x = 200,
-		.loose_tiles_level = 13,
+		.loose_tiles_level = 130,
 		.loose_tiles_room_1 = 23,
 		.loose_tiles_room_2 = 16,
 		.loose_tiles_first_tile = 22,
@@ -859,7 +859,7 @@ extern custom_options_type custom_defaults INIT(= {
 		// data:03D4
 		//.tbl_guard_type = {0, 0, 0, 2, 0, 0, 1, 0, 0, 0, 0, 0, 4, 3, -1, -1},
 		// modified:
-		.tbl_guard_type = {0, 0, 0, 0, 1, 0, 2, 0, 3, 0, 4, 0, 5, 0, 0, 0},
+		.tbl_guard_type = {0, 0, 0, 0, 1, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 7},
 		// data:0EDA
 		.tbl_guard_hp = {4, 3, 3, 3, 3, 4, 5, 4, 4, 5, 5, 5, 4, 6, 0, 0},
 		.tbl_cutscenes_by_index = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15},

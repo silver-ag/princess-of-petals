@@ -559,11 +559,11 @@ void sword_disappears() {
 // seg002:06AE
 void meet_Jaffar() {
 	// Special event: play music
-	if (current_level == 13 && leveldoor_open == 0 && Char.room == 3) {
-		play_sound(sound_29_meet_Jaffar); // meet Jaffar
+	//if (current_level == 13 && leveldoor_open == 0 && Char.room == 3) {
+	//	play_sound(sound_29_meet_Jaffar); // meet Jaffar
 		// Special event: Jaffar waits a bit (28/12=2.33 seconds)
-		guard_notice_timer = 28;
-	}
+	//	guard_notice_timer = 28;
+	//}
 }
 
 // seg002:06D3
@@ -662,9 +662,9 @@ void autocontrol_opponent() {
 			autocontrol_skeleton();
 		} else if (charid == charid_1_shadow) {
 			autocontrol_shadow();
-		} else if (current_level == 13) {
+		}/* else if (current_level == 13) {
 			autocontrol_Jaffar();
-		} else {
+		}*/ else {
 			autocontrol_guard();
 		}
 	}

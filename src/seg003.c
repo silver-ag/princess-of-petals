@@ -253,7 +253,6 @@ void redraw_screen(int drawing_different_room) {
 			load_chtab_from_file(id_chtab_11_temp_A, 750, "YUUKO.DAT", 1<<8);
 			load_chtab_from_file(id_chtab_12_temp_B, 750, "AIKO.DAT", 1<<8);
 			load_chtab_from_file(id_chtab_13_temp_C, 750, "KEIKO.DAT", 1<<8);
-			printf("entering room %d\n",drawn_room);fflush(stdout);
 			if (drawn_room == 2) {
 				chtab_addrs[id_chtab_5_guard] = chtab_addrs[id_chtab_11_temp_A];
 			} else if (drawn_room == 3) {

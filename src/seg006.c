@@ -1967,7 +1967,11 @@ void play_death_music() {
 
 // seg006:15E8
 void on_guard_killed() {
-	start_drawing_petals(Guard.x, Guard.y);
+	if (current_level == 12) {
+		start_drawing_lots_of_petals(Guard.x, Guard.y);
+	} else {
+		start_drawing_petals(Guard.x, Guard.y);
+	}
 	if (current_level != 9) { // not on level where we do fight guards outside the arena
 		do_trigger_list(2, tiles_rose_gate_opener); // trigger 2 opens the gate out of the arena
 	}

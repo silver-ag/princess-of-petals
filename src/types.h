@@ -1370,13 +1370,13 @@ typedef struct custom_options_type {
 	word win_level;
 	byte win_room;
 	byte loose_floor_delay;
-	byte tbl_level_type[16];
-	word tbl_level_color[16];
-	short tbl_guard_type[16];
-	byte tbl_guard_hp[16];
-	byte tbl_cutscenes_by_index[16];
-	byte tbl_entry_pose[16];
-	sbyte tbl_seamless_exit[16];
+	byte tbl_level_type[18];
+	word tbl_level_color[18];
+	short tbl_guard_type[18];
+	byte tbl_guard_hp[18];
+	byte tbl_cutscenes_by_index[18];
+	byte tbl_entry_pose[18];
+	sbyte tbl_seamless_exit[18];
 
 	// guard skills
 	word strikeprob   [NUM_GUARD_SKILLS];
