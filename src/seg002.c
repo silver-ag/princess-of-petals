@@ -213,13 +213,8 @@ loc_left_guard_tile:
 	#endif
 	curr_guard_color &= 0x0F; // added; only least significant 4 bits are used for guard color
 
-	// level 3 has skeletons with infinite lives
-	//if (current_level == 3) {
-	//if (custom->tbl_guard_type[current_level] == 2) {
-	//	Char.charid = charid_4_skeleton;
-	//} else {
 	Char.charid = charid_2_guard;
-	//}
+
 	byte seq_hi = level.guards_seq_hi[room_minus_1];
 	if (seq_hi == 0) {
 		if (Char.charid == charid_4_skeleton) {
@@ -648,6 +643,9 @@ void move_7() {
 
 // seg002:0776
 void autocontrol_opponent() {
+	if (controls_paused) { //test
+		return;
+	}
 	move_0_nothing();
 	word charid = Char.charid;
 	if (charid == charid_0_kid) {
@@ -975,8 +973,10 @@ void hurt_by_sword() {
 			seqtbl_offset_char(seq_81_kid_pushed_off_ledge); // Kid/Guard is killed and pushed off the ledge
 		}
 	} else {
-		// You can't hurt skeletons
-		if (Char.charid != charid_4_skeleton) {
+		// You can't hurt skeletons or touga
+		if (Char.charid == charid_2_guard && current_level == 14) {
+			touga_drop_tile();
+		} else if (Char.charid != charid_4_skeleton) {
 			if (take_hp(1)) goto loc_4276;
 		}
 		seqtbl_offset_char(seq_74_hit_by_sword); // being hit with sword

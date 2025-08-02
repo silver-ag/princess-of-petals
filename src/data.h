@@ -42,6 +42,7 @@ extern bool shadow_world INIT(=false); // shadow world is a persistent silhouett
 extern int shadow_appeared_in;
 extern bool chtabs_swapped INIT(=false); // keep track of whether the kid and shadow chtabs have been swapped round for level 5
 extern int mouse_appeared_in;
+extern bool controls_paused INIT(=false);
 
 // data:5F8A
 extern word text_time_remaining;
@@ -343,17 +344,17 @@ extern bool is_ending_sequence; // added
 extern cutscene_ptr_type tbl_cutscenes[16] INIT(= {
 	NULL,
 	NULL,
-	cutscene_2_6,
+	NULL, //cutscene_2_6,
 	NULL,
-	cutscene_4,
+	NULL, //cutscene_4,
 	NULL,
-	cutscene_2_6,
+	NULL, //cutscene_2_6,
 	NULL,
-	cutscene_8,
-	cutscene_9,
+	NULL, //cutscene_8,
+	NULL, //cutscene_9,
 	NULL,
 	NULL,
-	cutscene_12,
+	NULL, //cutscene_12,
 	NULL,
 	NULL,
 	NULL,
@@ -861,7 +862,7 @@ extern custom_options_type custom_defaults INIT(= {
 		// modified:
 		.tbl_guard_type = {0, 0, 0, 0, 1, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 7},
 		// data:0EDA
-		.tbl_guard_hp = {4, 3, 3, 3, 3, 4, 5, 4, 4, 5, 5, 5, 4, 6, 0, 0},
+		.tbl_guard_hp = {4, 3, 3, 3, 3, 4, 5, 4, 4, 5, 5, 5, 4, 6, 3, 3},
 		.tbl_cutscenes_by_index = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15},
 		.tbl_entry_pose = {0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0},
 		.tbl_seamless_exit = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 23, -1, -1, -1},

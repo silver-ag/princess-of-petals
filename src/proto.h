@@ -748,9 +748,11 @@ void play_midi_sound(sound_buffer_type* buffer);
 void initialise_custom_levels(void);
 void load_custom_level(int n, level_type* level_ref);
 void make_level_1(custom_level_data* level);
+void touga_drop_tile(void);
 
 // custom_graphics.c
-void death_flash(void);
+void manage_custom_graphics(void);
+void manage_death_flash(void);
 void draw_petals(SDL_Surface* sfc);
 void start_drawing_petals(int x, int y);
 void start_drawing_lots_of_petals(int x, int y);

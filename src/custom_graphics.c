@@ -8,12 +8,17 @@ typedef struct petal_t {
 
 petal_t petals[50];
 
+void manage_custom_graphics() {
+	manage_death_flash();
+	manage_pause_controls();
+}
+
 void start_death_flash(int frames) {
 	stored_colour = bg_colour;
 	death_flash_frames = frames;
 }
 
-void death_flash() {
+void manage_death_flash() {
 	if (death_flash_frames > 1 || (Kid.alive < 0 && death_flash_frames == 1)) { // final frame only resets if kid is alive
 		death_flash_frames--;
 		if (death_flash_frames % 2) {
@@ -112,3 +117,21 @@ image_type* silhouette_of(image_type* image) {
         SDL_UnlockSurface(coloured_image);
 	return coloured_image;
 }
+
+int pause_timer = 0;
+
+void pause_controls(int frames) {
+	// for in-game cutscenes at the start of duels
+	pause_timer = frames;
+	controls_paused = true;
+	control_forward = CONTROL_RELEASED;
+}
+
+void manage_pause_controls() {
+	if (pause_timer <= 0) {
+		controls_paused = false;
+	} else {
+		pause_timer--;
+	}
+}
+

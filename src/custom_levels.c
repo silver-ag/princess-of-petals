@@ -13,6 +13,7 @@
 #include "custom_levels/level_6.c"
 #include "custom_levels/level_6_duel.c"
 #include "custom_levels/level_7.c"
+#include "custom_levels/level_7_duel.c"
 
 // it's honestly easier to construct the level_type structs directly than to use a level editor
 // plus it means we can store extra stuff like background colour directly in our level data
@@ -44,6 +45,7 @@ void initialise_custom_levels() {
 	make_level_6(&custom_levels[10]);
 	make_level_6_duel(&custom_levels[11]);
 	make_level_7(&custom_levels[12]);
+	make_level_7_duel(&custom_levels[13]);
 }
 
 void load_custom_level(int n, level_type* level_ref) {
@@ -104,4 +106,11 @@ void load_custom_level(int n, level_type* level_ref) {
 	level_ref->start_pos = level_data.start_pos;
 	level_ref->start_dir = level_data.start_dir;
 	bg_colour = level_data.bg_colour;
+}
+
+int loose_tiles[13] = {0,2,3,4,5,6,7,12,14,15,17};
+void touga_drop_tile() {
+	curr_tilepos = loose_tiles[prandom(11)];
+	curr_room_tiles[curr_tilepos] = 11;
+	make_loose_fall(1);
 }

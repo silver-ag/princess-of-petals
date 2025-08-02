@@ -249,6 +249,7 @@ void redraw_screen(int drawing_different_room) {
 		update_screen();
 		SDL_Delay(100);
 #endif
+		// princess different guards in shadow level
 		if (current_level == 9) {
 			load_chtab_from_file(id_chtab_11_temp_A, 750, "YUUKO.DAT", 1<<8);
 			load_chtab_from_file(id_chtab_12_temp_B, 750, "AIKO.DAT", 1<<8);
@@ -261,6 +262,8 @@ void redraw_screen(int drawing_different_room) {
 				chtab_addrs[id_chtab_5_guard] = chtab_addrs[id_chtab_13_temp_C];
 			}
 		}
+		// princess pause at start of duel
+		pause_controls(30);//test
 	}
 
 	different_room = 0;
@@ -391,8 +394,8 @@ int play_level_2() {
 		timers();
 		play_frame();
 
-		// check if flash needed
-		death_flash();
+		// tick princess custom graphics
+		manage_custom_graphics();
 
 #ifdef USE_REPLAY
 		// At the exact "end of level" frame, preserve the seed to ensure reproducibility,
