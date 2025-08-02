@@ -1426,9 +1426,6 @@ void play_kid() {
 
 // seg006:0CD1
 void control_kid() {
-	if (controls_paused) { // test
-		return;
-	}
 	if (Char.alive < 0 && hitp_curr == 0) {
 		Char.alive = 0;
 		// stop feather fall when kid dies

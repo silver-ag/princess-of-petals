@@ -216,6 +216,10 @@ void find_start_level_door() {
 
 // seg003:0326
 void draw_level_first() {
+	// princess duels slam door
+	if (current_level % 2 == 0) { //test
+		do_trigger_list(3, tiles_6_closer);
+	}
 	next_room = Kid.room;
 	check_the_end();
 	if (custom->tbl_level_type[current_level]) {
@@ -262,8 +266,10 @@ void redraw_screen(int drawing_different_room) {
 				chtab_addrs[id_chtab_5_guard] = chtab_addrs[id_chtab_13_temp_C];
 			}
 		}
-		// princess pause at start of duel
-		pause_controls(30);//test
+		// princess duels pause at start
+		if (current_level % 2 == 0 && drawn_room == 3) {
+			pause_controls(20);
+		}
 	}
 
 	different_room = 0;

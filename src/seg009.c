@@ -989,12 +989,7 @@ int set_joy_mode() {
 // seg009:178B
 surface_type* make_offscreen_buffer(const rect_type* rect) {
 	// stub
-#ifndef USE_ALPHA
-	// Bit order matches onscreen buffer, good for fading.
-	surface_type* sfc = SDL_CreateRGBSurface(0, rect->right, rect->bottom, 24, Rmsk, Gmsk, Bmsk, 0);
-#else
 	surface_type* sfc = SDL_CreateRGBSurface(0, rect->right, rect->bottom, 32, Rmsk, Gmsk, Bmsk, Amsk);
-#endif
 	return sfc;
 }
 
@@ -1801,12 +1796,7 @@ peel_type* read_peel_from_screen(const rect_type* rect) {
 	peel_type* result = calloc(1, sizeof(peel_type));
 	//memset(&result, 0, sizeof(result));
 	result->rect = *rect;
-//#ifndef USE_ALPHA
-//	SDL_Surface* peel_surface = SDL_CreateRGBSurface(0, rect->right - rect->left, rect->bottom - rect->top,
-//	                                                 24, Rmsk, Gmsk, Bmsk, 0);
-//#else
 	SDL_Surface* peel_surface = SDL_CreateRGBSurface(0, rect->right - rect->left, rect->bottom - rect->top, 32, Rmsk, Gmsk, Bmsk, Amsk);
-//#endif
 	if (peel_surface == NULL) {
 		sdlperror("read_peel_from_screen: SDL_CreateRGBSurface");
 		quit(1);
@@ -2766,7 +2756,9 @@ void update_screen() {
 	draw_overlay();
 	SDL_Surface* surface = get_final_surface();
 	SDL_Surface* true_final_surface = SDL_CreateRGBSurface(0, surface->w, surface->h, 24, Rmsk, Gmsk, Bmsk, 0);
-	method_1_blit_rect(true_final_surface, surface, &screen_rect, &screen_rect, blitters_0_no_transp);
+	draw_background(true_final_surface);
+	SDL_SetColorKey(surface, SDL_TRUE, SDL_MapRGB(surface->format, 0, 255, 0)); // green screen
+	method_1_blit_rect(true_final_surface, surface, &screen_rect, &screen_rect, blitters_10h_transp);
 	draw_petals(true_final_surface);
 
 	init_scaling();
@@ -3030,10 +3022,10 @@ void method_1_blit_rect(surface_type* target_surface,surface_type* source_surfac
 		}
 	} else {
 		// Enable transparency.
-		if (SDL_SetColorKey(source_surface, SDL_TRUE, 0) != 0) {
-			sdlperror("method_1_blit_rect: SDL_SetColorKey");
-			quit(1);
-		}
+		//if (SDL_SetColorKey(source_surface, SDL_TRUE, 0) != 0) {
+		//	sdlperror("method_1_blit_rect: SDL_SetColorKey");
+		//	quit(1);
+		//}
 	}
 	if (SDL_BlitSurface(source_surface, &src_rect, target_surface, &dest_rect) != 0) {
 		sdlperror("method_1_blit_rect: SDL_BlitSurface");
@@ -3145,6 +3137,16 @@ void draw_rect_rgb(const rect_type* rect, rgb_type colour) {
 	uint32_t rgb_color = SDL_MapRGBA(current_target_surface->format, colour.r, colour.g, colour.b, 0xFF);
 	if (safe_SDL_FillRect(current_target_surface, &dest_rect, rgb_color) != 0) {
 		sdlperror("draw_rect_rgb: SDL_FillRect");
+		quit(1);
+	}
+}
+
+void draw_rect_rgb_to(SDL_Surface* target, const rect_type* rect, rgb_type colour) {
+	SDL_Rect dest_rect;
+	rect_to_sdlrect(rect, &dest_rect);
+	uint32_t rgb_color = SDL_MapRGBA(target->format, colour.r, colour.g, colour.b, 0xFF);
+	if (safe_SDL_FillRect(target, &dest_rect, rgb_color) != 0) {
+		sdlperror("draw_rect_rgb_to: SDL_FillRect");
 		quit(1);
 	}
 }

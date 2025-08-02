@@ -958,6 +958,9 @@ void forward_with_sword() {
 
 // seg005:0C1D
 void draw_sword() {
+	if (controls_paused) { //test
+		return;
+	}
 	word seq_id = seq_55_draw_sword; // draw sword
 	control_forward = control_shift2 = release_arrows();
 #ifdef FIX_UNINTENDED_SWORD_STRIKE

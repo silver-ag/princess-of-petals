@@ -864,7 +864,7 @@ extern custom_options_type custom_defaults INIT(= {
 		// data:0EDA
 		.tbl_guard_hp = {4, 3, 3, 3, 3, 4, 5, 4, 4, 5, 5, 5, 4, 6, 3, 3},
 		.tbl_cutscenes_by_index = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15},
-		.tbl_entry_pose = {0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0},
+		.tbl_entry_pose = {0, 1, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 2, 2, 0},
 		.tbl_seamless_exit = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 23, -1, -1, -1},
 
 		// guard skills

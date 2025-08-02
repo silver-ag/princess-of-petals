@@ -4,7 +4,7 @@ void make_level_7_duel(custom_level_data* level) {
 	level->used_rooms = 10;
 	level->start_room = 1;
 	level->start_pos = 20;
-	level->start_dir =  0;
+	level->start_dir =  dir_FF_left;
 	level->bg_colour = (rgb_type){220,220,110};
 	// room 1: stairs base
 	memcpy(level->rooms[0].fg, (byte[]){  0, 0, 0, 0, 1, 3, 0, 0, 0,20,
@@ -52,6 +52,11 @@ void make_level_7_duel(custom_level_data* level) {
 	memcpy(level->rooms[3].fg, (byte[]){  0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
 					      0, 0, 0, 0, 0, 0, 0, 0, 0,20,
 					      0, 0, 0, 0, 0, 0, 0, 0, 0, 4}, 30);
+	memcpy(level->rooms[3].bg, (byte[]){  0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+					      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+					      0, 0, 0, 0, 0, 0, 0, 0, 0,255}, 30);
+	level->doorlinks_rooms[3] = 4;
+	level->doorlinks_tiles[3] = 29;
 	level->rooms[0].links.right = 1;
 
 	// room 5: towards real fight

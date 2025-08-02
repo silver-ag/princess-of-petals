@@ -4,6 +4,7 @@ void make_level_5(custom_level_data* level) {
 	level->used_rooms = 10;
         level->start_room = 1;
         level->start_pos =  25;
+        level->start_dir =  dir_FF_left;
         level->bg_colour = (rgb_type){255,55,220};
 
 	// room 1

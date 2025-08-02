@@ -752,10 +752,13 @@ void touga_drop_tile(void);
 
 // custom_graphics.c
 void manage_custom_graphics(void);
+void start_death_flash(int frames);
 void manage_death_flash(void);
 void draw_petals(SDL_Surface* sfc);
 void start_drawing_petals(int x, int y);
 void start_drawing_lots_of_petals(int x, int y);
 SDL_Surface* princess_shaders();
-void start_death_flash(int frames);
 image_type* silhouette_of(image_type* image);
+void pause_controls(int frames);
+void manage_pause_controls(void);
+SDL_Surface* make_greenscreen_transparent(SDL_Surface* surface);

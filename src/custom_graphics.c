@@ -131,7 +131,20 @@ void manage_pause_controls() {
 	if (pause_timer <= 0) {
 		controls_paused = false;
 	} else {
+		control_forward = CONTROL_RELEASED;
 		pause_timer--;
 	}
 }
 
+void draw_background(SDL_Surface* surface) {
+	draw_rect_rgb_to(surface, &rect_top, bg_colour);
+}
+
+image_type* make_greenscreen_transparent(image_type* image) {
+        SDL_Surface* modified_image = SDL_ConvertSurfaceFormat(image, SDL_PIXELFORMAT_ARGB8888, 0);
+        if (SDL_SetColorKey(modified_image, SDL_TRUE, 0xFF00FF00) != 0) {
+                sdlperror("make_greenscreen_transparent: SDL_SetColorKey");
+                quit(1);
+        }
+	return modified_image;
+}

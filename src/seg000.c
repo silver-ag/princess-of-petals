@@ -1844,6 +1844,11 @@ void read_keyb_control() {
 	}
 	#endif
 
+	if (controls_paused) { //test
+		control_x = CONTROL_RELEASED;
+		control_y = CONTROL_RELEASED;
+		control_shift = CONTROL_RELEASED;
+	}
 }
 
 // We need a version of showmessage() which can detect modifier keys as well, in case someone wants to configure such a key for controls.
