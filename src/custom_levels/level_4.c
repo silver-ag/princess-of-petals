@@ -65,7 +65,7 @@ void make_level_4(custom_level_data* level) {
 	level->doorlinks_tiles[1] = 16;
 
 	// room 7: hall roof 2
-        memcpy(level->rooms[6].fg, (byte[]){ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        memcpy(level->rooms[6].fg, (byte[]){ 0, 0, 0, 0, 0, 0,12, 0, 0, 0,
                                              0, 0, 0, 0, 1, 1, 4, 1, 1, 0,
                                              1, 1, 1,11, 3,20,20,20, 3, 1}, 30);
         memcpy(level->rooms[6].bg, (byte[]){ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,

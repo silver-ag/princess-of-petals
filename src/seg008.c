@@ -34,12 +34,12 @@ const piece tile_table[32] = {
 {  46,   1,   0,  47,   1,   2,   0,  48,  43,  49,   3,   0,   0,   0}, // 0x04 door
 {  41,   1,   1,  35,   1,   3, 149,   0,  36,   0,   0,   0,   0,   0}, // 0x05 stuck floor
 {  41,   1,   0,  42,   1,   2, 149,   0,  96,   0,   0,   0,   0,   0}, // 0x06 close button
-{  46,   1,   0,   0,   0,   2,   0,   0,  43,  49,   3,   0,   0,   0}, // 0x07 door top with floor
+{ 184,   2,   4,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0}, // 0x07 door top left
 {  86,   1,   0,  87,   1,   2,   0,   0,  43,  88,   1,   0,   0,   0}, // 0x08 big pillar bottom
 {   0,   0,   0,  89,   0,   3,   0,  90,   0,  91,   1,   3,   0,   0}, // 0x09 big pillar top
 {  41,   1,   0,  42,   1,   2, 149,   0,  43,  12,   2,  -3,   0,   0}, // 0x0A potion
 {   0,   1,   0,   0,   0,   0, 149,   0,   0,   0,   0,   0,   0,   0}, // 0x0B loose floor
-{   0,   0,   0,   0,   0,   2,   0,   0,  85,  49,   3,   0,   0,   0}, // 0x0C door top
+{ 182,   0,   4, 183,   0,   6, 149,   0,   0,   0,   0,   0,   0,   0}, // 0x0C door top
 {  75,   1,   0,  42,   1,   2,   0,   0,  43,  77,   0,   0,   0,   0}, // 0x0D mirror
 {  97,   1,   0,  98,   1,   2, 149,   0,  43, 100,   0,   0,   0,   0}, // 0x0E debris
 { 147,   1,   0,  42,   1,   1, 149,   0, 149,   0,   0,   0,   0,   0}, // 0x0F open button
@@ -53,7 +53,7 @@ const piece tile_table[32] = {
 {  30,   1,   0, 152,   1,   2,   0,   0,  43,   0,   0,   0,   0,  48}, // 0x15 skeleton CHANGED to rose gate wing left
 {  41,   1,   0,  42,   1,   2, 149,   0,  43,   0,   0,   0,   0,   0}, // 0x16 sword
 //{  41,   1,   0,  10,   0,   0,   0,  11,  43,   0,   0,   0,   0,   0}, // 0x17 balcony left
-{ 170,   1,   0,  42,   1,   2,   0,   0,  43,  49,   0,   0,   0,   0}, // 0x17 CHANGED door left
+{ 170,   1,   0,  42,   1,   2,   0,  48,  43,  49,   0,   0,  -25,   0}, // 0x17 CHANGED door left
 {   0,   0,   0,  12,   1,   2,   0,  13,  43,   0,   0,   0,   0,   0}, // 0x18 balcony right
 {  92,   1,   0,  42,   1,   2, 149,   0,  43,  95,   1,   0,   0,   0}, // 0x19 lattice pillar
 {   1,   0,   0,   0,   0,   0,   0,   0,   2,   9,   0, -53,   0,   0}, // 0x1A lattice down
@@ -497,7 +497,7 @@ void draw_tile_anim_topright() {
 	) {
 		int x_offset = 0;
 		if (row_below_left_[drawn_col].tiletype == tiles_23_left_gate) {
-			x_offset = -24;
+			x_offset = -25;
 		}
 		add_backtable(id_chtab_6_environment, 68 /*gate top mask*/, draw_xh, x_offset, draw_bottom_y, /*blitters_40h_mono*/blitters_11_mono_bg, 0);
 		word modifier = row_below_left_[drawn_col].modifier;
@@ -559,11 +559,11 @@ void draw_tile_right() {
 			if (num == !!custom->tbl_level_type[current_level]) return;
 			add_backtable(id_chtab_6_environment, blueline_fram3[num], draw_xh, 0, draw_main_y - 20, blitters_2_or, 0);
 			break;
-		case tiles_7_doortop_with_floor:
-		case tiles_12_doortop:
-			if (custom->tbl_level_type[current_level] == 0) return;
-			add_backtable(id_chtab_6_environment, doortop_fram_bot[modifier_left], draw_xh, 0, tile_table[tile_left].right_y + draw_main_y, blitters_2_or, 0);
-			break;
+		//case tiles_7_doortop_with_floor:
+		//case tiles_12_doortop: //test
+		//	if (custom->tbl_level_type[current_level] == 0) return;
+		//	add_backtable(id_chtab_6_environment, doortop_fram_bot[modifier_left], draw_xh, 0, tile_table[tile_left].right_y + draw_main_y, blitters_2_or, 0);
+		//	break;
 		case tiles_20_wall:
 			if (custom->tbl_level_type[current_level] && (modifier_left & 0x80) == 0) {
 				add_backtable(id_chtab_6_environment, 84 /*wall stripe*/, draw_xh + 3, 0, draw_main_y - 27, blitters_0_no_transp_tile, 0);
@@ -1266,9 +1266,10 @@ void draw_gate_back() {
 	if (gate_frame > 0 && gate_frame < 9) {
 		add_backtable(id_chtab_6_environment, door_fram_slice[gate_frame], draw_xh, 0, ybottom, blitters_10h_transp, 0);
 	}
+
 }
 void draw_left_gate_back() {
-	int x_offset = 8;//-24
+	int x_offset = 7;//-24
 	add_wipetable(0, (draw_xh*8)+x_offset, draw_bottom_y, 63, 4*8, 0);
 	calc_left_gate_pos();
 	if (gate_bottom_y + 12 < draw_main_y) {
@@ -1316,7 +1317,7 @@ void draw_gate_fore() {
 	}
 }
 void draw_left_gate_fore() {
-	int x_offset = 8;
+	int x_offset = 7;
 	calc_left_gate_pos();
 	add_foretable(id_chtab_6_environment, 51 /*gate bottom*/, draw_xh, x_offset, gate_bottom_y - 2, blitters_10h_transp, 0);
 	short ybottom = gate_bottom_y - 12;

@@ -9,16 +9,16 @@ void make_level_3_duel(custom_level_data* level) {
 	level->rose_colour = (rgb_type){216,130,57};
 	// room 1: stairs base
 	memcpy(level->rooms[0].fg, (byte[]){  0, 0, 0, 0, 1, 3, 0, 0, 0,20,
-						        0, 0, 0, 1, 3, 0, 0, 0, 0,20,
-						        1, 1, 1, 3, 1, 1, 1, 1, 1,20}, 30);
+					      0, 0, 0, 1, 3, 0, 0, 0, 0,20,
+					      1, 1, 1, 3, 1, 1, 1, 1, 1,20}, 30);
 	level->rooms[0].links.left = 4;
 	level->rooms[0].links.right = 7;
 	level->rooms[0].links.up = 2;
 
 	// room 2: stairs top
-	memcpy(level->rooms[1].fg, (byte[]){  0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-						        0, 0, 0, 0, 0, 0, 1,31, 4, 1,
-						        0, 0, 0, 0, 0, 1, 3, 0, 0,20}, 30);
+	memcpy(level->rooms[1].fg, (byte[]){  0, 0, 0, 0, 0, 0, 0, 0,12, 0,
+					      0, 0, 0, 0, 0, 0, 1,31, 4, 1,
+					      0, 0, 0, 0, 0, 1, 3, 0, 0,20}, 30);
 	memcpy(level->rooms[1].bg, (byte[]){  0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 						        0, 0, 0, 0, 0, 0, 0, 1, 0, 0,
 						        0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 30);
@@ -32,9 +32,9 @@ void make_level_3_duel(custom_level_data* level) {
 	level->rooms[1].links.up = 7;
 
 	// room 3: arena
-	memcpy(level->rooms[2].fg, (byte[]){  0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-						        1, 1, 1, 1, 1, 1, 1, 1, 4, 1,
-						       20,20,20,20,20,20,20,20,20,20}, 30);
+	memcpy(level->rooms[2].fg, (byte[]){  0, 0, 0, 0, 0, 0, 0, 0,12, 0,
+					      1, 1, 1, 1, 1, 1, 1, 1, 4, 1,
+					      20,20,20,20,20,20,20,20,20,20}, 30);
 	level->doorlinks_rooms[2] = 3;
 	level->doorlinks_tiles[2] = 18;
 	level->doorlinks_timers[2] = 0;
@@ -48,9 +48,9 @@ void make_level_3_duel(custom_level_data* level) {
 
 	// room 4: pre-entry
 	// just for the gate visible from at the edge of room 1
-	memcpy(level->rooms[3].fg, (byte[]){  0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-						        0, 0, 0, 0, 0, 0, 0, 0, 0,20,
-						        0, 0, 0, 0, 0, 0, 0, 0, 0, 4}, 30);
+	memcpy(level->rooms[3].fg, (byte[]){  0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+					      0, 0, 0, 0, 0, 0, 0, 0, 0,12,
+					      0, 0, 0, 0, 0, 0, 0, 0, 0, 4}, 30);
 	memcpy(level->rooms[3].bg, (byte[]){  0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 					      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 					      0, 0, 0, 0, 0, 0, 0, 0, 0,255}, 30);

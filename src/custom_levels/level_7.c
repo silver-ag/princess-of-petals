@@ -56,7 +56,7 @@ void make_level_7(custom_level_data* level) {
 	level->doorlinks_tiles[5] = 26;
 
 	// room 5: floor 2 right
-        memcpy(level->rooms[4].fg, (byte[]){11,11,11, 3, 1, 1, 1,11, 4, 0,
+        memcpy(level->rooms[4].fg, (byte[]){11,11,11, 3, 1, 1, 1,11,20, 0,
                                              0, 0, 0, 9,23,11,11, 1, 3, 0,
                                              1, 1, 1, 8, 3, 1, 1, 1, 3, 0}, 30);
 	level->rooms[4].links.left = 6;
@@ -96,7 +96,7 @@ void make_level_7(custom_level_data* level) {
 	level->doorlinks_tiles[6] = 13;
 
 	// room 9: floor 4 right
-        memcpy(level->rooms[8].fg, (byte[]){ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        memcpy(level->rooms[8].fg, (byte[]){ 0, 0, 0, 0, 0, 0, 0, 0,12, 0,
                                              1, 1, 1, 1, 1, 1, 1, 1, 4, 0,
                                              1, 1, 1,20, 1,15, 1, 1, 3, 0}, 30);
         memcpy(level->rooms[8].bg, (byte[]){ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -108,7 +108,7 @@ void make_level_7(custom_level_data* level) {
 	level->doorlinks_tiles[9] = 11;
 
 	// room 10: floor 4 left
-        memcpy(level->rooms[9].fg, (byte[]){ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        memcpy(level->rooms[9].fg, (byte[]){ 0, 7, 0, 0, 0, 0, 0, 0, 0, 0,
                                              0,23,21,16,17,30, 1, 1, 1, 1,
                                              0, 3, 1, 1,15, 1,20, 1, 1, 1}, 30);
         memcpy(level->rooms[9].bg, (byte[]){ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
