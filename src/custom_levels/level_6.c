@@ -5,6 +5,7 @@ void make_level_6(custom_level_data* level) {
         level->start_room = 1;
         level->start_pos =  25;
         level->bg_colour = (rgb_type){255,40,140};
+	level->rose_colour = (rgb_type){90,61,109};
 
 	// room 1: cell
         memcpy(level->rooms[0].fg, (byte[]){ 3, 3, 1,15, 1, 1, 6, 1, 3, 3,

@@ -1,3 +1,4 @@
+
 /*
 SDLPoP, a port/conversion of the DOS game Prince of Persia.
 Copyright (C) 2013-2025  Dávid Nagy
@@ -861,6 +862,9 @@ image_type* get_image(short chtab_id, int id) {
 		if (id != 255) printf("Tried to use image %d of chtab %d, not in 0..%d\n", id, chtab_id, chtab->n_images-1);
 		return NULL;
 	}
+
+	image_type* return_image = chtab->images[id];
+
 	// construct leveldoor image
 	if (id == 164 && chtab_id == id_chtab_6_environment) { // image 165, rose gate
 		image_type* rose_gate_door_surface = SDL_CreateRGBSurface(0, 43, 54, 32, Rmsk, Gmsk, Bmsk, Amsk);
@@ -872,17 +876,22 @@ image_type* get_image(short chtab_id, int id) {
 		method_1_blit_rect(rose_gate_door_surface, chtab->images[162], &(rect_type){0,0,54,43}, &(rect_type){0,height/1.5,62,43+height/1.5}, blitters_10h_transp);
 		method_1_blit_rect(rose_gate_door_surface, chtab->images[163], &(rect_type){0,0,54,43}, &(rect_type){0,-(height/1.5),62,43-(height/1.5)}, blitters_10h_transp);
 		method_1_blit_rect(rose_gate_door_surface, chtab->images[164], &(rect_type){0,0,54,43}, &(rect_type){height,0,62+height,43}, blitters_10h_transp);
-		if (silhouette_mode || shadow_world) {
-			return silhouette_of(rose_gate_door_surface);
-		} else {
-			return rose_gate_door_surface;
-		}
+
+		return_image = rose_gate_door_surface;
+	} else if (id == 91 || id == 92 || id == 94) { // colour in roses
+		rect_type rect = {0,0,chtab->images[id]->h,chtab->images[id]->w};
+		image_type* pillar_surface = SDL_CreateRGBSurface(0, chtab->images[id]->w, chtab->images[id]->h, 32, Rmsk, Gmsk, Bmsk, Amsk);
+		SDL_SetColorKey(chtab->images[id], SDL_FALSE, 0xFF00FF00);
+		method_1_blit_rect(pillar_surface, silhouette_of(chtab->images[id], rose_colour), &rect, &rect, blitters_10h_transp);
+		SDL_SetColorKey(chtab->images[id], SDL_TRUE, 0xFF00FF00);
+		method_1_blit_rect(pillar_surface, chtab->images[id], &rect, &rect, blitters_10h_transp);
+		return_image = pillar_surface;
 	}
 
 	if (((!shadow_world) && silhouette_mode) || (shadow_world && chtab_id != id_chtab_2_kid && chtab_id != id_chtab_10_shadow && chtab_id != id_chtab_5_guard)) {
-		return silhouette_of(chtab->images[id]);
+		return silhouette_of(return_image, (rgb_type){0,0,0});
 	} else {
-		return chtab->images[id];
+		return return_image;
 	}
 }
 

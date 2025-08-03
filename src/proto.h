@@ -758,7 +758,7 @@ void draw_petals(SDL_Surface* sfc);
 void start_drawing_petals(int x, int y);
 void start_drawing_lots_of_petals(int x, int y);
 SDL_Surface* princess_shaders();
-image_type* silhouette_of(image_type* image);
+image_type* silhouette_of(image_type* image, rgb_type colour);
 void pause_controls(int frames);
 void manage_pause_controls(void);
 SDL_Surface* make_greenscreen_transparent(SDL_Surface* surface);

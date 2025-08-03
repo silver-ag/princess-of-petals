@@ -86,7 +86,7 @@ void draw_petals(SDL_Surface* sfc) {
 	}
 }
 
-image_type* silhouette_of(image_type* image) {
+image_type* silhouette_of(image_type* image, rgb_type colour) {
 	if (image == NULL) {
 		return SDL_CreateRGBSurface(0,1,1,32,Rmsk,Gmsk,Bmsk,Amsk);
 	}
@@ -104,7 +104,7 @@ image_type* silhouette_of(image_type* image) {
                 sdlperror("silhouette_of_mono: SDL_LockSurface");
                 quit(1);
         }
-	uint32_t rgb_colour = SDL_MapRGB(coloured_image->format, 0, 0, 0) & 0xFFFFFF;
+	uint32_t rgb_colour = SDL_MapRGB(coloured_image->format, colour.r, colour.g, colour.b) & 0xFFFFFF;
         int stride = coloured_image->pitch;
         for (int y = 0; y < h; ++y) {
                 uint32_t* pixel_ptr = (uint32_t*) ((byte*)coloured_image->pixels + stride * y);

@@ -34,6 +34,7 @@ The authors of this program may be contacted at https://forum.princed.org
 // princess of petals
 
 extern rgb_type bg_colour;
+extern rgb_type rose_colour;
 extern rgb_type stored_colour; // for flashing
 extern int death_flash_frames;
 extern bool drawing_petals;

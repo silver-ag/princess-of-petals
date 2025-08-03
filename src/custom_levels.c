@@ -26,7 +26,6 @@ void initialise_custom_levels() {
 	// set some defaults
 	for (int level = 0; level < NUM_LEVELS; level++) {
 		custom_levels[level].start_room = 1; // 1-indexed
-		custom_levels[level].bg_colour = (rgb_type){100,100,255};
 		for (int room = 0; room < 24; room++) {
 			custom_levels[level].rooms[room].guard_tile = -1; // no guard
 		}
@@ -106,6 +105,7 @@ void load_custom_level(int n, level_type* level_ref) {
 	level_ref->start_pos = level_data.start_pos;
 	level_ref->start_dir = level_data.start_dir;
 	bg_colour = level_data.bg_colour;
+	rose_colour = level_data.rose_colour;
 }
 
 int loose_tiles[13] = {0,2,3,4,5,6,7,12,14,15,17};

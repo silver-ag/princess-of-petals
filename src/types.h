@@ -299,6 +299,7 @@ typedef struct custom_level_data {
         byte start_pos;
         byte start_dir;
         rgb_type bg_colour;
+        rgb_type rose_colour;
 } custom_level_data;
 
 #pragma pack(pop)
