@@ -13,4 +13,4 @@ one goes behind him. this allows you to climb down one of the holes behind you, 
 
 add spinning rose frame at start of each duel (also allow for sword drawing intro)
 
-should mouse be replaced with chuchu?
+add nice edge rooms to each level

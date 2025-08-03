@@ -5,7 +5,7 @@ void make_level_2(custom_level_data* level) {
 	level->start_room = 1;
 	level->start_pos =  24;
 	level->bg_colour = (rgb_type){100,80,255};
-	level->rose_colour = (rgb_type){68,133,213};
+	level->rose_colour = (rgb_type){11,70,150};
 	// room 1
 	memcpy(level->rooms[0].fg, (byte[]){  0, 0, 0, 3, 0, 0, 3, 0, 0, 0,
 					      0, 0, 0, 3, 0, 0, 3, 0, 0, 0,

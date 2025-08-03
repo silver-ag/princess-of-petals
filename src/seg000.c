@@ -1844,7 +1844,7 @@ void read_keyb_control() {
 	}
 	#endif
 
-	if (controls_paused) { //test
+	if (controls_paused) {
 		control_x = CONTROL_RELEASED;
 		control_y = CONTROL_RELEASED;
 		control_shift = CONTROL_RELEASED;

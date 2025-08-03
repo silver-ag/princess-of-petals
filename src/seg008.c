@@ -1698,7 +1698,6 @@ void draw_tile2() {
 
 // seg008:1F67
 void draw_objtable_items_at_tile(byte tilepos) {
-	//printf("draw_objtable_items_at_tile(%d)\n",tilepos); // debug
 	short obj_count = objtable_count;
 	if (obj_count) {
 		n_curr_objs = 0;
@@ -1752,6 +1751,8 @@ int compare_curr_objs(int index1,int index2) {
 	return 1;
 }
 
+int flash_mod = 0;
+
 // seg008:20CA
 void draw_objtable_item(int index) {
 	switch (load_obj_from_objtable(index)) {
@@ -1766,6 +1767,10 @@ void draw_objtable_item(int index) {
 		case 3: // sword
 		case 5: // hurt splash
 			add_midtable(obj_chtab, obj_id + 1, obj_xh, obj_xl, obj_y, blitters_10h_transp, 1);
+		break;
+		case 6: // flashing sword
+			flash_mod = (flash_mod + 1) % 3;
+			add_midtable(obj_chtab, obj_id + 1, obj_xh, obj_xl, obj_y, 0x40 + 13 + flash_mod, 1);//test
 		break;
 		case 1: // shadow
 		shadow:
@@ -1883,6 +1888,9 @@ void add_objtable(byte obj_type) {
 	}
 	objtable_type* entry_addr = &objtable[index];
 	entry_addr->obj_type = obj_type;
+	if (obj_type == 3 && Char.charid == charid_2_guard && current_level == 14) {
+		entry_addr->obj_type = 6; // test: flashing sword
+	}
 	x_to_xh_and_xl(obj_x, &entry_addr->xh, &entry_addr->xl);
 	entry_addr->y = obj_y;
 	entry_addr->clip.top = obj_clip_top;

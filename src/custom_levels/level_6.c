@@ -122,7 +122,7 @@ void make_level_6(custom_level_data* level) {
         memcpy(level->rooms[10].fg, (byte[]){ 0, 0, 0, 0, 0, 0, 0, 3, 1,20,
                                               1, 1, 1, 1, 1, 0, 0, 3, 1,20,
                                               0, 0, 0, 0, 0, 0, 0, 3, 1,20}, 30);
-	level->rooms[10].links.down = 8;
+	level->rooms[10].links.down = 7;
 	level->rooms[10].links.left = 10;
 
 }

@@ -217,7 +217,7 @@ void find_start_level_door() {
 // seg003:0326
 void draw_level_first() {
 	// princess duels slam door
-	if (current_level % 2 == 0) { //test
+	if (current_level % 2 == 0) {
 		do_trigger_list(3, tiles_6_closer);
 	}
 	next_room = Kid.room;
@@ -267,7 +267,7 @@ void redraw_screen(int drawing_different_room) {
 			}
 		}
 		// princess duels pause at start
-		if (current_level % 2 == 0 && drawn_room == 3) {
+		if (current_level % 2 == 0 && current_level != 14 && drawn_room == 3) {
 			pause_controls(20);
 		}
 	}
@@ -310,11 +310,6 @@ void redraw_screen(int drawing_different_room) {
 		memset(table_counts, 0, sizeof(table_counts));
 		draw_moving();
 		draw_tables();
-	// show shrine message
-        if (next_room == 3 && current_level == 5) {
-        	//showmessage("remember the prophet of trash!", 1, &key_test_quit);
-                show_text_with_color(&(rect_type){20,20,100,100}, halign_center, valign_middle, "remember the prophet of trash!", color_15_brightwhite);
-        }
 		if (is_keyboard_mode) {
 			clear_kbd_buf();
 		}

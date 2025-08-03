@@ -124,14 +124,12 @@ void pause_controls(int frames) {
 	// for in-game cutscenes at the start of duels
 	pause_timer = frames;
 	controls_paused = true;
-	control_forward = CONTROL_RELEASED;
 }
 
 void manage_pause_controls() {
 	if (pause_timer <= 0) {
 		controls_paused = false;
 	} else {
-		control_forward = CONTROL_RELEASED;
 		pause_timer--;
 	}
 }
