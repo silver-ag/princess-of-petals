@@ -18,6 +18,8 @@ void start_death_flash(int frames) {
 	death_flash_frames = frames;
 }
 
+int room_change_counter = 0;
+
 void manage_death_flash() {
 	if (death_flash_frames > 1 || (Kid.alive < 0 && death_flash_frames == 1)) { // final frame only resets if kid is alive
 		death_flash_frames--;
@@ -28,7 +30,9 @@ void manage_death_flash() {
 			bg_colour = stored_colour;
 			silhouette_mode = false;
 		}
-		need_full_redraw = 1;
+		if (death_flash_frames == 0) {
+			need_full_redraw = 1;
+		}
 	}
 }
 
@@ -145,4 +149,29 @@ image_type* make_greenscreen_transparent(image_type* image) {
                 quit(1);
         }
 	return modified_image;
+}
+
+int smoke_tick = 0;
+
+void manage_smoke_cloud() {
+	smoke_tick = (smoke_tick + 1) % 8;
+	if (draw_smoke && smoke_tick==0) {
+		smoke_cloud_base = chtab_title50->images[5];
+		int motion_x_a = prandom(1);
+		int motion_x_b = prandom(20) - 9;
+		SDL_FreeSurface(smoke_cloud_helper_surface);
+		smoke_cloud_helper_surface = SDL_CreateRGBSurface(0,320,200,32,Rmsk,Gmsk,Bmsk,Amsk);
+		SDL_SetSurfaceAlphaMod(smoke_cloud_helper_surface, 250);
+		if (smoke_cloud_surface == NULL) {
+			smoke_cloud_surface = SDL_CreateRGBSurface(0,320,200,32,Rmsk,Gmsk,Bmsk,Amsk);
+		}
+		SDL_SetColorKey(smoke_cloud_base, SDL_FALSE, 0);
+		SDL_SetColorKey(smoke_cloud_surface, SDL_FALSE, 0);
+		SDL_SetColorKey(smoke_cloud_helper_surface, SDL_FALSE, 0);
+		method_1_blit_rect(smoke_cloud_helper_surface, smoke_cloud_surface, &(rect_type){-1,motion_x_a,200-3,320+motion_x_a}, &(rect_type){0,0,200,320}, blitters_10h_transp);
+		method_1_blit_rect(smoke_cloud_helper_surface, smoke_cloud_base, &(rect_type){130,195+motion_x_b,smoke_cloud_base->h,smoke_cloud_base->w+motion_x_b}, &(rect_type){0,0,smoke_cloud_base->h,smoke_cloud_base->w}, blitters_10h_transp);
+		SDL_FreeSurface(smoke_cloud_surface);
+		smoke_cloud_surface = SDL_CreateRGBSurface(0,320,200,32,Rmsk,Gmsk,Bmsk,Amsk);
+		method_1_blit_rect(smoke_cloud_surface, smoke_cloud_helper_surface, &rect_top, &rect_top, blitters_10h_transp);
+	}
 }

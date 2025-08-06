@@ -2,8 +2,6 @@ when the death flash is happening, if you leave the room the camera doesn't foll
 the problem appears to be that in frames where need_full_redraw is set the game can't move to other rooms.
 it's not clear why. the processing code for need_full_redraw in seg000 puts the two on seperate branches, but it's not arbitrary, just changing that doesn't fix it.
 
-add gate topper tile
-
 johnny music in shrine (maybe my own version??)
 
 touga duel:

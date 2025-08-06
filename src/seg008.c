@@ -560,7 +560,7 @@ void draw_tile_right() {
 			add_backtable(id_chtab_6_environment, blueline_fram3[num], draw_xh, 0, draw_main_y - 20, blitters_2_or, 0);
 			break;
 		//case tiles_7_doortop_with_floor:
-		//case tiles_12_doortop: //test
+		//case tiles_12_doortop:
 		//	if (custom->tbl_level_type[current_level] == 0) return;
 		//	add_backtable(id_chtab_6_environment, doortop_fram_bot[modifier_left], draw_xh, 0, tile_table[tile_left].right_y + draw_main_y, blitters_2_or, 0);
 		//	break;
@@ -1612,6 +1612,7 @@ void draw_leveldoor() {
 	//do { // runs at least once
 	leveldoor_height = modifier_left;
 	add_backtable(id_chtab_6_environment, 165, draw_xh + 1, 0, ybottom, blitters_10h_transp, 0); // 33 special leveldoor value to be handled in get_image()
+	add_wipetable(0, (draw_xh*8), draw_bottom_y, 70, 58, 0);
 	//	if (y > leveldoor_ybottom) leveldoor_ybottom += 4;
 	//	else break;
 	//} while (true);

@@ -1294,7 +1294,7 @@ int get_line_width(const char* text,int length) {
 
 // seg009:3706
 int draw_text_character(byte character) {
-	//printf("going to do draw_text_character...\n");
+	//printf("going to do draw_text_character: %c\n", character);
 	font_type* font = textstate.ptr_font;
 	int width = 0;
 	if (character <= font->last_char && character >= font->first_char) {
@@ -2760,6 +2760,9 @@ void update_screen() {
 	SDL_SetColorKey(surface, SDL_TRUE, SDL_MapRGB(surface->format, 0, 255, 0)); // green screen
 	method_1_blit_rect(true_final_surface, surface, &screen_rect, &screen_rect, blitters_10h_transp);
 	draw_petals(true_final_surface);
+	if (draw_smoke && smoke_cloud_surface != NULL) {
+		method_1_blit_rect(true_final_surface, smoke_cloud_surface, &screen_rect, &screen_rect, blitters_10h_transp);
+	}
 
 	init_scaling();
 	if (scaling_type == 1) {
@@ -3831,10 +3834,11 @@ int do_wait(int timer_index) {
 #ifdef USE_REPLAY
 	if ((replaying && skipping_replay) || is_validate_mode) return 0;
 #endif
-	update_screen();
 	while (! has_timer_stopped(timer_index)) {
+		update_screen(); // moved to inside the loop
 		SDL_Delay(1);
 		process_events();
+		manage_smoke_cloud(); // added
 		int key = do_paused();
 		if (key != 0 && (word_1D63A != 0 || key == 0x1B)) return 1;
 	}

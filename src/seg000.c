@@ -1986,14 +1986,44 @@ void show_title() {
 	idle(); // modified
 	do_paused();
 
-	draw_full_image(TITLE_MAIN);
-	fade_in_2(offscreen_surface, 0x1000); //STUB
 	method_1_blit_rect(onscreen_surface_, offscreen_surface, &screen_rect, &screen_rect, blitters_0_no_transp);
+	draw_full_image(TITLE_MAIN);
+	draw_full_image(TITLE_TOWER);
+	method_1_blit_rect(onscreen_surface_, offscreen_surface, &screen_rect, &screen_rect, blitters_0_no_transp);
+	fade_in_2(offscreen_surface, 0x1000); //STUB
 	current_sound = sound_54_intro_music; // added
-	play_sound_from_buffer(sound_pointers[sound_54_intro_music]); // main theme
-	start_timer(timer_0, 0x82);
-	draw_full_image(TITLE_PRESENTS);
+	//play_sound_from_buffer(sound_pointers[sound_54_intro_music]); // main theme
+	start_timer(timer_0, 0x42);
 	do_wait(timer_0);
+	draw_full_image(TITLE_POP);
+	current_target_surface = onscreen_surface_;
+	transition_ltr();
+	start_timer(timer_0, 0xcc);
+	do_wait(timer_0);
+
+	// intro text
+	draw_full_image(TITLE_TEXTBOX);
+	show_text(&(rect_type){0,0,190,320}, 0, 1, "they call her nanami kiryuu.");
+	start_timer(timer_0, 0xcc);
+	do_wait(timer_0);
+	draw_full_image(TITLE_TEXTBOX);
+	show_text(&(rect_type){0,0,195,320}, 0, 1, "because there's seven things she knows,\nshe'll tell you,");
+	start_timer(timer_0, 0xcc);
+	do_wait(timer_0);
+	draw_full_image(TITLE_TEXTBOX);
+	show_text(&(rect_type){0,0,190,320}, 0, 1, "and maybe that's the truth.");
+	start_timer(timer_0, 0xcc);
+	do_wait(timer_0);
+	draw_full_image(TITLE_TEXTBOX);
+	show_text(&(rect_type){0,0,190,320}, 0, 1, "she's on a mission to find her brother,");
+	start_timer(timer_0, 0xcc);
+	do_wait(timer_0);
+	draw_full_image(TITLE_TEXTBOX);
+	show_text(&(rect_type){0,0,190,320}, 0, 1, "but she doesn't think she deserves to.");
+	start_timer(timer_0, 0xcc);
+	do_wait(timer_0);
+
+	/*release_title_images();
 
 	start_timer(timer_0, 0xCD);
 	method_1_blit_rect(onscreen_surface_, offscreen_surface, &rect_titles, &rect_titles, blitters_0_no_transp);
@@ -2003,7 +2033,7 @@ void show_title() {
 	start_timer(timer_0, 0x41);
 	method_1_blit_rect(onscreen_surface_, offscreen_surface, &rect_titles, &rect_titles, blitters_0_no_transp);
 	draw_full_image(TITLE_MAIN);
-	draw_full_image(TITLE_GAME);
+	//draw_full_image(TITLE_GAME);
 	do_wait(timer_0);
 
 	start_timer(timer_0, 0x10E);
@@ -2021,7 +2051,6 @@ void show_title() {
 	method_1_blit_rect(onscreen_surface_, offscreen_surface, &rect_titles, &rect_titles, blitters_0_no_transp);
 	draw_full_image(STORY_FRAME);
 	draw_full_image(STORY_ABSENCE);
-	current_target_surface = onscreen_surface_;
 	while (check_sound_playing()) {
 		idle();
 		do_paused();
@@ -2029,14 +2058,12 @@ void show_title() {
 	}
 //	method_1_blit_rect(onscreen_surface_, offscreen_surface, &screen_rect, &screen_rect, blitters_0_no_transp);
 	play_sound_from_buffer(sound_pointers[sound_55_story_1_absence]); // story 1: In the absence
-	transition_ltr();
 	pop_wait(timer_0, 0x258);
 	fade_out_2(0x800);
-	release_title_images();
 
 	load_intro(0, &pv_scene, 0);
-
 	load_title_images(1);
+
 	current_target_surface = offscreen_surface;
 	draw_full_image(STORY_FRAME);
 	draw_full_image(STORY_MARRY);
@@ -2067,12 +2094,12 @@ void show_title() {
 		idle();
 		do_paused();
 		delay_ticks(1);
-	}
+	}*/
 	fade_out_2(0x1800);
 	free_surface(offscreen_surface);
 	offscreen_surface = NULL; // added
 	release_title_images();
-	init_game(0);
+	init_game(1); // changed from zero, don't know why but it was crashing. maybe because we got rid of the original levels
 }
 
 Uint64 last_transition_counter;

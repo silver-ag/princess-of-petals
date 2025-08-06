@@ -582,7 +582,7 @@ void end_sequence() {
 	short i;
 	short color = 0;
 	short bgcolor = 15;
-	load_intro(1, &end_sequence_anim, 1);
+	//load_intro(1, &end_sequence_anim, 1);
 	clear_screen_and_sounds();
 	is_ending_sequence = true; // added (fix being able to pause the game during the end sequence)
 	load_opt_sounds(sound_56_ending_music, sound_56_ending_music); // winning theme
@@ -591,14 +591,42 @@ void end_sequence() {
 	offscreen_surface = make_offscreen_buffer(&screen_rect);
 	load_title_images(0);
 	current_target_surface = offscreen_surface;
-	draw_full_image(STORY_FRAME);
-	draw_full_image(STORY_HAIL);
-	fade_in_2(offscreen_surface, 0x800);
-	pop_wait(timer_0, 900);
-	start_timer(timer_0, 240);
 	draw_full_image(TITLE_MAIN);
-	transition_ltr();
+	draw_full_image(TITLE_TOWER_FALLEN);
+	fade_in_2(offscreen_surface, 0x800);
+	draw_smoke = true;
+	/*pop_wait(timer_0, 900);
+	draw_full_image(TITLE_MAIN);
+	transition_ltr();*/
+	start_timer(timer_0, 0xff);
 	do_wait(timer_0);
+	current_target_surface = onscreen_surface_;
+	draw_full_image(TITLE_TEXTBOX);
+	show_text(&(rect_type){0,0,190,320}, 0, 1, "well, in the end, that's all there was to it.");
+	start_timer(timer_0, 0xcc);
+	do_wait(timer_0);
+	draw_full_image(TITLE_TEXTBOX);
+	show_text(&(rect_type){0,0,190,320}, 0, 1, "building it up in my head like that,");
+	start_timer(timer_0, 0xcc);
+	do_wait(timer_0);
+	draw_full_image(TITLE_TEXTBOX);
+	show_text(&(rect_type){0,0,190,320}, 0, 1, "it had to be a bit of an anticlimax.");
+	start_timer(timer_0, 0xcc);
+	do_wait(timer_0);
+	draw_full_image(TITLE_TEXTBOX);
+	show_text(&(rect_type){0,0,190,320}, 0, 1, "but the funniest thing about it is,");
+	start_timer(timer_0, 0xcc);
+	do_wait(timer_0);
+	draw_full_image(TITLE_TEXTBOX);
+	show_text(&(rect_type){0,0,190,320}, 0, 1, "the further away i get from it,");
+	start_timer(timer_0, 0xcc);
+	do_wait(timer_0);
+	draw_full_image(TITLE_TEXTBOX);
+	show_text(&(rect_type){0,0,190,320}, 0, 1, "the smaller it all looks.");
+	start_timer(timer_0, 0xcc);
+	do_wait(timer_0);
+	draw_smoke = false;
+	current_target_surface = offscreen_surface;
 	for (hof_index = 0; hof_index < hof_count; ++hof_index) {
 		if (hof[hof_index].min < rem_min ||
 			(hof[hof_index].min == rem_min && hof[hof_index].tick < rem_tick)
@@ -615,6 +643,9 @@ void end_sequence() {
 		if (hof_count < MAX_HOF_COUNT) {
 			++hof_count;
 		}
+		draw_full_image(STORY_FRAME);
+		draw_full_image(HOF_POP);
+		draw_rect_rgb_to(current_target_surface,&screen_rect,(rgb_type){255,255,181});
 		draw_full_image(STORY_FRAME);
 		draw_full_image(HOF_POP);
 		show_hof();

@@ -44,6 +44,10 @@ extern int shadow_appeared_in;
 extern bool chtabs_swapped INIT(=false); // keep track of whether the kid and shadow chtabs have been swapped round for level 5
 extern int mouse_appeared_in;
 extern bool controls_paused INIT(=false);
+extern SDL_Surface* smoke_cloud_surface;
+extern SDL_Surface* smoke_cloud_helper_surface;
+extern SDL_Surface* smoke_cloud_base;
+extern bool draw_smoke;
 
 // data:5F8A
 extern word text_time_remaining;
@@ -898,23 +902,23 @@ extern full_image_type full_image[MAX_FULL_IMAGES] INIT(= {
         [TITLE_MAIN] =     { .id = 0, .chtab = &chtab_title50,
                              .blitter = blitters_0_no_transp,
                              .xpos = 0, .ypos = 0 },
-        [TITLE_PRESENTS] = { .id = 1, .chtab = &chtab_title50,
-                             .blitter = blitters_0_no_transp,
-                             .xpos = 96, .ypos = 106 },
-        [TITLE_GAME] =     { .id = 2, .chtab = &chtab_title50,
-                             .blitter = blitters_0_no_transp,
-                             .xpos = 96, .ypos = 122 },
+        [TITLE_TOWER_FALLEN] = { .id = 1, .chtab = &chtab_title50,
+                             .blitter = blitters_10h_transp,
+                             .xpos = 150, .ypos = 69 },
+        [TITLE_TOWER] =     { .id = 2, .chtab = &chtab_title50,
+                             .blitter = blitters_10h_transp,
+                             .xpos = 150, .ypos = 50 },
         [TITLE_POP] =      { .id = 3, .chtab = &chtab_title50,
                              .blitter = blitters_10h_transp,
-                             .xpos = 24, .ypos = 107 },
-        [TITLE_MECHNER] =  { .id = 4, .chtab = &chtab_title50,
+                             .xpos = 39, .ypos = 20 },
+        [TITLE_TEXTBOX] =  { .id = 4, .chtab = &chtab_title50,
                              .blitter = blitters_0_no_transp,
-                             .xpos = 48, .ypos = 184 },
+                             .xpos = 0, .ypos = 170 },
         [HOF_POP] =        { .id = 3, .chtab = &chtab_title50,
                              .blitter = blitters_10h_transp,
-                             .xpos = 24, .ypos = 24 },
+                             .xpos = 39, .ypos = 34 },
         [STORY_FRAME] =    { .id = 0, .chtab = &chtab_title40,
-                             .blitter = blitters_0_no_transp,
+                             .blitter = blitters_10h_transp,
                              .xpos = 0, .ypos = 0 },
         [STORY_ABSENCE] =  { .id = 1, .chtab = &chtab_title40,
                              .blitter = blitters_white,
