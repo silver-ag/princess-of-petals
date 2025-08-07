@@ -220,6 +220,7 @@ void draw_level_first() {
 	if (current_level % 2 == 0) {
 		do_trigger_list(3, tiles_6_closer);
 	}
+
 	next_room = Kid.room;
 	check_the_end();
 	if (custom->tbl_level_type[current_level]) {
@@ -270,6 +271,10 @@ void redraw_screen(int drawing_different_room) {
 		if (current_level % 2 == 0 && current_level != 14 && drawn_room == 3) {
 			pause_controls(20);
 		}
+		if (current_level == 14 && drawn_room == 3) {
+			start_face_turn();
+		}
+
 	}
 
 	different_room = 0;

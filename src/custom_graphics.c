@@ -11,6 +11,7 @@ petal_t petals[50];
 void manage_custom_graphics() {
 	manage_death_flash();
 	manage_pause_controls();
+	manage_face_turn();
 }
 
 void start_death_flash(int frames) {
@@ -138,8 +139,30 @@ void manage_pause_controls() {
 	}
 }
 
+int touga_face_turn = 0;
+int touga_face_turn_counter = 0;
+
 void draw_background(SDL_Surface* surface) {
-	draw_rect_rgb_to(surface, &rect_top, bg_colour);
+	if (current_level == 14 && drawn_room < 6) {
+		method_1_blit_rect(surface, get_image(id_chtab_6_environment, 184 + touga_face_turn), &rect_top, &rect_top, blitters_0_no_transp);
+	} else {
+		draw_rect_rgb_to(surface, &rect_top, bg_colour);
+	}
+}
+
+void start_face_turn() {
+	touga_face_turn = 1;
+}
+
+void manage_face_turn() {
+	if (touga_face_turn > 0 && touga_face_turn < 4) {
+		if (touga_face_turn_counter < 3) {
+			touga_face_turn_counter++;
+		} else {
+			touga_face_turn_counter = 0;
+			touga_face_turn++;
+		}
+	}
 }
 
 image_type* make_greenscreen_transparent(image_type* image) {

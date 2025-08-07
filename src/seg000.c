@@ -1300,9 +1300,6 @@ void check_the_end() {
 			drawing_petals = false;
 			++next_level;
 		}
-		if (current_level == 14 && drawn_room == 9) {
-			end_sequence();
-		}
 		different_room = 1;
 		loadkid();
 		anim_tile_modif();
