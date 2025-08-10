@@ -10,9 +10,6 @@ void make_level_2(custom_level_data* level) {
 	memcpy(level->rooms[0].fg, (byte[]){  0, 0, 0, 3, 0, 0, 3, 0, 0, 0,
 					      0, 0, 0, 3, 0, 0, 3, 0, 0, 0,
 					      1, 1, 1, 3, 1, 1, 3, 1, 1, 1}, 30);
-	memcpy(level->rooms[0].bg, (byte[]){  0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-					      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-					      0, 0, 3, 0, 0, 0, 0, 0, 0, 0}, 30);
 	level->rooms[0].links.up = 2;
 	level->rooms[0].links.left = 10;
 	level->rooms[0].links.right = 11;
@@ -20,7 +17,7 @@ void make_level_2(custom_level_data* level) {
 	// room 2
 	memcpy(level->rooms[1].fg, (byte[]){  4, 0, 0, 3, 1, 1, 3, 0, 0,23,
 					      4, 0, 0, 3, 1,11, 3, 0, 0,23,
-					      4, 0, 0, 3, 1, 1, 3, 0, 0,23}, 30);
+					      4, 1, 1, 3, 0, 0, 3, 1, 1,23}, 30);
 	memcpy(level->rooms[1].bg, (byte[]){  0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 					    255, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 					      0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 30);

@@ -911,7 +911,7 @@ void play_frame() {
 			seamless = 1;
 		}
 	}*/
-	if (current_level == 14 && drawn_room == 6 && (! touga_entered) && Kid.curr_col == 3) {
+	if (current_level == 14 && drawn_room == 6 && (! touga_entered) && Kid.curr_col == 2) {
 		do_touga_enter();
 	}
 	show_time();

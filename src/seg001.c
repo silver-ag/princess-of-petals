@@ -68,7 +68,7 @@ int proc_cutscene_frame(int wait_frames) {
 	do {
 		set_timer_length(timer_0, cutscene_frame_time);
 		play_both_seq();
-		draw_proom_drects(); // changed order of drects and flash
+		//draw_proom_drects(); // changed order of drects and flash
 		if (flash_time) {
 			if (flash_time % 4) {
 				--flash_time;
@@ -401,6 +401,13 @@ void cutscene_12() {
 }
 
 // seg001:0584
+void cutscene_1() {
+	if (fade_in_1()) return;
+	if (proc_cutscene_frame(26)) return;
+	fade_out_1();
+};
+void cutscene_2() {};
+void cutscene_3() {};
 void cutscene_4() {
 	play_sound(sound_27_cutscene_2_4_6_12); // cutscene 2, 4, 6, 12
 	set_hourglass_state(hourglass_frame());
@@ -410,6 +417,8 @@ void cutscene_4() {
 	if (proc_cutscene_frame(26)) return;
 	fade_out_1();
 }
+void cutscene_5() {};
+void cutscene_6() {};
 
 // seg001:05B8
 void cutscene_2_6() {
@@ -698,22 +707,22 @@ void load_intro(int which_imgs,cutscene_ptr_type func,int free_sounds) {
 	}
 	free_all_chtabs_from(id_chtab_3_princessinstory);
 	load_chtab_from_file(id_chtab_8_princessroom, 950, "PV.DAT", 1<<13);
-	load_chtab_from_file(id_chtab_9_princessbed, 980, "PV.DAT", 1<<14);
+	//load_chtab_from_file(id_chtab_9_princessbed, 980, "PV.DAT", 1<<14);
 	current_target_surface = offscreen_surface;
 	method_6_blit_img_to_scr(get_image(id_chtab_8_princessroom, 0), 0, 0, 0);
-	method_6_blit_img_to_scr(get_image(id_chtab_9_princessbed, 0), 0, 142, blitters_2_or);
+	//method_6_blit_img_to_scr(get_image(id_chtab_9_princessbed, 0), 0, 142, blitters_2_or);
 
 	// Free the images that are not needed anymore.
-	free_all_chtabs_from(id_chtab_9_princessbed);
+	//free_all_chtabs_from(id_chtab_9_princessbed);
 	SDL_FreeSurface(get_image(id_chtab_8_princessroom, 0));
 	if (NULL != chtab_addrs[id_chtab_8_princessroom]) chtab_addrs[id_chtab_8_princessroom]->images[0] = NULL;
 
 	load_chtab_from_file(id_chtab_3_princessinstory, 800, "PV.DAT", 1<<9);
 	load_chtab_from_file(id_chtab_4_jaffarinstory_princessincutscenes,
 	                     50*which_imgs + 850, "PV.DAT", 1<<10);
-	for (short current_star = 0; current_star < N_STARS; ++current_star) {
-		draw_star(current_star, 0);
-	}
+	//for (short current_star = 0; current_star < N_STARS; ++current_star) {
+	//	draw_star(current_star, 0);
+	//}
 	current_target_surface = onscreen_surface_;
 	while (check_sound_playing()) {
 		idle();
