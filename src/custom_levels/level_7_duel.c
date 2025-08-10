@@ -2,8 +2,8 @@
 
 void make_level_7_duel(custom_level_data* level) {
 	level->used_rooms = 10;
-	level->start_room = 1;
-	level->start_pos = 20;
+	level->start_room = 6;
+	level->start_pos = 1;//20;
 	level->start_dir =  dir_FF_left;
 	level->bg_colour = (rgb_type){220,220,110};
 	level->rose_colour = (rgb_type){136,20,29};
@@ -80,7 +80,7 @@ void make_level_7_duel(custom_level_data* level) {
 	level->rooms[5].links.right = 9;
 	level->rooms[5].links.up = 7;
 	level->rooms[5].links.down = 7;
-	level->rooms[5].guard_tile = 6; // test
+	level->rooms[5].guard_skill = 6;
 
 
 	// room 7: sky

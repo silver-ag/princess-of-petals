@@ -281,6 +281,7 @@ typedef struct room_type {
         byte bg[30];
         link_type links;
         byte guard_tile;
+        byte guard_skill;
         // more guard info to come once we know how we're handling guards
 } room_type;
 

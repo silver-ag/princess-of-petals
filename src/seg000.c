@@ -887,29 +887,32 @@ void play_frame() {
 	exit_room();
 	check_the_end();
 	check_guard_fallout();
-	if (current_level == 0) {
+	/*if (current_level == 0) {
 		// Special event: level 0 running exit
-		if (Kid.room == /*24*/ custom->demo_end_room) {
+		if (Kid.room == custom->demo_end_room) {
 			draw_rect(&screen_rect, color_0_black);
 			start_level = -1;
 			need_quotes = 1;
 			start_game();
 		}
-	} else if(current_level == /*6*/ custom->falling_exit_level) {
+	} else if(current_level == custom->falling_exit_level) {
 		// Special event: level 6 falling exit
 		if (roomleave_result == -2) {
 			Kid.y = -1;
 			stop_sounds();
 			++next_level;
 		}
-	} else if(/*current_level == 12*/ custom->tbl_seamless_exit[current_level] >= 0) {
+	} else if(custom->tbl_seamless_exit[current_level] >= 0) {
 		// Special event: level 12 running exit
-		if (Kid.room == /*23*/ custom->tbl_seamless_exit[current_level]) {
+		if (Kid.room == custom->tbl_seamless_exit[current_level]) {
 			++next_level;
 // Sounds must be stopped, because play_level_2() checks next_level only if there are no sounds playing.
 			stop_sounds();
 			seamless = 1;
 		}
+	}*/
+	if (current_level == 14 && drawn_room == 6 && (! touga_entered) && Kid.curr_col == 3) {
+		do_touga_enter();
 	}
 	show_time();
 	// expiring doesn't count on Jaffar/princess level

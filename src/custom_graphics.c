@@ -12,6 +12,9 @@ void manage_custom_graphics() {
 	manage_death_flash();
 	manage_pause_controls();
 	manage_face_turn();
+	if (touga_entered && touga_enter_count < 100) {
+		manage_touga_enter();
+	}
 }
 
 void start_death_flash(int frames) {
@@ -151,7 +154,9 @@ void draw_background(SDL_Surface* surface) {
 }
 
 void start_face_turn() {
-	touga_face_turn = 1;
+	if (touga_face_turn == 0) {
+		touga_face_turn = 1;
+	}
 }
 
 void manage_face_turn() {
@@ -196,5 +201,16 @@ void manage_smoke_cloud() {
 		SDL_FreeSurface(smoke_cloud_surface);
 		smoke_cloud_surface = SDL_CreateRGBSurface(0,320,200,32,Rmsk,Gmsk,Bmsk,Amsk);
 		method_1_blit_rect(smoke_cloud_surface, smoke_cloud_helper_surface, &rect_top, &rect_top, blitters_10h_transp);
+	}
+}
+
+void manage_touga_enter() {
+	touga_enter_count++;
+	if (touga_enter_count == 100) {
+		level.guards_tile[5] = Kid.curr_col+2;
+		level.guards_dir[5] = dir_FF_left;
+		level.guards_skill[5] = 6;
+		pos_guards();
+		enter_guard();
 	}
 }

@@ -643,7 +643,7 @@ void move_7() {
 
 // seg002:0776
 void autocontrol_opponent() {
-	if (controls_paused) { //test
+	if (controls_paused) { // don't move
 		return;
 	}
 	move_0_nothing();

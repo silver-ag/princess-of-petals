@@ -48,6 +48,8 @@ extern SDL_Surface* smoke_cloud_surface;
 extern SDL_Surface* smoke_cloud_helper_surface;
 extern SDL_Surface* smoke_cloud_base;
 extern bool draw_smoke;
+extern bool touga_entered INIT(=false);
+extern int touga_enter_count INIT(=0);
 
 // data:5F8A
 extern word text_time_remaining;
@@ -867,19 +869,19 @@ extern custom_options_type custom_defaults INIT(= {
 		// modified:
 		.tbl_guard_type = {0, 0, 0, 0, 1, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 7},
 		// data:0EDA
-		.tbl_guard_hp = {4, 3, 3, 3, 3, 4, 5, 4, 4, 5, 5, 5, 4, 6, 3, 3},
+		.tbl_guard_hp = {3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3},
 		.tbl_cutscenes_by_index = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15},
 		.tbl_entry_pose = {0, 1, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 2, 2, 0},
 		.tbl_seamless_exit = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 23, -1, -1, -1},
 
 		// guard skills
 		.strikeprob    = { 61,100, 61, 61, 61, 40,100,220,  0, 48, 32, 48},
-		.restrikeprob  = {  0,  0,  0,  5,  5,175, 16,  8,  0,255,255,150},
+		.restrikeprob  = {  0,  0,  0, 15, 50,175, 50,  8,  0,255,255,150},
 		.blockprob     = {  0,150,150,200,200,255,200,250,  0,255,255,255},
 		.impblockprob  = {  0, 61, 61,100,100,145,100,250,  0,145,255,175},
-		.advprob       = {255,200,200,200,255,255,200,  0,  0,255,100,100},
+		.advprob       = {255,200,200,200,255,255,100,  0,  0,255,100,100},
 		.refractimer   = { 16, 16, 16, 16,  8,  8,  8,  8,  0,  8,  0,  0},
-		.extrastrength = {  0,  0,  0,  0,  1,  0,  0,  0,  0,  0,  0,  0},
+		.extrastrength = {  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0},
 
 		// shadow's starting positions
 		.init_shad_6 = {0x0F, 0x51, 0x76, 0, 0, 1, 0, 0},

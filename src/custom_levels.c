@@ -93,6 +93,7 @@ void load_custom_level(int n, level_type* level_ref) {
 		}
 		level_ref->roomlinks[room] = level_data.rooms[room].links;
 		level_ref->guards_tile[room] = level_data.rooms[room].guard_tile;
+		level_ref->guards_skill[room] = level_data.rooms[room].guard_skill;
 	}
 	for (int n = 0; n < 256; n++) {
 		level_ref->doorlinks_tiles[n] = level_data.doorlinks_tiles[n];
@@ -108,9 +109,18 @@ void load_custom_level(int n, level_type* level_ref) {
 	rose_colour = level_data.rose_colour;
 }
 
+void do_touga_enter() {
+	touga_entered = true;
+	pause_controls(115);
+	start_death_flash(100);
+	level.guards_dir[5] = dir_FF_left;//test
+}
+
 int loose_tiles[13] = {0,2,3,4,5,6,7,12,14,15,17};
 void touga_drop_tile() {
 	curr_tilepos = loose_tiles[prandom(11)];
-	curr_room_tiles[curr_tilepos] = 11;
-	make_loose_fall(1);
+	if ((curr_tilepos < Kid.curr_col-1 || curr_tilepos > Guard.curr_col+2) && curr_room_tiles[curr_tilepos] == 1) {
+		curr_room_tiles[curr_tilepos] = 11;
+		make_loose_fall(1);
+	}
 }

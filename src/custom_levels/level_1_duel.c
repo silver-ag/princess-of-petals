@@ -40,6 +40,7 @@ void make_level_1_duel(custom_level_data* level) {
 	level->rooms[2].links.up = 7;
 	level->rooms[2].links.down = 7;
 	level->rooms[2].guard_tile = 16;
+	level->rooms[2].guard_skill = 0;
 
 
 	// room 4: pre-entry

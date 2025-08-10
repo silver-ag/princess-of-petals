@@ -499,7 +499,11 @@ void draw_tile_anim_topright() {
 		if (row_below_left_[drawn_col].tiletype == tiles_23_left_gate) {
 			x_offset = -25;
 		}
-		add_backtable(id_chtab_6_environment, 68 /*gate top mask*/, draw_xh, x_offset, draw_bottom_y, /*blitters_40h_mono*/blitters_11_mono_bg, 0);
+		if (current_level == 14 && drawn_room < 6) {
+			add_backtable(id_chtab_6_environment, 68 /*gate top mask*/, draw_xh, x_offset, draw_bottom_y, blitters_4Ch_mono_12, 0); // colour blitter to match touga's hair, not the true bg_color
+		} else {
+			add_backtable(id_chtab_6_environment, 68 /*gate top mask*/, draw_xh, x_offset, draw_bottom_y, blitters_11_mono_bg, 0); // mono_bg blitter to match background
+		}
 		word modifier = row_below_left_[drawn_col].modifier;
 		if (modifier > 188) modifier = 188;
 		add_backtable(id_chtab_6_environment, door_fram_top[(modifier>>2) % 8], draw_xh, x_offset, draw_bottom_y, blitters_2_or, 0);
@@ -1138,7 +1142,6 @@ void draw_mid(int index) {
 	if (midtable_entry->peel) {
 		add_peel(round_xpos_to_byte(xpos, 0), round_xpos_to_byte(image->w/*width*/ + xpos, 1), ypos, image->h/*height*/);
 	}
-	//printf("Midtable: drawing (chtab %d, image %d) at (x=%d, y=%d)\n",chtab_id,image_id,xpos,ypos); // debug
 
 	draw_image(image, mask, xpos, ypos, blit);
 
@@ -1759,6 +1762,21 @@ int flash_mod = 0;
 void draw_objtable_item(int index) {
 	switch (load_obj_from_objtable(index)) {
 		case 0: // Kid
+			if (touga_entered && touga_enter_count < 100) {
+				if (touga_enter_count < obj_y) {
+					add_midtable(id_chtab_5_guard, 39+(touga_enter_count%3), obj_xh, obj_xl+3, touga_enter_count, blitters_10h_transp, 1);
+					add_midtable(obj_chtab, obj_id + 1, obj_xh, obj_xl, obj_y, blitters_10h_transp, 1);
+				} else if (touga_enter_count < 80) {
+					add_midtable(id_chtab_5_guard, 42+(touga_enter_count%3), obj_xh, obj_xl+5, obj_y, blitters_10h_transp, 1);
+					add_midtable(obj_chtab, 78, obj_xh, obj_xl+10, obj_y, blitters_10h_transp, 1); // 78: sword being drawn pose
+				} else {
+					add_midtable(id_chtab_5_guard, 45, obj_xh, obj_xl+40, obj_y, blitters_10h_transp, 1);
+					add_midtable(obj_chtab, obj_id + 1, obj_xh, obj_xl, obj_y, blitters_10h_transp, 1);
+				}
+			} else {
+				add_midtable(obj_chtab, obj_id + 1, obj_xh, obj_xl, obj_y, blitters_10h_transp, 1);
+			}
+			break;
 		case 4: // mirror image
 			//printf("index = %d, obj_id = %d\n", index, obj_id); // debug
 			if (obj_id == 0xFF) return;
