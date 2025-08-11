@@ -202,7 +202,7 @@ extern short peels_count;
 // data:5FF4
 extern back_table_type foretable[200];
 // data:463C
-extern back_table_type backtable[300];
+extern back_table_type backtable[400];
 // data:3D38
 extern midtable_type midtable[50];
 // data:5F1E

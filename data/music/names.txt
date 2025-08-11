@@ -1,3 +1,4 @@
+0=gatecreak
 24=regular_death
 25=find_mirror_and_find_shadow
 26=embrace

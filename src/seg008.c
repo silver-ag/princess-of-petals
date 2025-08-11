@@ -499,7 +499,7 @@ void draw_tile_anim_topright() {
 		if (row_below_left_[drawn_col].tiletype == tiles_23_left_gate) {
 			x_offset = -25;
 		}
-		if (current_level == 14 && drawn_room < 6) {
+		if (current_level == 14 && drawn_room < 6) { // gate top mask in bg colour
 			add_backtable(id_chtab_6_environment, 68 /*gate top mask*/, draw_xh, x_offset, draw_bottom_y, blitters_4Ch_mono_12, 0); // colour blitter to match touga's hair, not the true bg_color
 		} else {
 			add_backtable(id_chtab_6_environment, 68 /*gate top mask*/, draw_xh, x_offset, draw_bottom_y, blitters_11_mono_bg, 0); // mono_bg blitter to match background
@@ -905,7 +905,7 @@ int add_backtable(short chtab_id, int id, sbyte xh, sbyte xl, int ybottom, int b
 		return 0;
 	}
 	word index = backtable_count;
-	if (index >= 300) {
+	if (index >= 400) {
 		show_dialog("BackTable Overflow");
 		return 0; // added
 	}

@@ -3307,7 +3307,7 @@ image_type* method_6_blit_img_to_scr(image_type* image,int xpos,int ypos,int bli
 	}
 
 	if (blit == blitters_11_mono_bg) {
-		method_3_point_5_blit_mono_rgb(image, xpos, ypos, blitters_9_black, bg_colour);
+		method_3_point_5_blit_mono_rgb(image, xpos, ypos, blitters_9_black, (rgb_type){0,255,0}); //bg_colour);
 		return image;
 	}
 
