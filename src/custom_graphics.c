@@ -224,7 +224,7 @@ void add_princess_text(const char* text, int frames) {
 }
 
 void draw_princess_text() {
-	show_text(&(rect_type){0,0,190,320}, 0, 1, princess_text);
+	show_text(&(rect_type){0,0,184,320}, 0, 1, princess_text);
 }
 
 void manage_princess_text() {
@@ -243,9 +243,29 @@ int b_ko_animation = 0;
 
 int animation_0_standing[] = {0};
 int animation_1_squatting[] = {0, 1, 2, 3, 3, 3, 2, 1, 0, 0};
+int animation_2_pilgrim[] = {4, 4, 5, 5};
+int animation_3_priest_stand_a[] = {4};
+int animation_4_priest_hand[] = {4, 5, 6, 7};
+int animation_5_priest_stand_b[] = {7};
+int animation_6_juggle[] = {8, 9, 10};
+int animation_7_mirror_a[] = {6, 7};
+int animation_8_mirror_b[] = {8};
+int animation_9_father[] = {9};
+int animation_10_animals[] = {11, 12, 13, 14};
+int animation_11_bite[] = {15};
+int animation_12_bitten[] = {16};
+int animation_13_throw_snake[] = {17, 18, 19, 20, 21, 22};
+int animation_14_thrown_snake[] = {22};
+int animation_15_father_turn[] = {9, 10, 11, 12};
+int animation_16_father_turned[] = {12};
+int animation_17_wedding_a_stand[] = {13};
+int animation_18_wedding_b_stand[] = {23};
+int animation_19_wedding_a[] = {13, 14, 15, 16, 16, 16, 15, 14, 13, 13};
+int animation_20_wedding_b[] = {23, 24, 25, 26, 26, 26, 25, 24, 23, 23};
 
-int* animations[] = {animation_0_standing, animation_1_squatting};
-int animation_lengths[] = {1, 10}; // silly, i know
+
+int* animations[] = {animation_0_standing, animation_1_squatting, animation_2_pilgrim, animation_3_priest_stand_a, animation_4_priest_hand, animation_5_priest_stand_b, animation_6_juggle, animation_7_mirror_a, animation_8_mirror_b,animation_9_father, animation_10_animals, animation_11_bite, animation_12_bitten, animation_13_throw_snake, animation_14_thrown_snake, animation_15_father_turn, animation_16_father_turned, animation_17_wedding_a_stand, animation_18_wedding_b_stand, animation_19_wedding_a, animation_20_wedding_b};
+int animation_lengths[] = {1, 10, 4, 1, 4, 1, 3, 2, 1, 1, 4, 1, 1, 6, 1, 4, 1, 1, 1, 10, 10}; // silly, i know
 
 void manage_kashira() {
 	a_ko_frame = (a_ko_frame + 1) % animation_lengths[a_ko_animation];
@@ -253,8 +273,8 @@ void manage_kashira() {
 
 	memset(table_counts, 0, sizeof(table_counts));
 	add_foretable(id_chtab_8_princessroom, 1, 0, 0, 200, blitters_0_no_transp, 0);
-	add_foretable(id_chtab_3_princessinstory, animations[a_ko_animation][a_ko_frame]+1, 7, 0, 180, blitters_10h_transp, 0);
-	add_foretable(id_chtab_4_jaffarinstory_princessincutscenes, animations[b_ko_animation][b_ko_frame]+1, 22, 0, 180, blitters_10h_transp, 0);
+	add_foretable(id_chtab_3_princessinstory, animations[a_ko_animation][a_ko_frame]+1, 7, 0, 170, blitters_10h_transp, 0);
+	add_foretable(id_chtab_4_jaffarinstory_princessincutscenes, animations[b_ko_animation][b_ko_frame]+1, 22, 0, 170, blitters_10h_transp, 0);
 	draw_tables();
 	manage_princess_text();
 }

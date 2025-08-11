@@ -1,6 +1,6 @@
 johnny music in shrine (maybe my own version??)
 
-add spinning rose frame at start of each duel (also allow for sword drawing intro)
+add spinning rose frame at start of each duel (also allow for sword drawing intro)?
 
 add nice edge rooms to each level
 
@@ -9,3 +9,5 @@ stop left gate back pillar showing in front of you while climbing up - don't kno
 put crashed sportscar on other side top floor level 7
 
 fix bug where tapping a key repeatedly while holding shift causes it to be input when shift is released?
+
+after everything else: remove all unused resources
