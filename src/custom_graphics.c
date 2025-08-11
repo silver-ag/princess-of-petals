@@ -214,3 +214,58 @@ void manage_touga_enter() {
 		enter_guard();
 	}
 }
+
+int princess_text_frames = 0;
+char* princess_text = "";
+
+void add_princess_text(const char* text, int frames) {
+	princess_text_frames = frames;
+	princess_text = (char*)text;
+}
+
+void draw_princess_text() {
+	show_text(&(rect_type){0,0,190,320}, 0, 1, princess_text);
+}
+
+void manage_princess_text() {
+	if (princess_text_frames > 0) {
+		princess_text_frames--;
+		memset(table_counts, 0, sizeof(table_counts));
+		add_foretable(id_chtab_8_princessroom, 2, 0, 0, 192, blitters_0_no_transp, 0); // text box, draw_princess_text is called from draw_back_fore
+		draw_tables();
+	}
+}
+
+int a_ko_frame = 0;
+int b_ko_frame = 0;
+int a_ko_animation = 0;
+int b_ko_animation = 0;
+
+int animation_0_standing[] = {0};
+int animation_1_squatting[] = {0, 1, 2, 3, 3, 3, 2, 1, 0, 0};
+
+int* animations[] = {animation_0_standing, animation_1_squatting};
+int animation_lengths[] = {1, 10}; // silly, i know
+
+void manage_kashira() {
+	a_ko_frame = (a_ko_frame + 1) % animation_lengths[a_ko_animation];
+	b_ko_frame = (b_ko_frame + 1) % animation_lengths[b_ko_animation];
+
+	memset(table_counts, 0, sizeof(table_counts));
+	add_foretable(id_chtab_8_princessroom, 1, 0, 0, 200, blitters_0_no_transp, 0);
+	add_foretable(id_chtab_3_princessinstory, animations[a_ko_animation][a_ko_frame]+1, 5, 0, 180, blitters_10h_transp, 0);
+	add_foretable(id_chtab_4_jaffarinstory_princessincutscenes, animations[b_ko_animation][b_ko_frame]+1, 20, 0, 180, blitters_10h_transp, 0);
+	draw_tables();
+	manage_princess_text();
+}
+
+void set_kashira_animations(int a_ko, int b_ko) {
+	if (a_ko >= 0) {
+		a_ko_animation = a_ko;
+		a_ko_frame = 0;
+	}
+	if (b_ko >= 0) {
+		b_ko_animation = b_ko;
+		b_ko_frame = 0;
+	}
+}

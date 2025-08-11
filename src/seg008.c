@@ -859,7 +859,7 @@ image_type* get_image(short chtab_id, int id) {
 	}
 	chtab_type* chtab = chtab_addrs[chtab_id];
 	if (chtab == NULL) {
-		//printf("Tried to use null chtab %d\n", chtab_id);
+		printf("Tried to use null chtab %d\n", chtab_id);
 		return NULL;
 	}
 	if (id < 0 || id >= chtab->n_images || (id == -1 && chtab_id == id_chtab_6_environment)) {
@@ -1066,6 +1066,10 @@ void draw_back_fore(int which_table,int index) {
 	*/
 
 	draw_image(image, mask, table_entry->xh * 8 + table_entry->xl, table_entry->y, table_entry->blit);
+
+	if (which_table == 1 && table_entry->chtab_id == id_chtab_8_princessroom && table_entry->id == 1) { // text box for cutscenes mostly
+		draw_princess_text();
+	}
 }
 
 

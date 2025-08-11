@@ -66,6 +66,8 @@ int proc_cutscene_frame(int wait_frames) {
 	cutscene_wait_frames = wait_frames;
 	reset_timer(timer_0);
 	do {
+		manage_kashira(); // captions
+
 		set_timer_length(timer_0, cutscene_frame_time);
 		play_both_seq();
 		//draw_proom_drects(); // changed order of drects and flash
@@ -402,8 +404,13 @@ void cutscene_12() {
 
 // seg001:0584
 void cutscene_1() {
-	if (fade_in_1()) return;
-	if (proc_cutscene_frame(26)) return;
+	init_princess_right();//test
+	fade_in_1();
+	add_princess_text("have you heard, have you heard?", 20);
+	set_kashira_animations(1,0);
+	proc_cutscene_frame(5);
+	set_kashira_animations(-1,1);
+	proc_cutscene_frame(30);
 	fade_out_1();
 };
 void cutscene_2() {};
@@ -714,12 +721,11 @@ void load_intro(int which_imgs,cutscene_ptr_type func,int free_sounds) {
 
 	// Free the images that are not needed anymore.
 	//free_all_chtabs_from(id_chtab_9_princessbed);
-	SDL_FreeSurface(get_image(id_chtab_8_princessroom, 0));
-	if (NULL != chtab_addrs[id_chtab_8_princessroom]) chtab_addrs[id_chtab_8_princessroom]->images[0] = NULL;
 
 	load_chtab_from_file(id_chtab_3_princessinstory, 800, "PV.DAT", 1<<9);
 	load_chtab_from_file(id_chtab_4_jaffarinstory_princessincutscenes,
-	                     50*which_imgs + 850, "PV.DAT", 1<<10);
+	                     /*50*which_imgs +*/ 850, "PV.DAT", 1<<10);
+	load_chtab_from_file(id_chtab_8_princessroom, 950, "PV.DAT", 1<<13);
 	//for (short current_star = 0; current_star < N_STARS; ++current_star) {
 	//	draw_star(current_star, 0);
 	//}
@@ -734,6 +740,8 @@ void load_intro(int which_imgs,cutscene_ptr_type func,int free_sounds) {
 	is_cutscene = 1;
 	func();
 	is_cutscene = 0;
+	SDL_FreeSurface(get_image(id_chtab_8_princessroom, 0));
+	if (NULL != chtab_addrs[id_chtab_8_princessroom]) chtab_addrs[id_chtab_8_princessroom]->images[0] = NULL;
 	free_all_chtabs_from(3);
 	draw_rect(&screen_rect, color_0_black);
 }
