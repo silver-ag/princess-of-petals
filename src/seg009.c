@@ -3839,8 +3839,9 @@ int do_wait(int timer_index) {
 		SDL_Delay(1);
 		process_events();
 		manage_smoke_cloud(); // added
-		int key = do_paused();
-		if (key != 0 && (word_1D63A != 0 || key == 0x1B)) return 1;
+		// removed for the purposes of intro:
+		//int key = do_paused();
+		//if (key != 0 && (word_1D63A != 0 || key == 0x1B)) return 1;
 	}
 	return 0;
 }
@@ -3948,7 +3949,7 @@ void fade_in_2(surface_type* source_surface,int which_rows) {
 		palette_buffer = make_pal_buffer_fadein(source_surface, which_rows, 2);
 		while (fade_in_frame(palette_buffer) == 0) {
 			process_events(); // modified
-			do_paused();
+			//test do_paused();
 		}
 		pal_restore_free_fadein(palette_buffer);
 	} else {
@@ -4059,7 +4060,7 @@ void fade_out_2(int rows) {
 		palette_buffer = make_pal_buffer_fadeout(rows, 2);
 		while (fade_out_frame(palette_buffer) == 0) {
 			process_events(); // modified
-			do_paused();
+			//test do_paused();
 		}
 		pal_restore_free_fadeout(palette_buffer);
 	} else {

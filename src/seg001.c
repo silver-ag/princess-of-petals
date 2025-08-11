@@ -86,7 +86,7 @@ int proc_cutscene_frame(int wait_frames) {
 			play_next_sound();
 		}
 		do {
-			if (!disable_keys && do_paused()) {
+			if (!disable_keys && do_paused() && false /*disable this branch*/) {
 				stop_sounds();
 				draw_rect(&screen_rect, color_0_black);
 #ifdef USE_FADE

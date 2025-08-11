@@ -253,8 +253,8 @@ void manage_kashira() {
 
 	memset(table_counts, 0, sizeof(table_counts));
 	add_foretable(id_chtab_8_princessroom, 1, 0, 0, 200, blitters_0_no_transp, 0);
-	add_foretable(id_chtab_3_princessinstory, animations[a_ko_animation][a_ko_frame]+1, 5, 0, 180, blitters_10h_transp, 0);
-	add_foretable(id_chtab_4_jaffarinstory_princessincutscenes, animations[b_ko_animation][b_ko_frame]+1, 20, 0, 180, blitters_10h_transp, 0);
+	add_foretable(id_chtab_3_princessinstory, animations[a_ko_animation][a_ko_frame]+1, 7, 0, 180, blitters_10h_transp, 0);
+	add_foretable(id_chtab_4_jaffarinstory_princessincutscenes, animations[b_ko_animation][b_ko_frame]+1, 22, 0, 180, blitters_10h_transp, 0);
 	draw_tables();
 	manage_princess_text();
 }

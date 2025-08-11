@@ -1984,7 +1984,7 @@ void show_title() {
 	load_title_images(1);
 	current_target_surface = offscreen_surface;
 	idle(); // modified
-	do_paused();
+	//do_paused();
 
 	method_1_blit_rect(onscreen_surface_, offscreen_surface, &screen_rect, &screen_rect, blitters_0_no_transp);
 	draw_full_image(TITLE_MAIN);
@@ -2130,7 +2130,7 @@ void transition_ltr() {
 			continue; // On slow systems (e.g. Raspberry Pi), allow the animation to catch up, before refreshing the screen.
 		}
 		idle(); // modified
-		do_paused();
+		//do_paused();
 		// Add an appropriate delay until the next frame, so that the animation isn't instantaneous on fast CPUs.
 		for (;;) {
 			Uint64 current_counter = SDL_GetPerformanceCounter();
