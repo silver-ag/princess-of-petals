@@ -85,6 +85,10 @@ void play_level(int level_number) {
 		silhouette_mode = false; // "
 		shadow_appeared_in = 0; // reset shadow position tracker
 		mouse_appeared_in = 0; // reset mouse position tracker
+		touga_entered = false; // reset touga
+		touga_enter_count = 0; // "
+		touga_face_turn = 0; // "
+		touga_face_turn_counter = 0; // "
 		load_level();
 		pos_guards();
 		clear_coll_rooms();
@@ -270,11 +274,18 @@ void redraw_screen(int drawing_different_room) {
 		// princess duels pause at start
 		if (current_level % 2 == 0 && current_level != 14 && drawn_room == 3) {
 			pause_controls(20);
+			play_sound(sound_30_bells);
+			start_drawing_frame(30);
+		}
+		if (current_level == 5 && drawn_room == 3) {
+			play_sound(sound_34_johnny);
 		}
 		if (current_level == 14 && drawn_room == 3) {
 			start_face_turn();
 		}
-
+		if (current_level == 14 && drawn_room == 6 && touga_entered) {
+			
+		}
 	}
 
 	different_room = 0;

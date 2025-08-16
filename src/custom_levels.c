@@ -113,7 +113,7 @@ void do_touga_enter() {
 	touga_entered = true;
 	pause_controls(115);
 	start_death_flash(100);
-	level.guards_dir[5] = dir_FF_left;//test
+	level.guards_dir[5] = dir_FF_left;
 }
 
 int loose_tiles[13] = {0,2,3,4,5,6,7,12,14,15,17};

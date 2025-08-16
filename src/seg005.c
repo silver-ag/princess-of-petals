@@ -643,9 +643,11 @@ void get_item() {
 	if (get_tile_at_char() == tiles_2_egg && get_modifier_at_char() == 0) {
 		draw_sword();
 		set_modifier_at_char(1);
+		play_sound(sound_31_egg_crack);
 	} else if (get_tile_infrontof_char() == tiles_2_egg && get_modifier_infrontof_char() == 0) {
 		draw_sword();
 		set_modifier_infrontof_char(1);
+		play_sound(sound_31_egg_crack);
 	} else if (Char.frame != frame_109_crouch) { // crouching
 		short distance = get_edge_distance();
 		if (edge_type != EDGE_TYPE_FLOOR) {

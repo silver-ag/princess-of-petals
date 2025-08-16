@@ -94,6 +94,27 @@ void draw_petals(SDL_Surface* sfc) {
 	}
 }
 
+void start_drawing_frame(int t) {
+	drawing_frame = t;
+}
+
+void draw_frame(SDL_Surface* sfc) {
+	if (drawing_frame > 0) {
+		drawing_frame--;
+		SDL_Surface* frame_surface = get_image(id_chtab_6_environment, 189);
+		SDL_SetColorKey(frame_surface, SDL_FALSE, 0); // make sure black isn't transparent
+		method_1_blit_rect(sfc, frame_surface, &rect_top, &rect_top, blitters_10h_transp);
+		SDL_Surface* rose_surface_clockwise = get_image(id_chtab_6_environment, 190 + (drawing_frame%8));
+		SDL_Surface* rose_surface_counterclockwise = get_image(id_chtab_6_environment, 190 + (7-(drawing_frame%8)));
+		SDL_SetColorKey(rose_surface_clockwise, SDL_FALSE, 0); // make sure black isn't transparent
+		SDL_SetColorKey(rose_surface_counterclockwise, SDL_FALSE, 0); // make sure black isn't transparent
+		method_1_blit_rect(sfc, rose_surface_clockwise, &(rect_type){0,0,75,75}, &(rect_type){0,0,75,75}, blitters_10h_transp);
+		method_1_blit_rect(sfc, rose_surface_clockwise, &(rect_type){125,245,75,75}, &(rect_type){0,0,75,75}, blitters_10h_transp);
+		method_1_blit_rect(sfc, rose_surface_counterclockwise, &(rect_type){125,0,75,75}, &(rect_type){0,0,75,75}, blitters_10h_transp);
+		method_1_blit_rect(sfc, rose_surface_counterclockwise, &(rect_type){0,245,75,75}, &(rect_type){0,0,75,75}, blitters_10h_transp);
+	}
+}
+
 image_type* silhouette_of(image_type* image, rgb_type colour) {
 	if (image == NULL) {
 		return SDL_CreateRGBSurface(0,1,1,32,Rmsk,Gmsk,Bmsk,Amsk);
@@ -142,8 +163,6 @@ void manage_pause_controls() {
 	}
 }
 
-int touga_face_turn = 0;
-int touga_face_turn_counter = 0;
 
 void draw_background(SDL_Surface* surface) {
 	if (current_level == 14 && drawn_room < 6) {
@@ -206,7 +225,7 @@ void manage_smoke_cloud() {
 
 void manage_touga_enter() {
 	touga_enter_count++;
-	if (touga_enter_count == 100) {
+	if (touga_enter_count >= 100) {
 		level.guards_tile[5] = Kid.curr_col+2;
 		level.guards_dir[5] = dir_FF_left;
 		level.guards_skill[5] = 6;

@@ -1,13 +1,28 @@
-johnny music in shrine (maybe my own version??)
+difficulty setting for easier duels
 
-add spinning rose frame at start of each duel (also allow for sword drawing intro)?
+accesssibilty setting for flashing
 
 add nice edge rooms to each level
+
+make transition after entering last room of duel levels instant regardless of sounds
 
 stop left gate back pillar showing in front of you while climbing up - don't know why this is, it still happens with draw_left_gate_fore disabled entirely
 
 put crashed sportscar on other side top floor level 7
 
 fix bug where tapping a key repeatedly while holding shift causes it to be input when shift is released?
+
+bug: silhouette mode fucks up the cutscene
+
+remove timer
+
+add shadow sword to shadow girl guard hit sprites
+
+make bell quieter
+
+pause controls at start of level 7 to make chuchu more obvious
+also, chuchu sound effect
+
+make touga a harder fight (swap guard type w anthy? just make 100% first block?)
 
 after everything else: remove all unused resources

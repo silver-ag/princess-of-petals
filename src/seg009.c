@@ -2763,6 +2763,7 @@ void update_screen() {
 	if (draw_smoke && smoke_cloud_surface != NULL) {
 		method_1_blit_rect(true_final_surface, smoke_cloud_surface, &screen_rect, &screen_rect, blitters_10h_transp);
 	}
+	draw_frame(true_final_surface);
 
 	init_scaling();
 	if (scaling_type == 1) {

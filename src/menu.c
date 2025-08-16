@@ -74,6 +74,7 @@ enum pause_menu_item_ids {
 	SETTINGS_MENU_GENERAL,
 	SETTINGS_MENU_GAMEPLAY,
 	SETTINGS_MENU_VISUALS,
+	SETTINGS_MENU_ACCESSIBILITY,
 	SETTINGS_MENU_MODS,
 	SETTINGS_MENU_LEVEL_CUSTOMIZATION,
 	SETTINGS_MENU_BACK,
@@ -115,6 +116,7 @@ pause_menu_item_type settings_menu_items[] = {
 		{.id = SETTINGS_MENU_GENERAL, .text = "GENERAL"},
 		{.id = SETTINGS_MENU_GAMEPLAY, .text = "GAMEPLAY"},
 		{.id = SETTINGS_MENU_VISUALS, .text = "VISUALS"},
+		{.id = SETTINGS_MENU_ACCESSIBILITY, .text = "ACCESSIBILITY"},
 		{.id = SETTINGS_MENU_MODS, .text = "MODS"},
 		{.id = SETTINGS_MENU_CONTROLS, .text = "CONTROLS"},
 		{.id = SETTINGS_MENU_BACK, .text = "BACK"},
@@ -308,6 +310,9 @@ enum setting_ids {
 	SETTING_KEY_ACTION,
 	SETTING_KEY_ENTER,
 	SETTING_KEY_ESC,
+
+	SETTING_FLASHING_SPEED,
+	SETTING_EASIER_GUARDS,
 };
 
 typedef struct setting_type {
@@ -1064,6 +1069,15 @@ setting_type controls_settings[] = {
 				.explanation = ""},
 };
 
+// princess accessibility
+setting_type accessibility_settings[] = {
+	{.id = SETTING_FLASHING_SPEED, .style = SETTING_STYLE_NUMBER, .number_type = SETTING_INT,
+		.linked = &death_flash_speed, .min = 1, .max = 10, .text = "Flashing Speed",
+		.explanation = "Speed of the flashing effect in frames (more is slower)."},
+	{.id = SETTING_EASIER_GUARDS, .style = SETTING_STYLE_TOGGLE, .linked = &easier_guards,
+		.text = "Easier Duels", .explanation = "Make the other duelists less skillful"}
+};
+
 typedef struct settings_area_type {
 	setting_type* settings;
 	int setting_count;
@@ -1072,6 +1086,7 @@ typedef struct settings_area_type {
 settings_area_type general_settings_area = { .settings = general_settings, .setting_count = COUNT(general_settings)};
 settings_area_type gameplay_settings_area = { .settings = gameplay_settings, .setting_count = COUNT(gameplay_settings)};
 settings_area_type visuals_settings_area = { .settings = visuals_settings, .setting_count = COUNT(visuals_settings)};
+settings_area_type accessibility_settings_area = { .settings = accessibility_settings, .setting_count = COUNT(accessibility_settings)};
 settings_area_type mods_settings_area = { .settings = mods_settings, .setting_count = COUNT(mods_settings)};
 settings_area_type level_settings_area = { .settings = level_settings, .setting_count = COUNT(level_settings)};
 settings_area_type controls_settings_area = { .settings = controls_settings, .setting_count = COUNT(controls_settings)};
@@ -1086,6 +1101,8 @@ settings_area_type* get_settings_area(int menu_item_id) {
 			return &gameplay_settings_area;
 		case SETTINGS_MENU_VISUALS:
 			return &visuals_settings_area;
+		case SETTINGS_MENU_ACCESSIBILITY:
+			return &accessibility_settings_area;
 		case SETTINGS_MENU_MODS:
 			return &mods_settings_area;
 		case SETTINGS_MENU_LEVEL_CUSTOMIZATION:
@@ -1278,6 +1295,7 @@ void pause_menu_clicked(pause_menu_item_type* item) {
 		case SETTINGS_MENU_GENERAL:
 		case SETTINGS_MENU_GAMEPLAY:
 		case SETTINGS_MENU_VISUALS:
+		case SETTINGS_MENU_ACCESSIBILITY:
 		case SETTINGS_MENU_MODS:
 		case SETTINGS_MENU_CONTROLS:
 			enter_settings_subsection(item->id);
@@ -1814,7 +1832,7 @@ void draw_settings_menu(void) {
 
 	rect_type pause_rect_outer = {0, 10, 192, 80};
 	rect_type pause_rect_inner;
-	shrink2_rect(&pause_rect_inner, &pause_rect_outer, 5, 5);
+	shrink2_rect(&pause_rect_inner, &pause_rect_outer, 0, 0);//test (was 5,5)
 
 	if (!have_mouse_input) {
 		bool hovering_item_changed = false;
@@ -2463,6 +2481,8 @@ void menu_was_closed(void) {
 
 // Small font (hardcoded).
 // The alphanumeric characters were adapted from the freeware font '04b_03' by Yuji Oshimoto. See: http://www.04.jp.org/
+
+// why would you do that???
 
 #define BINARY_8(b7,b6,b5,b4,b3,b2,b1,b0) ((b0) | ((b1)<<1) | ((b2)<<2) | ((b3)<<3) | ((b4)<<4) | ((b5)<<5) | ((b6)<<6) | ((b7)<<7))
 #define BINARY_4(b7,b6,b5,b4) (((b4)<<4) | ((b5)<<5) | ((b6)<<6) | ((b7)<<7))

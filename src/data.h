@@ -50,6 +50,11 @@ extern SDL_Surface* smoke_cloud_base;
 extern bool draw_smoke;
 extern bool touga_entered INIT(=false);
 extern int touga_enter_count INIT(=0);
+extern int drawing_frame INIT(=0);
+extern int touga_face_turn INIT(=0);
+extern int touga_face_turn_counter INIT(=0);
+extern int death_flash_speed INIT(=1);
+extern bool easier_guards INIT(=false);
 
 // data:5F8A
 extern word text_time_remaining;
@@ -875,11 +880,11 @@ extern custom_options_type custom_defaults INIT(= {
 		.tbl_seamless_exit = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 23, -1, -1, -1},
 
 		// guard skills
-		.strikeprob    = { 61,100, 61, 61, 61, 40,100,220,  0, 48, 32, 48},
-		.restrikeprob  = {  0,  0,  0, 15, 50,175, 50,  8,  0,255,255,150},
-		.blockprob     = {  0,150,150,200,200,255,200,250,  0,255,255,255},
-		.impblockprob  = {  0, 61, 61,100,100,145,100,250,  0,145,255,175},
-		.advprob       = {255,200,200,200,255,255,100,  0,  0,255,100,100},
+		.strikeprob    = { 61,100, 61, 61, 61,100, 40,100,220,  0, 48, 32},
+		.restrikeprob  = {  0,  0,  0, 15, 50, 50,100,175,  8,  0,255,255},
+		.blockprob     = {  0,150,150,200,200,200,200,255,250,  0,255,255},
+		.impblockprob  = {  0, 61, 61,100,100,150,100,145,250,  0,145,255},
+		.advprob       = {255,200,200,200,255,200,100,200,  0,  0,255,100},
 		.refractimer   = { 16, 16, 16, 16,  8,  8,  8,  8,  0,  8,  0,  0},
 		.extrastrength = {  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0},
 

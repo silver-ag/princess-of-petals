@@ -837,7 +837,7 @@ int process_key() {
 				}
 			break;
 			case SDL_SCANCODE_T | WITH_SHIFT: // Shift+T
-				play_sound(sound_30_big_potion); // big potion (cheat)
+				//play_sound(sound_30_big_potion); // big potion (cheat)
 				flash_color = (rgb_type){255,0,0}; // red
 				flash_time = 4;
 				add_life();

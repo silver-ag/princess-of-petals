@@ -768,11 +768,11 @@ enum soundids {
 	sound_27_cutscene_2_4_6_12 = 27,
 	sound_28_death_in_fight = 28,
 	sound_29_meet_Jaffar = 29,
-	sound_30_big_potion = 30,
-	//sound_31 = 31,
+	sound_30_bells, // changed from sound_30_big_potion = 30,
+	sound_31_egg_crack = 31, // added
 	sound_32_shadow_music = 32,
 	sound_33_small_potion = 33,
-	//sound_34 = 34,
+	sound_34_johnny = 34, // added
 	sound_35_cutscene_8_9 = 35,
 	sound_36_out_of_time = 36,
 	sound_37_victory = 37,

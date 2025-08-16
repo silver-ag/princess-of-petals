@@ -882,7 +882,7 @@ image_type* get_image(short chtab_id, int id) {
 		method_1_blit_rect(rose_gate_door_surface, chtab->images[164], &(rect_type){0,0,54,43}, &(rect_type){height,0,62+height,43}, blitters_10h_transp);
 
 		return_image = rose_gate_door_surface;
-	} else if (id == 91 || id == 92 || id == 94) { // colour in roses
+	} else if ((id >= 91 && id <= 94) || (id >= 190 && id <= 197)) { // colour in roses
 		rect_type rect = {0,0,chtab->images[id]->h,chtab->images[id]->w};
 		image_type* pillar_surface = SDL_CreateRGBSurface(0, chtab->images[id]->w, chtab->images[id]->h, 32, Rmsk, Gmsk, Bmsk, Amsk);
 		SDL_SetColorKey(chtab->images[id], SDL_FALSE, 0xFF00FF00);

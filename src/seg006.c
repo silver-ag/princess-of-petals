@@ -678,11 +678,11 @@ void play_seq() {
 #endif
 
 						if (is_sound_on) {
-							if (current_level == /*4*/ custom->mirror_level) {
-								play_sound(sound_32_shadow_music); // end level with shadow (level 4)
-							} else if (current_level != 13 && current_level != 15) {
+							//if (current_level == /*4*/ custom->mirror_level) {
+							//	play_sound(sound_32_shadow_music); // end level with shadow (level 4)
+							//} else if (current_level != 13 && current_level != 15) {
 								play_sound(sound_41_end_level_music); // end level
-							}
+							//}
 						}
 						break;
 				}
@@ -1916,7 +1916,7 @@ void proc_get_object() {
 			break;
 			case 2: // life
 				stop_sounds();
-				play_sound(sound_30_big_potion); // big potion
+				//play_sound(sound_30_big_potion); // big potion
 				flash_color = (rgb_type){255,0,0};
 				start_death_flash(8);
 				add_life();
@@ -2006,6 +2006,10 @@ void on_guard_killed() {
                         chtab_addrs[id_chtab_2_kid] = chtab_addrs[id_chtab_10_shadow];
                         chtab_addrs[id_chtab_10_shadow] = swap;
                 }
+	}
+
+	if (current_level % 2 == 0) { //test
+		play_sound(sound_30_bells);
 	}
 }
 

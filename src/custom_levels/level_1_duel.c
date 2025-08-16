@@ -53,18 +53,18 @@ void make_level_1_duel(custom_level_data* level) {
 					      0, 0, 0, 0, 0, 0, 0, 0, 0,255}, 30);
 	level->doorlinks_rooms[3] = 4;
 	level->doorlinks_tiles[3] = 29;
-	level->rooms[6].links.right = 1;
+	level->rooms[3].links.right = 1;
 
 
 	// room 5: post-entry
 	// win immediately on entry
 	memcpy(level->rooms[4].fg, (byte[]){  0, 0, 0, 0, 0, 0, 0, 0, 0,20,
-						        1, 1, 1, 1, 1, 1, 1, 1, 1,20,
-						        0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 30);
-	level->rooms[6].links.left = 3;
-	level->rooms[6].links.right = 7;
-	level->rooms[6].links.up = 7;
-	level->rooms[6].links.down = 7;
+					      1, 1, 1, 1, 1, 1, 1, 1, 1,20,
+					      0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 30);
+	level->rooms[4].links.left = 3;
+	level->rooms[4].links.right = 7;
+	level->rooms[4].links.up = 7;
+	level->rooms[4].links.down = 7;
 
 
 	// room 7: sky
