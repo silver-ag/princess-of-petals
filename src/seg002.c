@@ -228,7 +228,10 @@ loc_left_guard_tile:
 		Char.curr_seq = level.guards_seq_lo[room_minus_1] + (seq_hi << 8);
 	}
 	play_seq();
-	guard_skill = level.guards_skill[room_minus_1];
+	guard_skill = level.guards_skill[room_minus_1] + 1;
+	if (easier_guards) {
+		guard_skill--;
+	}
 	if (guard_skill >= NUM_GUARD_SKILLS) {
 		guard_skill = 3;
 	}

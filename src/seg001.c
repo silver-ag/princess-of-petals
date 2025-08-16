@@ -695,8 +695,6 @@ void do_flash(rgb_type colour) {
 		reset_timer(timer_2);
 		set_timer_length(timer_2, 2);
 		set_bg_attr(colour);
-		stored_colour = bg_colour;
-		bg_colour = (rgb_type){255,0,0};
 		need_full_redraw = 1;
 		do_simple_wait(timer_2); // give some time to show the flash
 	} else {
@@ -716,7 +714,6 @@ void remove_flash() {
 	// stub
 	if (graphics_mode == gmMcgaVga) {
 		set_bg_attr((rgb_type){0,0,0});
-		bg_colour = stored_colour;
 	} else {
 		// ...
 	}

@@ -18,8 +18,12 @@ void manage_custom_graphics() {
 }
 
 void start_death_flash(int frames) {
-	stored_colour = bg_colour;
-	death_flash_frames = frames;
+	if (death_flash_frames == 0 && death_flash_speed > 0) {
+		stored_colour = bg_colour;
+		death_flash_frames = frames;
+		silhouette_mode = true;
+		bg_colour = (rgb_type){255,0,0};
+	}
 }
 
 int room_change_counter = 0;
@@ -27,14 +31,18 @@ int room_change_counter = 0;
 void manage_death_flash() {
 	if (death_flash_frames > 1 || (Kid.alive < 0 && death_flash_frames == 1)) { // final frame only resets if kid is alive
 		death_flash_frames--;
-		if (death_flash_frames % 2) {
-			bg_colour = (rgb_type){255,0,0};
-			silhouette_mode = true;
-		} else {
-			bg_colour = stored_colour;
-			silhouette_mode = false;
+		if (death_flash_frames % (death_flash_speed) == 0) {
+			if (silhouette_mode) {
+				bg_colour = stored_colour;
+				silhouette_mode = false;
+			} else {
+				bg_colour = (rgb_type){255,0,0};
+				silhouette_mode = true;
+			}
 		}
 		if (death_flash_frames == 0) {
+			bg_colour = stored_colour;
+			silhouette_mode = false;
 			need_full_redraw = 1;
 		}
 	}

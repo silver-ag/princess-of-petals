@@ -1072,8 +1072,8 @@ setting_type controls_settings[] = {
 // princess accessibility
 setting_type accessibility_settings[] = {
 	{.id = SETTING_FLASHING_SPEED, .style = SETTING_STYLE_NUMBER, .number_type = SETTING_INT,
-		.linked = &death_flash_speed, .min = 1, .max = 10, .text = "Flashing Speed",
-		.explanation = "Speed of the flashing effect in frames (more is slower)."},
+		.linked = &death_flash_speed, .min = 0, .max = 10, .text = "Flashing Speed",
+		.explanation = "Speed of the flashing effect in frames (more is slower). Set to zero to disable flashing entirely."},
 	{.id = SETTING_EASIER_GUARDS, .style = SETTING_STYLE_TOGGLE, .linked = &easier_guards,
 		.text = "Easier Duels", .explanation = "Make the other duelists less skillful"}
 };
