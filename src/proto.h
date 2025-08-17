@@ -778,3 +778,5 @@ void manage_face_turn();
 void start_face_turn();
 void manage_smoke_cloud();
 void do_touga_enter();
+void start_drawing_frame(int t);
+void draw_frame(SDL_Surface* sfc);

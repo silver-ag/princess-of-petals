@@ -1832,7 +1832,7 @@ void draw_settings_menu(void) {
 
 	rect_type pause_rect_outer = {0, 10, 192, 80};
 	rect_type pause_rect_inner;
-	shrink2_rect(&pause_rect_inner, &pause_rect_outer, 0, 0);//test (was 5,5)
+	shrink2_rect(&pause_rect_inner, &pause_rect_outer, 0, 0);
 
 	if (!have_mouse_input) {
 		bool hovering_item_changed = false;

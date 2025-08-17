@@ -481,7 +481,7 @@ Possible values of trob_type:
 				play_sound(sound_15_leveldoor_sliding); // level door sliding (opening)
 			}*/
 			++curr_modifier;
-			//if (curr_modifier == 1) {//test
+			//if (curr_modifier == 1) {
 				sound_interruptible[sound_15_leveldoor_sliding] = 0;
 				play_sound(sound_15_leveldoor_sliding); // level door sliding (opening)
 			//} else

@@ -408,7 +408,7 @@ void draw_tile_floorright() {
 	if (can_see_bottomleft() == 0) return;
 	draw_tile_topright();
 	if (tile_table[tile_left].floor_right == 0) return;
-	if (tile_left == tiles_13_mirror) return; //test
+	if (tile_left == tiles_13_mirror) return;
 	add_backtable(id_chtab_6_environment, 42 /*floor right part*/, draw_xh, 0, tile_table[tiles_1_floor].right_y + draw_main_y, blitters_9_black, 1);
 }
 
@@ -1683,10 +1683,10 @@ void draw_floor_overlay() {
 void draw_other_overlay() {
 	byte tiletype;
 	byte modifier;
-	if (tile_left == tiles_0_empty || tile_left == tiles_13_mirror) { //test
+	if (tile_left == tiles_0_empty || tile_left == tiles_13_mirror) {
 		ptr_add_table = &add_midtable;
 		draw_tile2();
-	} else if (curr_tile != tiles_0_empty && curr_tile != tiles_13_mirror && drawn_col > 0 && //test
+	} else if (curr_tile != tiles_0_empty && curr_tile != tiles_13_mirror && drawn_col > 0 &&
 		get_tile_to_draw(drawn_room, drawn_col - 2, drawn_row, &tiletype, &modifier, tiles_0_empty) == tiles_0_empty
 	) {
 		ptr_add_table = &add_midtable;
@@ -1797,7 +1797,7 @@ void draw_objtable_item(int index) {
 		break;
 		case 6: // flashing sword
 			flash_mod = (flash_mod + 1) % 3;
-			add_midtable(obj_chtab, obj_id + 1, obj_xh, obj_xl, obj_y, 0x40 + 13 + flash_mod, 1);//test
+			add_midtable(obj_chtab, obj_id + 1, obj_xh, obj_xl, obj_y, 0x40 + 13 + flash_mod, 1);
 		break;
 		case 1: // shadow
 		shadow:

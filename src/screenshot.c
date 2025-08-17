@@ -391,7 +391,7 @@ void draw_extras(void) {
 
 		//if (current_level == /*14*/ custom->win_level && drawn_room == /*5*/ custom->win_room) {
 		//	special_event = "end"; // end of game
-		//}//test
+		//}
 
 		if (has_trigger_potion && drawn_room == 8 && tilepos == 0) {
 			special_event = "blue\ntrig"; // triggered when player drinks an open potion

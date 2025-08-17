@@ -960,7 +960,7 @@ void forward_with_sword() {
 
 // seg005:0C1D
 void draw_sword() {
-	if (controls_paused) { //test
+	if (controls_paused) {
 		return;
 	}
 	word seq_id = seq_55_draw_sword; // draw sword

@@ -2010,7 +2010,7 @@ void on_guard_killed() {
                 }
 	}
 
-	if (current_level % 2 == 0) { //test
+	if (current_level % 2 == 0) {
 		play_sound(sound_30_bells);
 	}
 }

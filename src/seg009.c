@@ -3950,7 +3950,6 @@ void fade_in_2(surface_type* source_surface,int which_rows) {
 		palette_buffer = make_pal_buffer_fadein(source_surface, which_rows, 2);
 		while (fade_in_frame(palette_buffer) == 0) {
 			process_events(); // modified
-			//test do_paused();
 		}
 		pal_restore_free_fadein(palette_buffer);
 	} else {
@@ -4061,7 +4060,6 @@ void fade_out_2(int rows) {
 		palette_buffer = make_pal_buffer_fadeout(rows, 2);
 		while (fade_out_frame(palette_buffer) == 0) {
 			process_events(); // modified
-			//test do_paused();
 		}
 		pal_restore_free_fadeout(palette_buffer);
 	} else {
