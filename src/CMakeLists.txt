@@ -79,11 +79,13 @@ set(SOURCE_FILES
         screenshot.c
         menu.c
         stb_vorbis.c
+	custom_graphics.c
+	custom_levels.c
         icon.rc
         )
 
 if (NOT(APPLE AND CREATE_BUNDLE))
-    add_executable(prince ${SOURCE_FILES})
+    add_executable(princess ${SOURCE_FILES})
 else()
 
     # macOS-specific:
@@ -103,38 +105,38 @@ else()
     set (MACOSX_BUNDLE_SHORT_VERSION_STRING ${SDLPoP_VERSION})
     set (MACOSX_BUNDLE_BUNDLE_VERSION       ${SDLPoP_VERSION})
     set (MACOSX_BUNDLE_COPYRIGHT            "GNU General Public Licence, v3")
-    add_executable(prince MACOSX_BUNDLE ${SOURCE_FILES} ${MACOSX_BUNDLE_ICON_FILE})
-    add_custom_command(TARGET prince POST_BUILD
+    add_executable(princess MACOSX_BUNDLE ${SOURCE_FILES} ${MACOSX_BUNDLE_ICON_FILE})
+    add_custom_command(TARGET princess POST_BUILD
             COMMAND ${CMAKE_COMMAND} -E copy_directory
-            ${CMAKE_SOURCE_DIR}/../data ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/prince.app/Contents/MacOS/data)
-    add_custom_command(TARGET prince POST_BUILD
+            ${CMAKE_SOURCE_DIR}/../data ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/princess.app/Contents/MacOS/data)
+    add_custom_command(TARGET princess POST_BUILD
             COMMAND ${CMAKE_COMMAND} -E copy_directory
-            ${CMAKE_SOURCE_DIR}/../doc ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/prince.app/Contents/MacOS/doc)
-    add_custom_command(TARGET prince POST_BUILD
+            ${CMAKE_SOURCE_DIR}/../doc ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/princess.app/Contents/MacOS/doc)
+    add_custom_command(TARGET princess POST_BUILD
             COMMAND ${CMAKE_COMMAND} -E copy
-            ${CMAKE_SOURCE_DIR}/../SDLPoP.ini ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/prince.app/Contents/MacOS/SDLPoP.ini)
+            ${CMAKE_SOURCE_DIR}/../SDLPoP.ini ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/princess.app/Contents/MacOS/SDLPoP.ini)
 endif()
 
 if(WIN32)
-    target_link_libraries(prince mingw32 SDL2main SDL2 SDL2_image)
+    target_link_libraries(princess mingw32 SDL2main SDL2 SDL2_image)
 elseif(APPLE)
-    target_link_libraries(prince SDL2main SDL2 SDL2_image m)
+    target_link_libraries(princess SDL2main SDL2 SDL2_image m)
 elseif(PSP) # Linux, *BSD, etc.
 	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O3")
 	include(FindPkgConfig)
 	pkg_search_module(SDL2 REQUIRED sdl2)
 	pkg_search_module(SDL2IMAGE REQUIRED SDL2_image)
-	target_include_directories(prince PRIVATE ${SDL2_INCLUDE_DIRS})
-	target_link_libraries(prince PRIVATE
+	target_include_directories(princess PRIVATE ${SDL2_INCLUDE_DIRS})
+	target_link_libraries(princess PRIVATE
 	${SDL2_LIBRARIES} ${SDL2IMAGE_LIBRARIES}
 	)
 	create_pbp_file(
-		TARGET prince
+		TARGET princess
 		ICON_PATH ${CMAKE_SOURCE_DIR}/iconPSP.png
 		BACKGROUND_PATH NULL
 		PREVIEW_PATH NULL
-		TITLE prince
+		TITLE princess
 	)
 else()
-    	target_link_libraries(prince SDL2 SDL2_image m)
+    	target_link_libraries(princess SDL2 SDL2_image m)
 endif()

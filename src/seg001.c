@@ -919,7 +919,7 @@ void draw_star(int which_star,int mark_dirty) {
 // seg001:0E94
 void show_hof() {
 	// Hall of Fame
-	char time_text[12];
+	char time_text[13];
 	for (short index = 0; index < hof_count; ++index) {
 
 		int minutes, seconds;
