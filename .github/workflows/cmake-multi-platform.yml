@@ -1,18 +1,20 @@
-name: "sdl"
+name: Build
+
 on: [push]
 
 jobs:
-  build:
+  test_Ubuntu:
+
     runs-on: ubuntu-latest
+
     steps:
-      - uses: libsdl-org/setup-sdl@main
-        id: sdl
-        with:
-          install-linux-dependencies: true
-          version: 2-latest
-          version-sdl-image: 2-latest
-          
-      - name: 'Configure and build your project'
-        run: |
-          cmake src
-          cmake --build src
+    - uses: actions/checkout@v1
+    - name: install_dependencies
+      run: |
+        sudo add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu `lsb_release -sc` main universe restricted multiverse"
+        sudo apt-get update -y -qq
+        sudo apt-get install libsdl2-dev
+    - name: Build
+      run: |
+        cmake src
+        cmake --build src
