@@ -770,7 +770,7 @@ enum soundids {
 	sound_29_meet_Jaffar = 29,
 	sound_30_bells, // changed from sound_30_big_potion = 30,
 	sound_31_egg_crack = 31, // added
-	sound_32_shadow_music = 32,
+	sound_32_kashira_bubbly = 32, //changed
 	sound_33_small_potion = 33,
 	sound_34_johnny = 34, // added
 	sound_35_cutscene_8_9 = 35,

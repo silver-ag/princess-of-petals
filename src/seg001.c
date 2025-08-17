@@ -869,12 +869,14 @@ void load_intro(int which_imgs,cutscene_ptr_type func,int free_sounds) {
 	need_drects = 1;
 	reset_cutscene();
 	is_cutscene = 1;
+	play_sound(sound_32_kashira_bubbly);
 	func();
 	is_cutscene = 0;
 	SDL_FreeSurface(get_image(id_chtab_8_princessroom, 0));
 	if (NULL != chtab_addrs[id_chtab_8_princessroom]) chtab_addrs[id_chtab_8_princessroom]->images[0] = NULL;
 	free_all_chtabs_from(3);
 	draw_rect(&screen_rect, color_0_black);
+	stop_sounds();
 }
 
 typedef struct star_type {

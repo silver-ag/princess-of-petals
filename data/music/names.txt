@@ -3,6 +3,7 @@
 28=fight_death
 30=bells
 31=egg_crack
+32=bubbly
 34=johnny
 41=end_level
 42=chu
@@ -12,7 +13,6 @@
 26=embrace
 27=cutscene_before_2_4_6_12
 29=meet_Jaffar
-32=end_level_4_and_killed_by_shadow
 33=potion
 35=cutscene_before_8_9
 36=out_of_time

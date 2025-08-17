@@ -55,6 +55,7 @@ extern int touga_face_turn INIT(=0);
 extern int touga_face_turn_counter INIT(=0);
 extern int death_flash_speed INIT(=1);
 extern bool easier_guards INIT(=false);
+extern int max_lives INIT(=3);
 
 // data:5F8A
 extern word text_time_remaining;
@@ -475,7 +476,7 @@ extern /*const*/ byte sound_interruptible[] INIT(= {
 	1, // sound_12_guard_hurt
 	1, // sound_13_kid_hurt
 	0, // sound_14_leveldoor_closing
-	0, // sound_15_leveldoor_sliding
+	1, // sound_15_leveldoor_sliding
 	1, // sound_16_medium_land
 	1, // sound_17_soft_land
 	0, // sound_18_drink
@@ -494,7 +495,7 @@ extern /*const*/ byte sound_interruptible[] INIT(= {
 	0, // sound_31
 	0, // sound_32_shadow_music
 	0, // sound_33_small_potion
-	0, // sound_34
+	1, // sound_34_johnny
 	0, // sound_35_cutscene_8_9
 	0, // sound_36_out_of_time
 	0, // sound_37_victory

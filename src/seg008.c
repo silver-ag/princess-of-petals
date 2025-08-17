@@ -1920,7 +1920,7 @@ void add_objtable(byte obj_type) {
 	objtable_type* entry_addr = &objtable[index];
 	entry_addr->obj_type = obj_type;
 	if (obj_type == 3 && Char.charid == charid_2_guard && current_level == 14) {
-		entry_addr->obj_type = 6; // test: flashing sword
+		entry_addr->obj_type = 6; // flashing sword
 	}
 	x_to_xh_and_xl(obj_x, &entry_addr->xh, &entry_addr->xl);
 	entry_addr->y = obj_y;
@@ -1977,7 +1977,6 @@ void show_time() {
 		if (rem_tick >= 719) {
 			rem_tick = 0; // 720=12*60 ticks = 1 minute
 			++rem_min;
-			//testing purposes
 			//if (rem_min > 0 && (rem_min <= 5 || rem_min % 5 == 0)) {
 				is_show_time = 1;
 			//} else if (rem_min < 0) {

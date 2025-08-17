@@ -909,9 +909,16 @@ void play_frame() {
 		do_touga_enter();
 	}
 	show_time();
-	// expiring doesn't count on Jaffar/princess level
-	if (current_level < 13 && rem_min == 0) {
-		expired();
+
+	if (hitp_max != max_lives) {
+		if (hitp_max > max_lives) {
+			hitp_curr = max_lives;
+		}
+		hitp_max = max_lives;
+		draw_rect(&screen_rect, color_0_black);
+        	show_level();
+	        redraw_screen(0);
+        	draw_kid_hp(hitp_curr, hitp_max);
 	}
 }
 
@@ -1528,7 +1535,7 @@ byte sound_prio_table[] = {
 	0x0C, // sound_12_guard_hurt
 	0x0B, // sound_13_kid_hurt
 	0x69, // sound_14_leveldoor_closing
-	0x6E, // sound_15_leveldoor_sliding
+	0x1F, // sound_15_leveldoor_sliding
 	0x73, // sound_16_medium_land
 	0x78, // sound_17_soft_land
 	0x7D, // sound_18_drink
@@ -1547,7 +1554,7 @@ byte sound_prio_table[] = {
 	0x01, // sound_31
 	0x01, // sound_32_shadow_music
 	0x01, // sound_33_small_potion
-	0x01, // sound_34
+	0x1F, // sound_34_johnny
 	0x01, // sound_35_cutscene_8_9
 	0x01, // sound_36_out_of_time
 	0x01, // sound_37_victory
@@ -1646,10 +1653,12 @@ void fix_sound_priorities() {
 
 // seg000:12C5
 void play_sound(int sound_id) {
-	//printf("Would play sound %d\n", sound_id);
+	//printf("try play sound %d\n", sound_id);
 	if (next_sound < 0 || sound_prio_table[sound_id] <= sound_prio_table[next_sound]) {
+		//printf("higher priority than current sound\n");
 		if (NULL == sound_pointers[sound_id]) return;
 		if (sound_pcspeaker_exists[sound_id] != 0 || sound_pointers[sound_id]->type != sound_speaker) {
+			//printf("setting next_sound\n");
 			next_sound = sound_id;
 		}
 	}
@@ -1661,9 +1670,12 @@ void play_next_sound() {
 		if (!check_sound_playing() ||
 			(sound_interruptible[current_sound] != 0 && sound_prio_table[next_sound] <= sound_prio_table[current_sound])
 		) {
+			//printf("playing sound %d\n", next_sound);//test
 			current_sound = next_sound;
 			play_sound_from_buffer(sound_pointers[current_sound]);
-		}
+		}/* else {
+			printf("not playing sound %d (because current sound %d not interruptible (%d) or priorities wrong (%d <= %d)\n", next_sound, current_sound, sound_interruptible[current_sound] != 0, sound_prio_table[next_sound], sound_prio_table[current_sound]);
+		}*/
 	}
 	next_sound = -1;
 }

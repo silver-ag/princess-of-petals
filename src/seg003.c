@@ -279,6 +279,8 @@ void redraw_screen(int drawing_different_room) {
 		}
 		if (current_level == 5 && drawn_room == 3) {
 			play_sound(sound_34_johnny);
+		} else if (current_level == 5 && drawn_room == 8) {
+			stop_sounds(); // awful hack to stop music preventing you from respawning
 		}
 		if (current_level == 14 && drawn_room == 3) {
 			start_face_turn();

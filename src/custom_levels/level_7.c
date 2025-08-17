@@ -2,7 +2,7 @@
 
 void make_level_7(custom_level_data* level) {
 	level->used_rooms = 21;
-        level->start_room = 10;
+        level->start_room = 1;
         level->start_pos =  25;
         level->bg_colour = (rgb_type){255,15,50};
 	level->rose_colour = (rgb_type){136,20,29};

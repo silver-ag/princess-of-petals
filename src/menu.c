@@ -1078,8 +1078,8 @@ setting_type accessibility_settings[] = {
 	{.id = SETTING_EASIER_GUARDS, .style = SETTING_STYLE_TOGGLE, .linked = &easier_guards,
 		.text = "Easier Duels", .explanation = "Make the other duelists less skillful"},
 	{.id = SETTING_MAX_LIVES, .style = SETTING_STYLE_NUMBER, .number_type = SETTING_INT,
-		.linked = &hitp_beg_lev, .min = 1, .max = 7, .text = "Maximum lives",
-		.explanation = "Adjust how many hits you can take. Takes effect next time a level starts or restarts."},
+		.linked = &max_lives, .min = 1, .max = 7, .text = "Maximum lives",
+		.explanation = "Adjust how many hits you can take."},
 };
 
 typedef struct settings_area_type {

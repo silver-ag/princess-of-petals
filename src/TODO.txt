@@ -1,4 +1,4 @@
-
+do final run with freshly cloned install, to make sure there's nothing weird there with save files or ignored parts
 
 after everything else: remove all unused resources
 
