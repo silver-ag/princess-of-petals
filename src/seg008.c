@@ -485,7 +485,7 @@ void draw_tile_topright() {
 			dx = -35;
 		} else if (tiletype == tiles_1_floor && row_below_left_[drawn_col].modifier == 7) { // rusted car
 			id = 202;
-			dy = 53;
+			dy = 55;
 			dx = -65;
 		}
 		add_backtable(id_chtab_6_environment, id, draw_xh, dx, draw_bottom_y+dy, blitters_2_or, 0);

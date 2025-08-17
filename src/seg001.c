@@ -836,6 +836,9 @@ void expired() {
 
 // seg001:0CCD
 void load_intro(int which_imgs,cutscene_ptr_type func,int free_sounds) {
+	silhouette_mode= false;
+	shadow_world = false;
+
 	draw_rect(&screen_rect, color_0_black);
 	if (free_sounds) {
 		free_optional_sounds();

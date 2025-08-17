@@ -1,5 +1,3 @@
-fix bug where tapping a key repeatedly while holding shift causes it to be input when shift is released?
-
 bug: silhouette mode fucks up the cutscene
 
 remove timer
@@ -10,7 +8,5 @@ make bell quieter
 
 pause controls at start of level 7 to make chuchu more obvious
 also, chuchu sound effect
-
-make touga a harder fight (swap guard type w anthy? just make 100% first block?)
 
 after everything else: remove all unused resources
