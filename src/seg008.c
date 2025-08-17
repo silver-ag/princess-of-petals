@@ -40,7 +40,7 @@ const piece tile_table[32] = {
 {  41,   1,   0,  42,   1,   2, 149,   0,  43,  12,   2,  -3,   0,   0}, // 0x0A potion
 {   0,   1,   0,   0,   0,   0, 149,   0,   0,   0,   0,   0,   0,   0}, // 0x0B loose floor
 { 182,   0,   4, 183,   0,   6, 149,   0,   0,   0,   0,   0,   0,   0}, // 0x0C door top
-{  75,   1,   0,  42,   1,   2,   0,   0,  43,  77,   0,   0,   0,   0}, // 0x0D mirror
+{ 199,   1,   3, 200,   1,   3,   0,   0,   0, 201,   1,   3,   0,   0}, // 0x0D CHANGED big pillar middle
 {  97,   1,   0,  98,   1,   2, 149,   0,  43, 100,   0,   0,   0,   0}, // 0x0E debris
 { 147,   1,   0,  42,   1,   1, 149,   0, 149,   0,   0,   0,   0,   0}, // 0x0F open button
 {  41,   1,   0,  37,   0,   0,   0, 154,  43,   0,   0,   0,   0,   0}, // 0x10 leveldoor left - topright_id to 152, 154 for gate opening
@@ -408,6 +408,7 @@ void draw_tile_floorright() {
 	if (can_see_bottomleft() == 0) return;
 	draw_tile_topright();
 	if (tile_table[tile_left].floor_right == 0) return;
+	if (tile_left == tiles_13_mirror) return; //test
 	add_backtable(id_chtab_6_environment, 42 /*floor right part*/, draw_xh, 0, tile_table[tiles_1_floor].right_y + draw_main_y, blitters_9_black, 1);
 }
 
@@ -416,6 +417,7 @@ int can_see_bottomleft() {
 	return curr_tile == tiles_0_empty ||
 		curr_tile == tiles_9_bigpillar_top ||
 		curr_tile == tiles_12_doortop ||
+		curr_tile == tiles_13_mirror || // added
 		curr_tile == tiles_26_lattice_down;
 }
 
@@ -492,7 +494,8 @@ const byte door_fram_top[] = {60, 61, 62, 63, 64, 65, 66, 67};
 void draw_tile_anim_topright() {
 	if (	(curr_tile == tiles_0_empty ||
 		curr_tile == tiles_9_bigpillar_top ||
-		curr_tile == tiles_12_doortop)
+		curr_tile == tiles_12_doortop ||
+		curr_tile == tiles_13_mirror) // added
 		&& (row_below_left_[drawn_col].tiletype == tiles_4_gate || row_below_left_[drawn_col].tiletype == tiles_23_left_gate)
 	) {
 		int x_offset = 0;
@@ -537,7 +540,7 @@ void draw_tile_right() {
 			if (id) {
 				if (tile_left == tiles_5_stuck) {
 					blit = blitters_10h_transp;
-					if (curr_tile == tiles_0_empty || curr_tile == tiles_5_stuck || !tile_is_floor(curr_tile)) {
+					if (curr_tile == tiles_0_empty || curr_tile == tiles_5_stuck || tiles_13_mirror /*probably uneccesary*/|| !tile_is_floor(curr_tile)) {
 						id = 42; /*floor B*/
 					}
 				} else {
@@ -1680,10 +1683,10 @@ void draw_floor_overlay() {
 void draw_other_overlay() {
 	byte tiletype;
 	byte modifier;
-	if (tile_left == tiles_0_empty) {
+	if (tile_left == tiles_0_empty || tile_left == tiles_13_mirror) { //test
 		ptr_add_table = &add_midtable;
 		draw_tile2();
-	} else if (curr_tile != tiles_0_empty && drawn_col > 0 &&
+	} else if (curr_tile != tiles_0_empty && curr_tile != tiles_13_mirror && drawn_col > 0 && //test
 		get_tile_to_draw(drawn_room, drawn_col - 2, drawn_row, &tiletype, &modifier, tiles_0_empty) == tiles_0_empty
 	) {
 		ptr_add_table = &add_midtable;
@@ -1832,7 +1835,7 @@ int load_obj_from_objtable(int index) {
 
 // seg008:228A
 void draw_people() {
-	check_mirror();
+	//check_mirror();
 	draw_kid();
 	draw_guard();
 	reset_obj_clip();

@@ -63,6 +63,7 @@ void animate_tile() {
 		case tiles_11_loose:
 			animate_loose();
 		break;
+		case tiles_13_mirror: // mirror made into big pillars middle
 		case tiles_0_empty:
 			animate_empty();
 		break;

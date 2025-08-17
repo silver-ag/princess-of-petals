@@ -1,7 +1,7 @@
 #include "../common.h"
 
 void make_level_5(custom_level_data* level) {
-	level->used_rooms = 10;
+	level->used_rooms = 13;
         level->start_room = 1;
         level->start_pos =  25;
         level->start_dir =  dir_FF_left;
@@ -16,7 +16,7 @@ void make_level_5(custom_level_data* level) {
 	level->rooms[0].links.left = 2;
 	level->rooms[0].links.right = 3;
 	level->rooms[0].links.up = 4;
-	level->rooms[0].links.down = 8;
+	level->rooms[0].links.down = 11;
 
 	// room 2: aiko
         memcpy(level->rooms[1].fg, (byte[]){ 1, 0, 0, 0, 0, 1, 0, 0, 1, 1,
@@ -27,6 +27,7 @@ void make_level_5(custom_level_data* level) {
                                              0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 30);
 	level->rooms[1].links.right = 1;
 	level->rooms[1].links.left = 8;
+	level->rooms[1].links.up = 13;
 	level->rooms[1].guard_tile = 21;
 	level->doorlinks_rooms[1] = 4;
 	level->doorlinks_tiles[1] = 22;
@@ -41,25 +42,26 @@ void make_level_5(custom_level_data* level) {
 	level->rooms[2].links.left = 1;
 	level->rooms[2].links.up = 5;
 	level->rooms[2].links.right = 8;
-	//level->rooms[2].links.down = 8;
+	level->rooms[2].links.down = 12;
 	level->rooms[2].guard_tile =18;
 	level->doorlinks_rooms[2] = 4;
 	level->doorlinks_tiles[2] = 24;
 
-	// room 4: gate
+	// room 4: gates
         memcpy(level->rooms[3].fg, (byte[]){ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                              0, 0,12, 0,12, 0, 0, 1, 1, 1,
                                              0, 1, 4, 1, 4, 1, 1,20, 0, 0}, 30);
 	level->rooms[3].links.down = 1;
 	level->rooms[3].links.right = 5;
 	level->rooms[3].links.up = 8;
-	level->rooms[3].links.left = 8;
+	level->rooms[3].links.left = 13;
 
 	// room 5: upwards
         memcpy(level->rooms[4].fg, (byte[]){20, 1, 1, 1,11, 1, 1, 3, 0, 0,
                                              1, 1, 1, 3,11, 0, 0, 3, 0, 0,
                                              0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 30);
 	level->rooms[4].links.left = 4;
+	level->rooms[4].links.right = 8;
 	level->rooms[4].links.up = 6;
 	level->rooms[4].links.down = 3;
 
@@ -72,7 +74,8 @@ void make_level_5(custom_level_data* level) {
                                              0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 30);
 	level->rooms[5].links.down = 5;
 	level->rooms[5].links.left = 7;
-	level->rooms[5].links.up = 8;
+	level->rooms[5].links.right = 8;
+	level->rooms[5].links.up = 10;
 	level->rooms[5].guard_tile = 28;
 	level->doorlinks_rooms[3] = 6;
 	level->doorlinks_tiles[3] = 14;
@@ -104,11 +107,37 @@ void make_level_5(custom_level_data* level) {
 	level->rooms[8].links.up = 8;
 
 	// room 10: above exit
-        memcpy(level->rooms[8].fg, (byte[]){ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        memcpy(level->rooms[9].fg, (byte[]){ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                              0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                              0, 0, 0, 1, 0, 0, 0, 0, 0, 0}, 30);
-	level->rooms[8].links.right = 8;
-	level->rooms[8].links.left = 8;
-	level->rooms[8].links.down = 6;
-	//level->rooms[8].links.up = 8;
+	level->rooms[9].links.right = 8;
+	level->rooms[9].links.left = 8;
+	level->rooms[9].links.down = 6;
+	level->rooms[9].links.up = 8;
+
+	// room 11: pit room 1
+        memcpy(level->rooms[10].fg, (byte[]){ 0, 0, 0, 0, 0, 0, 0, 9, 0, 0,
+                                              0, 0, 0, 0, 0, 0, 0,13, 0, 0,
+                                              0, 0, 0, 0, 0, 0, 0,13, 0, 0}, 30);
+	level->rooms[10].links.up = 1;
+	level->rooms[10].links.left = 8;
+	level->rooms[10].links.right = 8;
+
+	// room 12: pit yuuko
+        memcpy(level->rooms[11].fg, (byte[]){ 0, 0, 0, 9, 0, 0, 0, 0, 0, 0,
+                                              0, 0, 0,13, 0, 0, 0, 0, 0, 0,
+                                              0, 0, 0,13, 0, 0, 0, 0, 0, 0}, 30);
+	level->rooms[11].links.up = 3;
+	level->rooms[11].links.left = 8;
+	level->rooms[11].links.right = 8;
+
+	// room 13: sky above aiko
+        memcpy(level->rooms[12].fg, (byte[]){ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                              0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                              0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 30);
+	level->rooms[12].links.up = 8;
+	level->rooms[12].links.left = 8;
+	level->rooms[12].links.right = 4;
+	level->rooms[12].links.down = 2;
+
 }

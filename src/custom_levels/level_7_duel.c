@@ -1,7 +1,7 @@
 #include "../common.h"
 
 void make_level_7_duel(custom_level_data* level) {
-	level->used_rooms = 10;
+	level->used_rooms = 11;
 	level->start_room = 1;
 	level->start_pos = 20;
 	level->start_dir =  dir_FF_left;
@@ -79,7 +79,7 @@ void make_level_7_duel(custom_level_data* level) {
 	level->rooms[5].links.left = 5;
 	level->rooms[5].links.right = 9;
 	level->rooms[5].links.up = 7;
-	level->rooms[5].links.down = 7;
+	level->rooms[5].links.down = 11;
 	level->rooms[5].guard_skill = 6;
 
 
@@ -102,8 +102,27 @@ void make_level_7_duel(custom_level_data* level) {
 	level->rooms[7].links.right = 8;
 	level->rooms[7].links.left = 8;
 
-	// room 9: win
-	memcpy(level->rooms[8].fg, (byte[]){  1, 1, 1, 1, 1, 1, 1, 1, 1,20,
-					      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-					      0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 30);
+	// room 9: pre-win
+	memcpy(level->rooms[8].fg, (byte[]){  1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+					      0, 0, 0, 9, 0, 0, 9, 0, 0, 0,
+					      0, 0, 0,13, 0, 0,13, 0, 0, 0}, 30);
+	level->rooms[8].links.left = 6;
+	level->rooms[8].links.up = 7;
+	level->rooms[8].links.right = 10;
+	level->rooms[8].links.down = 11;
+
+	// room 10: win
+	memcpy(level->rooms[9].fg, (byte[]){  1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+					      0, 0, 0, 9, 0, 0, 9, 0, 0, 0,
+					      0, 0, 0,13, 0, 0,13, 0, 0, 0}, 30);
+	level->rooms[9].links.up = 7;
+	level->rooms[9].links.left = 9;
+
+	// room 11: below final battle
+	memcpy(level->rooms[10].fg, (byte[]){  0, 0, 0,13, 0, 0,13, 0, 0, 0,
+			 		       0, 0, 0,13, 0, 0,13, 0, 0, 0,
+					       1, 1, 1, 8, 1, 1, 8, 1, 1, 1}, 30);
+	level->rooms[10].links.up = 6;
+	level->rooms[10].links.left = 11;
+	level->rooms[10].links.right = 11;
 }

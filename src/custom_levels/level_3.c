@@ -1,7 +1,7 @@
 #include "../common.h"
 
 void make_level_3(custom_level_data* level) {
-	level->used_rooms = 10;
+	level->used_rooms = 13;
         level->start_room = 1;
         level->start_pos =  24;
 	level->bg_colour = (rgb_type){150,70,255};
@@ -49,19 +49,21 @@ void make_level_3(custom_level_data* level) {
 	level->doorlinks_tiles[4] = 15;
 
 	// room 5: tower B
-        memcpy(level->rooms[4].fg, (byte[]){20, 0, 3, 1, 1, 3, 1, 1, 1, 1,
+        memcpy(level->rooms[4].fg, (byte[]){20, 0, 1, 1, 1, 1, 1, 1, 1, 1,
                                             20, 0, 3, 1, 1, 3, 0, 1, 2, 1,
                                             20, 1, 3, 1, 0,20, 0, 1,20,20}, 30);
 	level->rooms[4].links.down = 4;
 	level->rooms[4].links.right = 6;
+	level->rooms[4].links.up = 11;
 
-	// room 6: tower D
+	// room 6: tower C
         memcpy(level->rooms[5].fg, (byte[]){ 1, 1, 1, 2, 1, 1, 2, 1, 1, 1,
                                              1, 1, 1, 1,11,11,11, 1, 1, 1,
                                              0, 0, 9, 0, 0, 0, 0, 9, 0, 0}, 30);
 	level->rooms[5].links.left = 5;
 	level->rooms[5].links.right = 7;
 	level->rooms[5].links.up = 8;
+	level->rooms[5].links.down = 13;
 
 	// room 7: exit
         memcpy(level->rooms[6].fg, (byte[]){ 1, 1, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -101,5 +103,28 @@ void make_level_3(custom_level_data* level) {
 	level->rooms[9].links.left = 7;
 	level->rooms[9].links.right = 8;
 	level->rooms[9].links.up = 8;
-	level->rooms[9].links.down = 8;
+	level->rooms[9].links.down = 12;
+
+	// room 11: above tower
+        memcpy(level->rooms[10].fg, (byte[]){ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                              0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                              1, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 30);
+	level->rooms[10].links.down = 5;
+
+	// room 12: below promenade
+        memcpy(level->rooms[11].fg, (byte[]){ 0,13, 0, 0, 0, 0, 0, 0, 0, 0,
+                                              0,13, 0, 0, 0, 0, 0, 0, 0, 0,
+                                              1, 8, 1, 1, 1, 1, 1, 1, 1, 1}, 30);
+	level->rooms[11].links.up = 10;
+	level->rooms[11].links.left = 12;
+	level->rooms[11].links.right = 12;
+
+	// room 13: below C
+        memcpy(level->rooms[12].fg, (byte[]){ 0, 0,13, 0, 0, 0, 0,13, 0, 0,
+                                              0, 0,13, 0, 0, 0, 0,13, 0, 0,
+                                              1, 1, 8, 1, 1, 1, 1, 8, 1, 1}, 30);
+	level->rooms[12].links.up = 6;
+	level->rooms[12].links.left = 13;
+	level->rooms[12].links.right = 13;
+
 }

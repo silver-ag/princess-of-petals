@@ -1291,7 +1291,7 @@ void check_the_end() {
 	if (next_room != 0 && next_room != drawn_room) {
 		drawn_room = next_room;
 		load_room_links();
-		if (current_level == 14 && drawn_room == 9) {
+		if (current_level == 14 && Kid.room == 10) {
 #ifdef USE_REPLAY
 			if (recording) stop_recording();
 			if (replaying) end_replay();
@@ -1299,8 +1299,9 @@ void check_the_end() {
 			// Special event: end of game
 			end_sequence();
 		}
-		if (current_level % 2 == 0 && drawn_room == 5 && current_level != 14) { // princess of petals automatically proceed after arena
+		if (current_level % 2 == 0 && Kid.room == 5 && current_level != 14) { // princess of petals automatically proceed after arena
 			drawing_petals = false;
+			stop_sounds(); // because otherwise they'll stop us moving on
 			++next_level;
 		}
 		different_room = 1;

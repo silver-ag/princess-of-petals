@@ -1,9 +1,3 @@
-difficulty setting for easier duels
-
-accesssibilty setting for flashing
-
-add nice edge rooms to each level
-
 make transition after entering last room of duel levels instant regardless of sounds
 
 stop left gate back pillar showing in front of you while climbing up - don't know why this is, it still happens with draw_left_gate_fore disabled entirely

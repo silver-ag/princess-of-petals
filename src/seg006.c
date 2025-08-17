@@ -972,6 +972,7 @@ int tile_is_floor(int tiletype) {
 		case tiles_0_empty:
 		case tiles_9_bigpillar_top:
 		case tiles_12_doortop:
+		case tiles_13_mirror: // adjustment
 		case tiles_20_wall:
 		case tiles_26_lattice_down:
 		case tiles_27_lattice_small:
@@ -1663,7 +1664,7 @@ int wall_type(byte tiletype, byte modifier) {
 		case tiles_7_doortop_with_floor:
 		case tiles_12_doortop:
 			return 1; // wall at right
-		case tiles_13_mirror:
+		//case tiles_13_mirror:
 		case tiles_23_left_gate:
 			return 2; // wall at left
 		case tiles_18_chomper:
@@ -1848,7 +1849,7 @@ void clip_char() {
 				))
 			) {
 				col = get_tile_div_mod(char_x_right_coll);
-				if (
+				/*if (
 					(get_tile(room, col, row) == tiles_20_wall ||
 					(curr_tile2 == tiles_13_mirror && Char.direction == dir_0_right)) &&
 					(get_tile(room, col, char_top_row) == tiles_20_wall ||
@@ -1856,7 +1857,7 @@ void clip_char() {
 					room == curr_room
 				) {
 					obj_clip_right = tile_col << 5;
-				}
+				}*/
 			} else {
 				obj_clip_right = (tile_col << 5) + 32;
 			}
@@ -1955,9 +1956,10 @@ int is_dead() {
 // seg006:15B5
 void play_death_music() {
 	word sound_id;
-	if (Guard.charid == charid_1_shadow) {
+	/*if (Guard.charid == charid_1_shadow) {
 		sound_id = sound_32_shadow_music; // killed by shadow
-	} else if (holding_sword) {
+	} else*/
+	if (holding_sword) {
 		sound_id = sound_28_death_in_fight; // death in fight
 	} else {
 		sound_id = sound_24_death_regular; // death not in fight

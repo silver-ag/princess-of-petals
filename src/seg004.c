@@ -238,7 +238,7 @@ int is_obstacle() {
 	} else if (curr_tile2 == tiles_18_chomper) {
 		// is the chomper closed?
 		if (curr_room_modif[curr_tilepos] != 2) return 0;
-	} else if (
+	} /*else if (
 		curr_tile2 == tiles_13_mirror &&
 		Char.charid == charid_0_kid &&
 		Char.frame >= frame_39_start_run_jump_6 && Char.frame < frame_44_running_jump_5 && // run-jump
@@ -247,7 +247,7 @@ int is_obstacle() {
 		curr_room_modif[curr_tilepos] = 0x56; // broken mirror or what?
 		jumped_through_mirror = -1;
 		return 0;
-	}
+	}*/
 	coll_tile_left_xpos = xpos_in_drawn_room(x_bump[tile_col + FIRST_ONSCREEN_COLUMN]) + TILE_MIDX;
 	return 1;
 }

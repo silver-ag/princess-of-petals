@@ -62,8 +62,8 @@ void make_level_2_duel(custom_level_data* level) {
 	// room 5: post-entry
 	// win immediately on entry
 	memcpy(level->rooms[4].fg, (byte[]){  0, 0, 0, 0, 0, 0, 0, 0, 0,20,
-						        1, 1, 1, 1, 1, 1, 1, 1, 1,20,
-						        0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 30);
+					      1, 1, 1, 1, 1, 1, 1, 1, 1,20,
+					      0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 30);
 	level->rooms[6].links.left = 3;
 	level->rooms[6].links.right = 7;
 	level->rooms[6].links.up = 7;
@@ -73,8 +73,8 @@ void make_level_2_duel(custom_level_data* level) {
 	// room 7: sky
 	// for putting next to rooms that shouldn't have walls displayed on that edge
 	memcpy(level->rooms[6].fg, (byte[]){  0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-						        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-						        0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 30);
+					      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+					      0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 30);
 	level->rooms[6].links.down = 8;
 	level->rooms[6].links.left = 7;
 	level->rooms[6].links.up = 7;
