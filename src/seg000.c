@@ -757,10 +757,8 @@ int process_key() {
 			case SDL_SCANCODE_KP_MINUS: // '-' --> subtract time cheat
 				if (rem_min > 1) --rem_min;
 
-#ifdef ALLOW_INFINITE_TIME
 				else if (rem_min < -1) ++rem_min; // if negative/infinite, time runs 'forward'
 				else if (rem_min == -1) rem_tick = 720; // resets the timer to 00:00:00
-#endif
 
 				text_time_total = 0;
 				text_time_remaining = 0;
@@ -768,14 +766,10 @@ int process_key() {
 			break;
 			case SDL_SCANCODE_KP_PLUS: // '+' --> add time cheat
 
-#ifdef ALLOW_INFINITE_TIME
 				if (rem_min < 0) { // if negative/infinite, time runs 'forward'
 					if (rem_min > INT16_MIN) --rem_min;
 				}
 				else ++rem_min;
-#else
-				++rem_min;
-#endif
 
 				text_time_total = 0;
 				text_time_remaining = 0;

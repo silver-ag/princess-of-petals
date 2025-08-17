@@ -772,8 +772,8 @@ void end_sequence() {
 	draw_smoke = false;
 	current_target_surface = offscreen_surface;
 	for (hof_index = 0; hof_index < hof_count; ++hof_index) {
-		if (hof[hof_index].min < rem_min ||
-			(hof[hof_index].min == rem_min && hof[hof_index].tick < rem_tick)
+		if (hof[hof_index].min > rem_min ||
+			(hof[hof_index].min == rem_min && hof[hof_index].tick > rem_tick)
 		) break;
 	}
 	if (hof_index < MAX_HOF_COUNT && hof_index <= hof_count) {
@@ -920,7 +920,6 @@ void show_hof() {
 	char time_text[12];
 	for (short index = 0; index < hof_count; ++index) {
 
-#ifdef ALLOW_INFINITE_TIME
 		int minutes, seconds;
 		if (hof[index].min > 0) {
 			minutes = hof[index].min - 1;
@@ -931,9 +930,6 @@ void show_hof() {
 			seconds = (719 - hof[index].tick) / 12;
 		}
 		snprintf(time_text, sizeof(time_text), "%d:%02d", minutes, seconds);
-#else
-		snprintf(time_text, sizeof(time_text), "%d:%02d", hof[index].min - 1, hof[index].tick / 12);
-#endif
 
 		show_hof_text(&hof_rects[index], -1, 0, hof[index].name);
 		show_hof_text(&hof_rects[index], 1, 0, time_text);

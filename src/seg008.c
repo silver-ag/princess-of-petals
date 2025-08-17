@@ -1968,30 +1968,21 @@ void show_time() {
 		#ifdef FREEZE_TIME_DURING_END_MUSIC
 		(!(fixes->enable_freeze_time_during_end_music && next_level != current_level)) &&
 		#endif
-		#ifdef ALLOW_INFINITE_TIME
 		// prevent overflow
 		(!(rem_min == INT16_MIN && rem_tick == 1)) &&
-		#endif
-		rem_min != 0 &&
-		(current_level < /*13*/ custom->victory_stops_time_level || (current_level == /*13*/ custom->victory_stops_time_level && leveldoor_open == 0)) &&
-		current_level < 15
+		rem_min != 0
 	) {
 		// Time passes
-		--rem_tick;
-		if (rem_tick == 0) {
-			rem_tick = 719; // 720=12*60 ticks = 1 minute
-			--rem_min;
-#ifndef ALLOW_INFINITE_TIME
-			if (rem_min != 0 && (rem_min <= 5 || rem_min % 5 == 0)) {
+		++rem_tick;
+		if (rem_tick >= 719) {
+			rem_tick = 0; // 720=12*60 ticks = 1 minute
+			++rem_min;
+			//testing purposes
+			//if (rem_min > 0 && (rem_min <= 5 || rem_min % 5 == 0)) {
 				is_show_time = 1;
-			}
-#else
-			if (rem_min > 0 && (rem_min <= 5 || rem_min % 5 == 0)) {
-				is_show_time = 1;
-			} else if (rem_min < 0) {
+			//} else if (rem_min < 0) {
 				is_show_time = ((~rem_min) % 5 == 0 ) ? 1 : 0;
-			}
-#endif
+			//}
 		} else {
 			if (rem_min == 1 && rem_tick % 12 == 0) {
 				is_show_time = 1;
@@ -2016,7 +2007,6 @@ void show_time() {
 			display_text_bottom(sprintf_temp);
 		} else {
 
-#ifdef ALLOW_INFINITE_TIME
 			if (rem_min < 0) {
 				if (~rem_min == 0) {
 					// don't display time elapsed in the first minute
@@ -2033,7 +2023,6 @@ void show_time() {
 			}
 
 			else if (rem_min == 0) // may also be negative, don't report "expired" in that case!
-#endif
 
 			display_text_bottom("TIME HAS EXPIRED!");
 		}
