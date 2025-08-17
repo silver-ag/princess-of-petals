@@ -673,18 +673,24 @@ void autocontrol_opponent() {
 
 // seg002:07EB
 void autocontrol_mouse() {
-	if (Char.direction == dir_56_none) {
-		return;
+	int temp_unpaused = false;
+	if (controls_paused) {
+		temp_unpaused = true;
+		controls_paused = false;
 	}
-		if (Char.x >= 200 || Char.x <= 0) {
-			clear_char();
-		}
+	if (Char.x >= 200 || Char.x <= 0) {
+		clear_char();
+	}
 	if (Char.action == actions_0_stand) {
 	} else {
 		if (Char.x < 150 && Char.room == 1) {
 			seqtbl_offset_char(seq_107_mouse_stand_up_and_go); // mouse
+			play_sound(sound_42_chu);
 			play_seq();
 		}
+	}
+	if (temp_unpaused) {
+		controls_paused = true;
 	}
 }
 

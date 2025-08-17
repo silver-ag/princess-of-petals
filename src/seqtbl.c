@@ -1142,6 +1142,11 @@ byte seqtbl[] = {
 	act(actions_0_stand), frame_186_mouse_1,
 	frame_186_mouse_1, frame_186_mouse_1, frame_188_mouse_stand, frame_188_mouse_stand,
 	frame_188_mouse_stand, frame_188_mouse_stand, frame_188_mouse_stand, frame_188_mouse_stand,
+	frame_188_mouse_stand, frame_188_mouse_stand, frame_188_mouse_stand, frame_188_mouse_stand,
+	frame_188_mouse_stand, frame_188_mouse_stand, frame_188_mouse_stand, frame_188_mouse_stand,
+	frame_188_mouse_stand, frame_188_mouse_stand, frame_188_mouse_stand, frame_188_mouse_stand,
+	frame_188_mouse_stand, frame_188_mouse_stand, frame_188_mouse_stand, frame_188_mouse_stand,
+	frame_188_mouse_stand, frame_188_mouse_stand, frame_188_mouse_stand, frame_188_mouse_stand,
 	frame_188_mouse_stand, frame_188_mouse_stand,
 	SEQ_FLIP, dx(8), jmp(Mscurry1), // goto "Mscurry1"
 

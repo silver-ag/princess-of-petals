@@ -475,7 +475,7 @@ void cutscene_4() {
 	set_kashira_animations(-1,0);
 	add_princess_text("but i wasn't always popular.", 30);
 	proc_cutscene_frame(30);
-	add_princess_text("when i was younger i got in trouble,", 30);
+	add_princess_text("when i was a child i got in trouble,", 30);
 	proc_cutscene_frame(30);
 	add_princess_text("sticking my tongue out at people in the mirror.", 30);
 	proc_cutscene_frame(30);
@@ -546,7 +546,7 @@ void cutscene_6() {
 	add_princess_text("i knew loved you when i saw you with that snake.", 30);
 	set_kashira_animations(19,-1);
 	proc_cutscene_frame(30);
-	add_princess_text("i've always wanted to marry a zookeeper.", 30);
+	add_princess_text("i've always dreamed i'd marry a zookeeper.", 30);
 	proc_cutscene_frame(20);
 	set_kashira_animations(17,-1);
 	proc_cutscene_frame(20);

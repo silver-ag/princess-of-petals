@@ -108,6 +108,10 @@ void start_drawing_frame(int t) {
 
 void draw_frame(SDL_Surface* sfc) {
 	if (drawing_frame > 0) {
+		bool was_silhouette = silhouette_mode;
+		bool was_shadow = shadow_world;
+		silhouette_mode = false;
+		shadow_world = false;
 		drawing_frame--;
 		SDL_Surface* frame_surface = get_image(id_chtab_6_environment, 189);
 		SDL_SetColorKey(frame_surface, SDL_FALSE, 0); // make sure black isn't transparent
@@ -120,6 +124,8 @@ void draw_frame(SDL_Surface* sfc) {
 		method_1_blit_rect(sfc, rose_surface_clockwise, &(rect_type){125,245,75,75}, &(rect_type){0,0,75,75}, blitters_10h_transp);
 		method_1_blit_rect(sfc, rose_surface_counterclockwise, &(rect_type){125,0,75,75}, &(rect_type){0,0,75,75}, blitters_10h_transp);
 		method_1_blit_rect(sfc, rose_surface_counterclockwise, &(rect_type){0,245,75,75}, &(rect_type){0,0,75,75}, blitters_10h_transp);
+		silhouette_mode = was_silhouette;
+		shadow_world = was_shadow;
 	}
 }
 

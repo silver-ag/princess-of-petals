@@ -1,8 +1,4 @@
-add shadow sword to shadow girl guard hit sprites
 
-make bell quieter
-
-pause controls at start of level 7 to make chuchu more obvious
-also, chuchu sound effect
 
 after everything else: remove all unused resources
+

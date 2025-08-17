@@ -315,7 +315,7 @@ void control_crouched() {
 		// Special event: music when crouching
 		if (! check_sound_playing()) {
 			if (need_level1_music == 1) {
-				play_sound(sound_25_presentation); // presentation (level 1 start)
+				//play_sound(sound_25_presentation); // presentation (level 1 start)
 				need_level1_music = 2;
 			} else {
 #ifdef USE_REPLAY

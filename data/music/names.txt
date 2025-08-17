@@ -5,6 +5,7 @@
 31=egg_crack
 34=johnny
 41=end_level
+42=chu
 56=rose_and_release
 
 25=find_mirror_and_find_shadow

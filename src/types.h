@@ -780,7 +780,7 @@ enum soundids {
 	sound_39_low_weight = 39,
 	sound_40_cutscene_12_short_time = 40,
 	sound_41_end_level_music = 41,
-	//sound_42 = 42,
+	sound_42_chu = 42, // added
 	sound_43_victory_Jaffar = 43,
 	sound_44_skel_alive = 44,
 	sound_45_jump_through_mirror = 45,

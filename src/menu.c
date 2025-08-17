@@ -313,6 +313,7 @@ enum setting_ids {
 
 	SETTING_FLASHING_SPEED,
 	SETTING_EASIER_GUARDS,
+	SETTING_MAX_LIVES,
 };
 
 typedef struct setting_type {
@@ -1075,7 +1076,10 @@ setting_type accessibility_settings[] = {
 		.linked = &death_flash_speed, .min = 0, .max = 10, .text = "Flashing Speed",
 		.explanation = "Speed of the flashing effect in frames (more is slower). Set to zero to disable flashing entirely."},
 	{.id = SETTING_EASIER_GUARDS, .style = SETTING_STYLE_TOGGLE, .linked = &easier_guards,
-		.text = "Easier Duels", .explanation = "Make the other duelists less skillful"}
+		.text = "Easier Duels", .explanation = "Make the other duelists less skillful"},
+	{.id = SETTING_MAX_LIVES, .style = SETTING_STYLE_NUMBER, .number_type = SETTING_INT,
+		.linked = &hitp_beg_lev, .min = 1, .max = 7, .text = "Maximum lives",
+		.explanation = "Adjust how many hits you can take. Takes effect next time a level starts or restarts."},
 };
 
 typedef struct settings_area_type {

@@ -75,7 +75,7 @@ extern short rem_min;
 // data:4F82
 extern word rem_tick;
 // data:4608
-extern word hitp_beg_lev;
+extern int hitp_beg_lev;
 // data:4CAA
 extern word need_level1_music;
 // data:4380
@@ -307,7 +307,7 @@ extern word next_room;
 // data:4C98
 extern word hitp_curr;
 // data:5FF2
-extern word hitp_max;
+extern int hitp_max;
 // data:5FF0
 extern short hitp_delta;
 // data:4D94

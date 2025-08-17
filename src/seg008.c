@@ -1996,13 +1996,13 @@ void show_time() {
 			if (rem_min == 1) {
 				rem_sec = (rem_tick + 1) / 12;
 				if (rem_sec == 1) {
-					strncpy(sprintf_temp, "1 SECOND LEFT", sizeof(sprintf_temp));
+					strncpy(sprintf_temp, "1 SECOND ELAPSED", sizeof(sprintf_temp));
 					text_time_remaining = text_time_total = 12;
 				} else {
-					snprintf(sprintf_temp, sizeof(sprintf_temp), "%d SECONDS LEFT", rem_sec);
+					snprintf(sprintf_temp, sizeof(sprintf_temp), "%d SECONDS ELAPSED", rem_sec);
 				}
 			} else {
-				snprintf(sprintf_temp, sizeof(sprintf_temp), "%d MINUTES LEFT", rem_min);
+				snprintf(sprintf_temp, sizeof(sprintf_temp), "%d MINUTES ELAPSED", rem_min);
 			}
 			display_text_bottom(sprintf_temp);
 		} else {
