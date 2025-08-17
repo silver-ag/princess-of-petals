@@ -1,7 +1,7 @@
 #include "../common.h"
 
 void make_level_7_duel(custom_level_data* level) {
-	level->used_rooms = 11;
+	level->used_rooms = 12;
 	level->start_room = 1;
 	level->start_pos = 20;
 	level->start_dir =  dir_FF_left;
@@ -78,7 +78,7 @@ void make_level_7_duel(custom_level_data* level) {
 					      0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 30);
 	level->rooms[5].links.left = 5;
 	level->rooms[5].links.right = 9;
-	level->rooms[5].links.up = 7;
+	level->rooms[5].links.up = 12;
 	level->rooms[5].links.down = 11;
 	level->rooms[5].guard_skill = 6;
 
@@ -125,4 +125,10 @@ void make_level_7_duel(custom_level_data* level) {
 	level->rooms[10].links.up = 6;
 	level->rooms[10].links.left = 11;
 	level->rooms[10].links.right = 11;
+
+	// room 12: above final battle
+	memcpy(level->rooms[11].fg, (byte[]){  0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+					       0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+					       0, 0, 0, 0, 0, 0, 0, 0,12, 0}, 30);
+	level->rooms[11].links.down = 6;
 }

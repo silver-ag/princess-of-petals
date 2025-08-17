@@ -1,5 +1,3 @@
-remove timer
-
 add shadow sword to shadow girl guard hit sprites
 
 make bell quieter
