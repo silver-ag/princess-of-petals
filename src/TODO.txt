@@ -1,7 +1,3 @@
-stop left gate back pillar showing in front of you while climbing up - don't know why this is, it still happens with draw_left_gate_fore disabled entirely
-
-put crashed sportscar on other side top floor level 7
-
 fix bug where tapping a key repeatedly while holding shift causes it to be input when shift is released?
 
 bug: silhouette mode fucks up the cutscene

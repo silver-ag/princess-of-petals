@@ -65,7 +65,7 @@ void play_level(int level_number) {
 				printf("Tried to load cutscene for level %d, not in 0..15\n", level_number);
 				quit(1);
 			}
-			cutscene_func = tbl_cutscenes[custom->tbl_cutscenes_by_index[level_number]];
+			cutscene_func = NULL;//testtbl_cutscenes[custom->tbl_cutscenes_by_index[level_number]];
 			if (cutscene_func != NULL
 
 				#ifdef USE_REPLAY
