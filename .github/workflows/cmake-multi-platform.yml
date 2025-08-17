@@ -31,6 +31,9 @@ jobs:
 
   test_Windows:
     runs-on: windows-latest
+    defaults:
+      run:
+        shell: bash
     
     steps:
     - uses: actions/checkout@v1
