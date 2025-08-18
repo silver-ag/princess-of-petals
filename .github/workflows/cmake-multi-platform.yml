@@ -57,7 +57,7 @@ jobs:
     - name: Build
       shell: cmd
       run: |
-        dir C:\"Program Files"\"Microsoft Visual Studio"\2022\Enterprise\VC
-        echo %SDL2_ROOT%
-        echo %SDL2_image_ROOT%
+        dir %SDL2_image_ROOT%
+        dir %SDL2_image_ROOT%/include
+        dir %SDL2_image_ROOT%/include/SDL2
         src\build.bat release %SDL2_ROOT% %SDL2_image_ROOT%
