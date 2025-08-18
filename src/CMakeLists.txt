@@ -43,7 +43,7 @@ if (WIN32)
     # If the location of SDL2 is not specified, we will try to guess it.
     if (NOT(DEFINED SDL2))
         cmake_policy(SET CMP0015 NEW) # suppress warning about relative paths
-        set(SDL2 "../../SDL2-2.0.8")
+        set(SDL2 "../../SDL2-2.32.6")
     endif()
 
     # Automatically detect whether we need the x86 or x64 version of the SDL2 library.
@@ -122,7 +122,7 @@ else()
 endif()
 
 if(WIN32)
-    #target_link_libraries(princess mingw32 SDL2main SDL2 SDL2_image)
+    target_link_libraries(princess mingw32 SDL2main SDL2 SDL2_image)
 elseif(APPLE)
     target_link_libraries(princess SDL2main SDL2 SDL2_image m)
 elseif(PSP) # Linux, *BSD, etc.
