@@ -87,8 +87,8 @@ jobs:
         cd ..
         dir SDL2_image-2.8.8\lib
         dir SDL2_image-2.8.8\lib\x64
-        cp SDL2_image-2.8.8\lib\x64\SDL_image.lib %SDL2_ROOT%\lib
-        cp SDL2_image-2.8.8\lib\x64\SDL_image.dll ${{ github.workspace }}
+        cp SDL2_image-2.8.8\lib\x64\SDL2_image.lib %SDL2_ROOT%\lib
+        cp SDL2_image-2.8.8\lib\x64\SDL2_image.dll ${{ github.workspace }}
 
 
     #- name: Copy image lib
