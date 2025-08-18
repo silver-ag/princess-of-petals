@@ -94,8 +94,8 @@ jobs:
         cd SDL2_image-2.8.8
         echo %cd%
         echo "SDL2_image_ROOT=%cd%"
-        dir SDL2_image-2.8.8
         cd ..
+        dir SDL2_image-2.8.8
 
     - name: Build
       shell: cmd
@@ -110,7 +110,7 @@ jobs:
     - name: Copy Dlls
       shell: cmd
       run: |
-        dir SDL2_image
+        dir SDL2_image-2.8.8
         cp %SDL2_ROOT%\bin\SDL2.dll ${{ github.workspace }}
         cp SDL2_image-2.8.8/bin/SDL2_image.dll ${{ github.workspace }}
 
