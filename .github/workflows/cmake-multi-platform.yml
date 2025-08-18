@@ -59,4 +59,4 @@ jobs:
 
     - name: Build
       shell: pwsh
-      run: Start-Process "cmd.exe" "/c 'set SDL2=${{ steps.sdl.outputs.prefix }} & build.bat release'"
+      run: Start-Process "cmd.exe" "/c build.bat release ${{ steps.sdl.outputs.prefix }}"

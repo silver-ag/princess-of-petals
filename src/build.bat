@@ -20,6 +20,9 @@ if ERRORLEVEL 1 (
 :: To override the directory for SDL2 library files, simply set the SDL environment variable in the command shell.
 :: (You could do that from the command-line, or from a wrapper script that calls this one.)
 
+:: added - take second argument for SDL2 location
+set SDL2=%2
+
 if [%SDL2%]==[] (
   set SDL2=..\..\SDL2-2.0.6
 )
