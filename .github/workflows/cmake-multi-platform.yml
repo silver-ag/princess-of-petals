@@ -93,7 +93,7 @@ jobs:
     - name: Build
       shell: cmd
       run: |
-        set SD2=SDL2-2.32.6
+        set "SD2=SDL2-2.32.6"
         src\build.bat release
 
     #- name: Copy Dlls
