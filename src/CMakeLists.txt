@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.12)
 project(SDLPoP)
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -std=c99")
@@ -12,8 +12,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${SDLPoP_SOURCE_DIR}/..")
 # You can pass the SDL2 location to CMake like so: -DSDL2="C:/work/libraries/SDL2-2.0.8"
 # Or alternatively, specify the SDL2 location below:
 
-#set(SDL2 "SDL2")
-
+## set(SDL2 "SDL2")
+find_package(SDL2 REQUIRED CONFIG) # test
 # On macOS, if you used Homebrew to install SDL2, the location may be something like this:
 
 #set(SDL2 "/usr/local/Cellar/sdl2/2.0.5")
