@@ -64,7 +64,7 @@ jobs:
         -DCMAKE_PREFIX_PATH=${{ steps.sdl.outputs.prefix }}
         -S src
         -G "MinGW Makefiles"
-        --verbose
+        --debug-output
 
     - name: Debug Info
       run: >
@@ -73,4 +73,4 @@ jobs:
 
     - name: Build
       # Build your program with the given configuration. Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
-      run: cmake --build . --config Release
+      run: cmake --build . --config Release --debug-output
