@@ -77,10 +77,10 @@ jobs:
 
 
     - name: Get SDL_image
-      shell: cmd
+      shell: bash
       run: |
-        dir %SDL2_image_ROOT%
-        dir %SDL2_image_ROOT%\lib
+        ls $SDL2_image_ROOT
+        ls $SDL2_image_ROOT\lib
 
     #- name: Copy image lib
     #  shell: bash
