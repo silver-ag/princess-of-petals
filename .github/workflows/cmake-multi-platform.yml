@@ -55,7 +55,7 @@ jobs:
       with:
         install-linux-dependencies: true
         version: 2-latest
-        version-sdl-image: 2-latest
+        version-sdl-image: 2.8.8
         add-to-environment: true
 
     #- name: Install SDL2 Manually
@@ -79,17 +79,8 @@ jobs:
     - name: Get SDL_image
       shell: cmd
       run: |
-        curl.exe -L -o SDL2_image-devel-2.8.8-VC.zip https://github.com/libsdl-org/SDL_image/releases/download/release-2.8.8/SDL2_image-devel-2.8.8-VC.zip
-        unzip SDL2_image-devel-2.8.8-VC.zip
-        cd SDL2_image-2.8.8
-        echo %cd%
-        echo "SDL2_image_ROOT=%cd%" >> %GITHUB_ENV%
-        cd ..
-        dir SDL2_image-2.8.8\lib
-        dir SDL2_image-2.8.8\lib\x64
-        cp SDL2_image-2.8.8\lib\x64\SDL2_image.lib %SDL2_ROOT%\lib
-        cp SDL2_image-2.8.8\lib\x64\SDL2_image.dll ${{ github.workspace }}
-
+        dir %SDL2_image_ROOT%
+        dir %SDL2_image_ROOT%\lib
 
     #- name: Copy image lib
     #  shell: bash
