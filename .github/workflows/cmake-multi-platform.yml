@@ -58,7 +58,5 @@ jobs:
         ls ${{ steps.sdl.outputs.prefix }}
 
     - name: Build
-      # Build your program with the given configuration. Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
-      run: |
-        SDL2=${{ steps.sdl.outputs.prefix }}
-        build.bat release
+      shell: pwsh
+      run: Start-Process "cmd.exe" "/c 'set SDL2=${{ steps.sdl.outputs.prefix }} & build.bat release'"
