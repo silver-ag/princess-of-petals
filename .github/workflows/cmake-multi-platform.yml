@@ -50,6 +50,7 @@ jobs:
         install-linux-dependencies: true
         version: 2-latest
         version-sdl-image: 2-latest
+        add-to-environment: true
 
     - name: Configure CMake
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
