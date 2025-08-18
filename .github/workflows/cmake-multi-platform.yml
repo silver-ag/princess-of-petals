@@ -75,8 +75,7 @@ jobs:
         src\build.bat release %SDL2_ROOT% %SDL2_image_ROOT%
 
     - name: Copy SDL2.dll
-      shell: bash
-      run: cp $SDL2_ROOT/bin/SDL2.dll ${{ github.workspace }}/
+      run: cp %SDL2_ROOT%\bin\SDL2.dll ${{ github.workspace }}
 
     - uses: actions/upload-artifact@v4
       with:
