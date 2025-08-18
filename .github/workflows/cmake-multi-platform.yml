@@ -94,7 +94,6 @@ jobs:
         curl.exe -L -o SDL2_image-devel-2.8.8-VC.zip https://github.com/libsdl-org/SDL_image/releases/download/release-2.8.8/SDL2_image-devel-2.8.8-VC.zip
         unzip SDL2_image-devel-2.8.8-VC.zip
         echo %cd%
-        echo "SDL2_image_ROOT=%cd%" >> $GITHUB_ENV
         cd ..
 
     - name: Build
@@ -107,8 +106,9 @@ jobs:
     - name: Copy Dlls
       shell: cmd
       run: |
+        dir SDL2_image
         cp %SDL2_ROOT%\bin\SDL2.dll ${{ github.workspace }}
-        cp %SDL2_image_ROOT%/bin/SDL2_image.dll ${{ github.workspace }}
+        cp SDL2_image/bin/SDL2_image.dll ${{ github.workspace }}
 
     - uses: actions/upload-artifact@v4
       with:
