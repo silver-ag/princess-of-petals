@@ -87,13 +87,14 @@ jobs:
         ls $SDL2_image_ROOT/share
 
     - name: Get SDL_image
-      shell: bash
+      shell: cmd
       run: |
         mkdir SDL2_image
         cd SDL2_image
-        curl -L -o SDL2_image-devel-2.8.8-VC.zip https://github.com/libsdl-org/SDL_image/releases/download/release-2.8.8/SDL2_image-devel-2.8.8-VC.zip
+        curl.exe -L -o SDL2_image-devel-2.8.8-VC.zip https://github.com/libsdl-org/SDL_image/releases/download/release-2.8.8/SDL2_image-devel-2.8.8-VC.zip
         unzip SDL2_image-devel-2.8.8-VC.zip
-        echo "SDL2_image_ROOT=$(pwd)" >> $GITHUB_ENV
+        echo %cd%
+        echo "SDL2_image_ROOT=%cd%" >> $GITHUB_ENV
         cd ..
 
     - name: Build
@@ -103,11 +104,11 @@ jobs:
         cp -a %SDL2_image_ROOT%\lib\. %SDL2_ROOT%\lib
         src\build.bat release %SDL2_ROOT% %SDL2_image_ROOT%
 
-    - name: Copy SDL2.dll
+    - name: Copy Dlls
       shell: cmd
       run: |
         cp %SDL2_ROOT%\bin\SDL2.dll ${{ github.workspace }}
-        cp ${{ github.workspace }}/SDL2_image/bin/SDL2_image.dll ${{ github.workspace }}
+        cp %SDL2_image_ROOT%/bin/SDL2_image.dll ${{ github.workspace }}
 
     - uses: actions/upload-artifact@v4
       with:
