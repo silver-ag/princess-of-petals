@@ -87,21 +87,24 @@ jobs:
         cd ..
         dir SDL2_image-2.8.8\lib
         dir SDL2_image-2.8.8\lib\x64
+        cp SDL2_image-2.8.8\lib\x64\SDL_image.lib %SDL2_ROOT%\lib
+        cp SDL2_image-2.8.8\lib\x64\SDL_image.dll ${{ github.workspace }}
 
-    - name: Copy image lib
-      shell: bash
-      run: |
-        pwd
-        echo 
-        ls
-        echo 
-        ls ./SDL_image-2.8.8
-        echo 
-        ls SDL_image-2.8.8/lib
-        echo 
-        ls SDL_image-2.8.8/lib/x64
-        echo 
-        cp SDL_image-2.8.8/lib/x64/* $SDL2_ROOT/lib/
+
+    #- name: Copy image lib
+    #  shell: bash
+    #  run: |
+    #    pwd
+    #    echo 
+    #    ls
+    #    echo 
+    #    ls ./SDL_image-2.8.8
+    #    echo 
+    #    ls SDL_image-2.8.8/lib
+    #    echo 
+    #    ls SDL_image-2.8.8/lib/x64
+    #    echo 
+    #    cp SDL_image-2.8.8/lib/x64/* $SDL2_ROOT/lib/
 
 
     - name: Build
@@ -118,7 +121,7 @@ jobs:
       run: |
         dir SDL2_image-2.8.8
         cp %SDL2_ROOT%\bin\SDL2.dll ${{ github.workspace }}
-        cp SDL2_image-2.8.8/lib/x64/SDL2_image.dll ${{ github.workspace }}
+        #cp SDL2_image-2.8.8/lib/x64/SDL2_image.dll ${{ github.workspace }}
 
     - uses: actions/upload-artifact@v4
       with:
