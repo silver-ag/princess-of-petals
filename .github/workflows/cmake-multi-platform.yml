@@ -29,13 +29,11 @@ jobs:
       # Build your program with the given configuration. Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
       run: |
         cmake --build . --config Release
-        pwd
-        ls ..
 
     - uses: actions/upload-artifact@v4
       with:
         name: princess_linux
-        path: ../princess
+        path: /home/runner/work/princess-of-petals/princess-of-petals/princess
 
   test_Windows:
     runs-on: windows-latest
@@ -70,7 +68,10 @@ jobs:
         ls $SDL2_image_ROOT/lib
         echo
         ls $SDL2_ROOT/lib
-
+        echo
+        pwd
+        echo
+        ls
 
     - name: Build
       shell: cmd
@@ -78,8 +79,6 @@ jobs:
         cp %SDL2_image_ROOT%\include\SDL2\SDL_image.h %SDL2_ROOT%\include\SDL2
         cp -a %SDL2_image_ROOT%\lib\. %SDL2_ROOT%\lib
         src\build.bat release %SDL2_ROOT% %SDL2_image_ROOT%
-        pwd
-        dir ..
 
     - uses: actions/upload-artifact@v4
       with:
