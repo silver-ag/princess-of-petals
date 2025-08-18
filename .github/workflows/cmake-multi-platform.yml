@@ -90,10 +90,16 @@ jobs:
     - name: Copy image lib
       shell: bash
       run: |
+        pwd
+        echo 
         ls
-        ls SDL_image-2.8.8
+        echo 
+        ls ${{github.workspace}}/SDL_image-2.8.8
+        echo 
         ls SDL_image-2.8.8/lib
+        echo 
         ls SDL_image-2.8.8/lib/x64
+        echo 
         cp SDL_image-2.8.8/lib/x64/* $SDL2_ROOT/lib/
 
 
