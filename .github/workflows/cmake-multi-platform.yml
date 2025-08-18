@@ -94,8 +94,10 @@ jobs:
         cd SDL2_image-2.8.8
         echo %cd%
         echo "SDL2_image_ROOT=%cd%" >> %GITHUB_ENV%
-        cmake cmake
-        cmake --build cmake
+        cd cmake
+        cmake
+        cmake --build
+        cd ..
         cd ..
         dir SDL2_image-2.8.8
 
