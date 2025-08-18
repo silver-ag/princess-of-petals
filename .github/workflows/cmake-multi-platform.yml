@@ -121,7 +121,7 @@ jobs:
       run: |
         dir SDL2_image-2.8.8
         cp %SDL2_ROOT%\bin\SDL2.dll ${{ github.workspace }}
-        #cp SDL2_image-2.8.8/lib/x64/SDL2_image.dll ${{ github.workspace }}
+      #  cp SDL2_image-2.8.8/lib/x64/SDL2_image.dll ${{ github.workspace }}
 
     - uses: actions/upload-artifact@v4
       with:
