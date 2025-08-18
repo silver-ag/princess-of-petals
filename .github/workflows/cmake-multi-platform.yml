@@ -29,7 +29,7 @@ jobs:
       # Build your program with the given configuration. Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
       run: cmake --build . --config Release
 
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v4
       with:
         name: princess_linux
         path: ../princess
@@ -76,7 +76,7 @@ jobs:
         cp -a %SDL2_image_ROOT%\lib\. %SDL2_ROOT%\lib
         src\build.bat release %SDL2_ROOT% %SDL2_image_ROOT%
 
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v4
       with:
         name: princess_windows.exe
         path: ../princess.exe
