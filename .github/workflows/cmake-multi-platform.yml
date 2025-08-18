@@ -69,9 +69,7 @@ jobs:
         echo
         ls $SDL2_ROOT/lib
         echo
-        pwd
-        echo
-        ls
+        echo "${{ github.workspace }}"
 
     - name: Build
       shell: cmd
@@ -83,4 +81,4 @@ jobs:
     - uses: actions/upload-artifact@v4
       with:
         name: princess_windows
-        path: C:\d\a\princess-of-petals\princess-of-petals
+        path: ${{ github.workspace }}
