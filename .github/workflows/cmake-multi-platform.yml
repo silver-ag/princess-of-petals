@@ -57,7 +57,8 @@ jobs:
     - name: Build
       shell: cmd
       run: |
-        dir %SDL2_image_ROOT%
-        dir %SDL2_image_ROOT%/include
-        dir %SDL2_image_ROOT%/include/SDL2
+        echo %SDL2_image_ROOT%
+        dir C:\%SDL2_image_ROOT%
+        dir C:\%SDL2_image_ROOT%/include
+        dir C:\%SDL2_image_ROOT%/include/SDL2
         src\build.bat release %SDL2_ROOT% %SDL2_image_ROOT%
