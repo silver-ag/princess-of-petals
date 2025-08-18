@@ -75,16 +75,6 @@ jobs:
 
     - uses: ilammy/msvc-dev-cmd@v1
 
-    - name: Info
-      shell: bash
-      run: |
-        ls $SDL2_image_ROOT/bin
-        echo
-        ls $SDL2_image_ROOT/include
-        echo
-        ls $SDL2_image_ROOT/lib
-        echo
-        ls $SDL2_image_ROOT/share
 
     - name: Get SDL_image
       shell: cmd
@@ -97,6 +87,11 @@ jobs:
         cd ..
         dir SDL2_image-2.8.8
 
+    - name: Info
+      shell: bash
+      run: |
+        ls $SDL2_ROOT/lib
+
     - name: Build
       shell: cmd
       run: |
@@ -104,8 +99,7 @@ jobs:
         echo
         cp %SDL2_image_ROOT%\include\SDL2\SDL_image.h %SDL2_ROOT%\include\SDL2
         cp -a SDL_image-2.8.8\lib\x64\. %SDL2_ROOT%\lib
-        dir %SDL2_ROOT%\lib
-        echo
+        echo 
         src\build.bat release %SDL2_ROOT% %SDL2_image_ROOT%
 
     - name: Copy Dlls
