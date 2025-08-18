@@ -61,9 +61,9 @@ jobs:
     - name: Install SDL2 Manually
       shell: bash
       run: |
-        wget https://github.com/libsdl-org/SDL/releases/download/release-2.32.6/SDL2-devel-2.32.6-VC.zip
+        curl -L -o SDL2-devel-2.32.6-VC.zip https://github.com/libsdl-org/SDL/releases/download/release-2.32.6/SDL2-devel-2.32.6-VC.zip
         unzip SDL2-devel-2.32.6-VC.zip
-        wget https://github.com/libsdl-org/SDL_image/releases/download/release-2.8.8/SDL2_image-devel-2.8.8-VC.zip
+        curl -L -o SDL2_image-devel-2.8.8-VC.zip https://github.com/libsdl-org/SDL_image/releases/download/release-2.8.8/SDL2_image-devel-2.8.8-VC.zip
         unzip SDL2_image-devel-2.8.8-VC.zip
         cp SDL2_image-2.8.8/include/SDL2_image.h SDL2-2.32.6/include/
         cp SDL2_image-2.8.8/lib/x64/SDL2_image.dll SDL2-2.32.6/lib/x64/
