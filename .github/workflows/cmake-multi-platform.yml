@@ -65,7 +65,11 @@ jobs:
       run: |
         ls $SDL2_image_ROOT/bin
         echo
-        ls $SDL2_image_ROOT
+        ls $SDL2_image_ROOT/include
+        echo
+        ls $SDL2_image_ROOT/lib
+        echo
+        ls $SDL2_image_ROOT/share
 
     - name: Build
       shell: cmd
