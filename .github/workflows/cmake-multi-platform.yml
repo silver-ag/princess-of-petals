@@ -64,9 +64,10 @@ jobs:
         -DCMAKE_PREFIX_PATH=${{ steps.sdl.outputs.prefix }}
         -DCMAKE_C_FLAGS="-I ${{ steps.sdl.outputs.prefix }}/include/ -mwindows"
         -DCMAKE_C_FLAGS="-L ${{ steps.sdl.outputs.prefix }}/lib/ -mwindows"
+        -DSDL2="${{ steps.sdl.outputs.prefix }}"
+        -DCMAKE_VERBOSE_MAKEFILE="ON"
         -S src
         -G "MinGW Makefiles"
-        --debug-output
 
     - name: Debug Info
       run: >
