@@ -33,7 +33,7 @@ jobs:
     - uses: actions/upload-artifact@v4
       with:
         name: princess_linux
-        path: /home/runner/work/princess-of-petals/princess-of-petals/princess
+        path: /home/runner/work/princess-of-petals/princess-of-petals/
 
   test_Windows:
     runs-on: windows-latest
@@ -82,5 +82,5 @@ jobs:
 
     - uses: actions/upload-artifact@v4
       with:
-        name: princess_windows.exe
-        path: ../princess.exe
+        name: princess_windows
+        path: /d/a/princess-of-petals/princess-of-petals/
