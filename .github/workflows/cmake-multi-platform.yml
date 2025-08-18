@@ -85,8 +85,8 @@ jobs:
         echo %cd%
         echo "SDL2_image_ROOT=%cd%" >> %GITHUB_ENV%
         cd ..
-        dir SDL2_image-2.8.8/lib
-        dir SDL2_image-2.8.8/lib/x64
+        dir SDL2_image-2.8.8\lib
+        dir SDL2_image-2.8.8\lib\x64
 
     - name: Copy image lib
       shell: bash
