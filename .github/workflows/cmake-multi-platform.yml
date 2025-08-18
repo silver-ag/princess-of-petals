@@ -62,8 +62,8 @@ jobs:
         -DCMAKE_C_COMPILER=gcc
         -DCMAKE_BUILD_TYPE=Release
         -DCMAKE_PREFIX_PATH=${{ steps.sdl.outputs.prefix }}
-        -DCMAKE_C_FLAGS="-I ${{ steps.sdl.outputs.prefix }}/include/ -L ${{ steps.sdl.outputs.prefix }}/lib/ -lSDL2 -lSDL2main -lmingw64 -mwindows"
-        -DCMAKE_CXX_FLAGS="-I ${{ steps.sdl.outputs.prefix }}/include/ -L ${{ steps.sdl.outputs.prefix }}/lib/ -lSDL2 -lSDL2main -lmingw64 -mwindows"
+        -DCMAKE_C_FLAGS="-I ${{ steps.sdl.outputs.prefix }}/include/ -L ${{ steps.sdl.outputs.prefix }}/lib/ -lSDL2 -lSDL2main -lmingw32 -mwindows"
+        -DCMAKE_CXX_FLAGS="-I ${{ steps.sdl.outputs.prefix }}/include/ -L ${{ steps.sdl.outputs.prefix }}/lib/ -lSDL2 -lSDL2main -lmingw32 -mwindows"
         -DSDL2="${{ steps.sdl.outputs.prefix }}"
         -DCMAKE_VERBOSE_MAKEFILE="ON"
         -S src
