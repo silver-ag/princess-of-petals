@@ -57,10 +57,10 @@ jobs:
         echo ${{ steps.sdl.outputs.prefix }}
         ls ${{ steps.sdl.outputs.prefix }}
 
+    - uses: ilammy/msvc-dev-cmd@v1
+
     - name: Build
       shell: cmd
       run: |
-        dir C:\"Program Files"
-        dir C:\"Program Files"\"Microsoft Visual Studio"\
-        C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Community\VC\Auxiliary\Build\vcvarsall.bat" x86
+        dir C:\"Program Files"\"Microsoft Visual Studio"\2022
         src\build.bat release ${{ steps.sdl.outputs.prefix }}
