@@ -21,8 +21,6 @@ if ERRORLEVEL 1 (
 :: (You could do that from the command-line, or from a wrapper script that calls this one.)
 
 :: added - take second argument for SDL2 location
-set SDL2=%2
-set SDL2IMAGE=%3
 if [%SDL2%]==[] (
   set SDL2=..\..\SDL2-2.0.6
 )
