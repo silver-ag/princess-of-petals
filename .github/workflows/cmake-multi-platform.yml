@@ -83,4 +83,4 @@ jobs:
     - uses: actions/upload-artifact@v4
       with:
         name: princess_windows
-        path: /d/a/princess-of-petals/princess-of-petals/
+        path: C:\d\a\princess-of-petals\princess-of-petals
