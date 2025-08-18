@@ -58,6 +58,21 @@ jobs:
         version-sdl-image: 2-latest
         add-to-environment: true
 
+    #- name: Install SDL2 Manually
+    #  shell: bash
+    #  run: |
+    #    mkdir SDL2
+    #    cd SDL2
+    #    wget https://github.com/libsdl-org/SDL/releases/download/release-2.32.6/SDL2-devel-2.32.6-mingw.zip
+    #    unzip SDL2-devel-2.32.6-mingw.zip
+    #    export SDL2_ROOT = $(pwd)
+    #    cd ..
+    #    mkdir SDL2_image
+    #    cd SDL2_image
+    #    wget https://github.com/libsdl-org/SDL_image/releases/download/release-2.8.8/SDL2_image-devel-2.8.8-mingw.zip
+    #    unzip SDL2_image-devel-2.8.8-mingw.zip
+    #    export SDL2_image_ROOT = $(pwd)
+
     - uses: ilammy/msvc-dev-cmd@v1
 
     - name: Info
@@ -71,6 +86,16 @@ jobs:
         echo
         ls $SDL2_image_ROOT/share
 
+    - name: Get SDL_image
+      shell: bash
+      run: |
+        mkdir SDL2_image
+        cd SDL2_image
+        wget https://github.com/libsdl-org/SDL_image/releases/download/release-2.8.8/SDL2_image-devel-2.8.8-VC.zip
+        unzip SDL2_image-devel-2.8.8-VC.zip
+        export SDL2_image_ROOT = $(pwd)
+        cd ..
+
     - name: Build
       shell: cmd
       run: |
@@ -82,7 +107,7 @@ jobs:
       shell: cmd
       run: |
         cp %SDL2_ROOT%\bin\SDL2.dll ${{ github.workspace }}
-        cp %SDL2_image_ROOT%\bin\SDL2_imaged.dll ${{ github.workspace }}
+        cp %SDL2_image_ROOT%\bin\SDL2_image.dll ${{ github.workspace }}
 
     - uses: actions/upload-artifact@v4
       with:
