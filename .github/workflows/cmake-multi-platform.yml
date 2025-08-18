@@ -94,11 +94,15 @@ jobs:
         cd SDL2_image-2.8.8
         echo %cd%
         echo "SDL2_image_ROOT=%cd%"
+        dir SDL2_image-2.8.8
         cd ..
 
     - name: Build
       shell: cmd
       run: |
+        echo "SDL2_image_ROOT = %SDL2_image_ROOT%"
+        echo "or in "
+        echo
         cp %SDL2_image_ROOT%\include\SDL2\SDL_image.h %SDL2_ROOT%\include\SDL2
         cp -a %SDL2_image_ROOT%\lib\. %SDL2_ROOT%\lib
         src\build.bat release %SDL2_ROOT% %SDL2_image_ROOT%
@@ -108,7 +112,7 @@ jobs:
       run: |
         dir SDL2_image
         cp %SDL2_ROOT%\bin\SDL2.dll ${{ github.workspace }}
-        cp %SDL2_image_ROOT%/bin/SDL2_image.dll ${{ github.workspace }}
+        cp SDL2_image-2.8.8/bin/SDL2_image.dll ${{ github.workspace }}
 
     - uses: actions/upload-artifact@v4
       with:
