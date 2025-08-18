@@ -91,7 +91,7 @@ jobs:
       run: |
         mkdir SDL2_image
         cd SDL2_image
-        curl -o SDL2_image-devel-2.8.8-VC.zip https://github.com/libsdl-org/SDL_image/releases/download/release-2.8.8/SDL2_image-devel-2.8.8-VC.zip
+        curl -L -o SDL2_image-devel-2.8.8-VC.zip https://github.com/libsdl-org/SDL_image/releases/download/release-2.8.8/SDL2_image-devel-2.8.8-VC.zip
         unzip SDL2_image-devel-2.8.8-VC.zip
         export SDL2_image_ROOT = $(pwd)
         cd ..
