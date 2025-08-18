@@ -22,7 +22,7 @@ if ERRORLEVEL 1 (
 
 :: added - take second argument for SDL2 location
 set SDL2=%2
-
+set SDL2IMAGE=%3
 if [%SDL2%]==[] (
   set SDL2=..\..\SDL2-2.0.6
 )
@@ -56,8 +56,8 @@ set PreprocessorDefinitions=
 
 :compile
 set SourceFiles= main.c data.c seg000.c seg001.c seg002.c seg003.c seg004.c seg005.c seg006.c seg007.c seg008.c seg009.c seqtbl.c replay.c options.c lighting.c screenshot.c menu.c midi.c opl3.c stb_vorbis.c
-set CommonCompilerFlags= /nologo /MP /fp:fast /GR- /wd4048 %PreprocessorDefinitions% /I"%SDL2%\include"
-set CommonLinkerFlags= /subsystem:windows,5.01 /libpath:"%SDL2%\lib\%VSCMD_ARG_TGT_ARCH%" SDL2main.lib SDL2.lib SDL2_image.lib Shell32.lib icon.res /out:..\prince.exe
+set CommonCompilerFlags= /nologo /MP /fp:fast /GR- /wd4048 %PreprocessorDefinitions% /I"%SDL2%\include" /I"%SDL2IMAGE%\include"
+set CommonLinkerFlags= /subsystem:windows,5.01 /libpath:"%SDL2%\lib\%VSCMD_ARG_TGT_ARCH%" /libpath:"%SDL2IMAGE%\lib\%VSCMD_ARG_TGT_ARCH%" SDL2main.lib SDL2.lib SDL2_image.lib Shell32.lib icon.res /out:..\prince.exe
 
 rc /nologo /fo icon.res icon.rc
 cl %BuildTypeCompilerFlags% %CommonCompilerFlags% %SourceFiles% /link %CommonLinkerFlags%

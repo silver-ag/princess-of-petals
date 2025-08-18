@@ -52,16 +52,12 @@ jobs:
         version-sdl-image: 2-latest
         add-to-environment: true
 
-    - name: Debug Info
-      run: |
-        echo ${{ steps.sdl.outputs.prefix }}
-        ls ${{ steps.sdl.outputs.prefix }}
-
     - uses: ilammy/msvc-dev-cmd@v1
 
     - name: Build
       shell: cmd
       run: |
-        dir C:\"Program Files"\"Microsoft Visual Studio"\2022\Enterprise\
-        git checkout -f include/SDL_config.h
-        src\build.bat release ${{ steps.sdl.outputs.prefix }}
+        dir C:\"Program Files"\"Microsoft Visual Studio"\2022\Enterprise\VC
+        echo %SDL2_ROOT%
+        echo %SDL2_image_ROOT%
+        src\build.bat release %SDL2_ROOT% %SDL2_image_ROOT%
