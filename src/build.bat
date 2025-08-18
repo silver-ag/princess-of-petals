@@ -26,6 +26,10 @@ if [%SDL2%]==[] (
   set SDL2=SDL2-2.32.6
 )
 
+echo 
+dir
+echo 
+
 if not exist %SDL2% (
   echo Problem^: Could not find SDL2 directory.
   echo Tried to look here^: %SDL2%
