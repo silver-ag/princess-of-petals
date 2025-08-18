@@ -118,7 +118,7 @@ else()
 endif()
 
 if(WIN32)
-    target_link_libraries(princess mingw32 SDL2main SDL2 SDL2_image)
+    #target_link_libraries(princess mingw32 SDL2main SDL2 SDL2_image)
 elseif(APPLE)
     target_link_libraries(princess SDL2main SDL2 SDL2_image m)
 elseif(PSP) # Linux, *BSD, etc.
