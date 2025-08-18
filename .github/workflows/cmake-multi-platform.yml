@@ -63,8 +63,9 @@ jobs:
     - name: Info
       shell: bash
       run: |
-        ls $SDL2_ROOT
+        ls $SDL2_ROOT/bin
         echo
+        ls $SDL2_ROOT/lib
 
     - name: Build
       shell: cmd
@@ -75,7 +76,7 @@ jobs:
 
     - name: Copy SDL2.dll
       shell: bash
-      run: cp $SDL2_ROOT/SDL2.dll ${{ github.workspace }}/
+      run: cp $SDL2_ROOT/bin/SDL2.dll ${{ github.workspace }}/
 
     - uses: actions/upload-artifact@v4
       with:
