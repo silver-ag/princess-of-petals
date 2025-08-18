@@ -59,4 +59,6 @@ jobs:
 
     - name: Build
       shell: pwsh
-      run: Start-Process "cmd.exe" "/c build.bat release ${{ steps.sdl.outputs.prefix }}"
+      run: |
+        Start-Process "cmd.exe" "/c echo hello world"
+        Start-Process "cmd.exe" "/c src/build.bat release ${{ steps.sdl.outputs.prefix }}"
