@@ -1,2 +1,0 @@
-after everything else: remove all unused resources
-
