@@ -80,7 +80,8 @@ jobs:
       shell: bash
       run: |
         ls $SDL2_image_ROOT
-        ls $SDL2_image_ROOT\lib
+        ls $SDL2_image_ROOT/lib
+        ls $SDL2_image_ROOT/bin
 
     #- name: Copy image lib
     #  shell: bash
