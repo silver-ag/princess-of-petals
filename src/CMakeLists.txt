@@ -48,9 +48,9 @@ if (WIN32)
 
     # Automatically detect whether we need the x86 or x64 version of the SDL2 library.
     if (CMAKE_SIZEOF_VOID_P EQUAL 8)
-        set(SDL2_ARCH "x86") #"x86_64-w64-mingw32")
+        set(SDL2_ARCH "x86_64-w64-mingw32")
     else()
-        set(SDL2_ARCH "x64") #"i686-w64-mingw32")
+        set(SDL2_ARCH "i686-w64-mingw32")
     endif()
 
     include_directories(${SDL2}/${SDL2_ARCH}/include)
