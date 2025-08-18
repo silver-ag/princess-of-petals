@@ -68,7 +68,7 @@ jobs:
 
     - name: Debug Info
       run: >
-        ls ${{ steps.sdl.outputs.prefix }}
+        ls ${{ steps.sdl.outputs.prefix }} &&
         cmake --version
 
     - name: Build
