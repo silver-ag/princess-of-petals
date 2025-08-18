@@ -58,7 +58,8 @@ jobs:
         ls ${{ steps.sdl.outputs.prefix }}
 
     - name: Build
-      shell: pwsh
+      shell: cmd
       run: |
-        cmd.exe /c echo hello world
-        & .\src\build.bat release ${{ steps.sdl.outputs.prefix }}
+        dir C:\"Program Files (x86)"\"Microsoft Visual Studio"\
+        C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Community\VC\Auxiliary\Build\vcvarsall.bat" x86
+        \src\build.bat release ${{ steps.sdl.outputs.prefix }}
