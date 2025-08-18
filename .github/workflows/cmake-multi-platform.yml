@@ -89,11 +89,11 @@ jobs:
     - name: Get SDL_image
       shell: cmd
       run: |
-        mkdir SDL2_image
-        cd SDL2_image
         curl.exe -L -o SDL2_image-devel-2.8.8-VC.zip https://github.com/libsdl-org/SDL_image/releases/download/release-2.8.8/SDL2_image-devel-2.8.8-VC.zip
         unzip SDL2_image-devel-2.8.8-VC.zip
+        cd SDL2_image-2.8.8
         echo %cd%
+        echo "SDL2_image_ROOT=%cd%"
         cd ..
 
     - name: Build
@@ -108,7 +108,7 @@ jobs:
       run: |
         dir SDL2_image
         cp %SDL2_ROOT%\bin\SDL2.dll ${{ github.workspace }}
-        cp SDL2_image/bin/SDL2_image.dll ${{ github.workspace }}
+        cp %SDL2_image_ROOT%/bin/SDL2_image.dll ${{ github.workspace }}
 
     - uses: actions/upload-artifact@v4
       with:
