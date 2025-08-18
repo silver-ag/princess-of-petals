@@ -93,7 +93,9 @@ jobs:
         unzip SDL2_image-devel-2.8.8-VC.zip
         cd SDL2_image-2.8.8
         echo %cd%
-        echo "SDL2_image_ROOT=%cd%"
+        echo "SDL2_image_ROOT=%cd%" >> %GITHUB_ENV%
+        cmake .
+        cmake --build .
         cd ..
         dir SDL2_image-2.8.8
 
