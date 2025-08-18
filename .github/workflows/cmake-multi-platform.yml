@@ -55,7 +55,7 @@ jobs:
       with:
         install-linux-dependencies: true
         version: 2-latest
-        version-sdl-image: 2.8.8
+        version-sdl-image: 2.8.7
         add-to-environment: true
 
     #- name: Install SDL2 Manually
