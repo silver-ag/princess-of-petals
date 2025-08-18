@@ -23,11 +23,11 @@ if ERRORLEVEL 1 (
 :: added - take second argument for SDL2 location
 if [%SDL2%]==[] (
   echo defaulting to SDL2-2.32.6
-  set SDL2=SDL2-2.32.6
+  set SDL2=..\SDL2-2.32.6
 )
 
 echo 
-dir
+dir ..
 echo 
 
 if not exist %SDL2% (
