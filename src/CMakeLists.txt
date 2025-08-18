@@ -53,7 +53,7 @@ if (WIN32)
         set(SDL2_ARCH "i686-w64-mingw32")
     endif()
 
-    include_directories(${SDL2}/${SDL2_ARCH}/include)
+    include_directories(${SDL2}/${SDL2_ARCH}/includee) # test typo path
     link_directories(${SDL2}/${SDL2_ARCH}/lib)
 endif()
 
